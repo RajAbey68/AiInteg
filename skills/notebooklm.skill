@@ -1,0 +1,12 @@
+---
+name: notebooklm
+description: >
+  Complete API for Google NotebookLM — create notebooks, add sources (URLs, YouTube, PDFs,
+  audio, video, images), chat with content, generate podcasts/videos/quizzes/flashcards/
+  infographics/mind maps/slide decks, and download results. Also covers installation,
+  authentication, and exposing NotebookLM to Cowork via MCP server + Cloudflare tunnel.
+  Activates on explicit /notebooklm, or intent like "create a podcast about X",
+  "install notebooklm", "add notebooklm to Cowork", "generate a quiz from my research",
+  "summarise these URLs", "turn this into an audio overview".
+location: skills/notebooklm/SKILL.md
+---

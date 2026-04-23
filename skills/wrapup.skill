@@ -1,0 +1,11 @@
+---
+name: wrapup
+description: >
+  End-of-session wrap-up: reviews the conversation, saves key memories (decisions,
+  project context, user preferences, feedback), writes a structured session summary,
+  and pushes it as a source to the user's AI Brain notebook in NotebookLM for
+  long-term searchable recall. Requires the notebooklm skill for notebook operations.
+  Activates on "/wrapup", "wrap up", "save this session", "end of session",
+  "session summary", or "push to NotebookLM".
+location: skills/wrapup/SKILL.md
+---
