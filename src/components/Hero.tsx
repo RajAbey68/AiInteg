@@ -33,20 +33,19 @@ export default function Hero() {
           </div>
 
           <h1 className="font-serif text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 text-balance">
-            AI implementation
+            Your firm. Using AI.
             <br />
-            <span className="text-gold-400 underline-gold">done right</span>
-            {" "}for
-            <br />
-            professional firms
+            <span className="text-gold-400">Fully defensible.</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-ink-300 max-w-2xl mx-auto mb-4 leading-relaxed font-light">
-            Most AI consultants deploy a tool and disappear.
+            The EU AI Act high-risk deadline is August 2026.
+            The FCA Mills Review reports late 2026.
           </p>
           <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            AI Integrity closes the gap — with peers who've solved the same compliance
-            questions at the same firm size, in the same regulators' sights.
+            AI Integrity is the community where high street and regional professional
+            services firms get compliant, get confident, and get ahead —
+            before the window closes.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-2 mb-10">

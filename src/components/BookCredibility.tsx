@@ -45,7 +45,7 @@ export default function BookCredibility() {
             <p className="text-lg text-ink-600 mb-5 leading-relaxed">
               The frameworks, checklists, and compliance guidance in this community are
               drawn from the 12-chapter manuscript under editorial review by the Law Society.
-              Not vendor content. Not thought leadership.
+              Not vendor content. Not practitioner knowledge.
             </p>
             <p className="text-ink-500 leading-relaxed mb-8">
               Practitioner knowledge under editorial scrutiny — the same standard
