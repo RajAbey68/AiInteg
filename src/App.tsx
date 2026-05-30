@@ -4,6 +4,7 @@ import UrgencyBand from "@/components/UrgencyBand";
 import SectorSelector from "@/components/SectorSelector";
 import WhyNotConsultant from "@/components/WhyNotConsultant";
 import HowItWorks from "@/components/HowItWorks";
+import Methodology from "@/components/Methodology";
 import Community from "@/components/Community";
 import Testimonials from "@/components/Testimonials";
 import BookCredibility from "@/components/BookCredibility";
@@ -21,6 +22,7 @@ export default function App() {
         <SectorSelector />
         <WhyNotConsultant />
         <HowItWorks />
+        <Methodology />
         <Community />
         <Testimonials />
         <BookCredibility />

@@ -39,13 +39,28 @@ export default function Footer() {
           {/* Ecosystem */}
           <div>
             <p className="text-white font-semibold text-sm mb-4">Ecosystem</p>
+            <div className="rounded-xl bg-ink-800 border border-ink-700 p-4 mb-4">
+              <a
+                href="https://asimov-ai.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold-400 font-semibold text-sm hover:text-gold-300 transition-colors"
+              >
+                ASIMOV-AI →
+              </a>
+              <p className="text-ink-400 text-xs mt-1 leading-relaxed">
+                Formal AI governance audit. 251-control framework.
+                Three Lines of Defence. EU AI Act compliance.
+                For firms that need board-level sign-off.
+              </p>
+            </div>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href="https://asimov-ai.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-gold-400 transition-colors"
+                  className="hover:text-gold-400 transition-colors sr-only"
                 >
                   ASIMOV-AI — enterprise audit →
                 </a>
