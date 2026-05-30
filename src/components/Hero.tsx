@@ -1,68 +1,100 @@
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const SKOOL_URL = "https://www.skool.com/ai-integrity";
 
-const proof = [
-  "SRA · FCA · ICO frameworks — plain English",
-  "~14% of small firms use AI. Be the early majority.",
-  "Grounded in The Digital Law Firm (Law Society Publishing)",
+const stats = [
+  { value: "~14%", label: "Small firm AI adoption — the gap is your advantage" },
+  { value: "Aug 2026", label: "EU AI Act high-risk deadline — are you ready?" },
+  { value: "£0", label: "Cost to join the community and start today" },
 ];
 
 export default function Hero() {
   return (
-    <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-brand-50 to-white">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="relative min-h-screen bg-ink-900 flex flex-col justify-center overflow-hidden">
+      {/* Subtle texture / grain overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")",
+          backgroundRepeat: "repeat",
+          backgroundSize: "128px",
+        }}
+      />
+
+      {/* Gold accent line — top */}
+      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent" />
+
+      <div className="relative max-w-5xl mx-auto px-6 pt-32 pb-24 text-center">
         {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-100 text-brand-700 text-sm font-medium mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
-          For law firms · accountants · IFAs · consultants
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400 text-xs font-semibold uppercase tracking-widest mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />
+          For regulated professional services firms · UK
         </div>
 
-        {/* Headline */}
-        <h1 className="text-5xl md:text-6xl font-bold text-slate-900 leading-tight tracking-tight mb-6 text-balance">
-          The community for firms
+        {/* Headline — serif, authoritative */}
+        <h1 className="font-serif text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 text-balance">
+          AI implementation
           <br />
-          implementing AI{" "}
-          <span className="text-brand-500">the right way</span>
+          <span className="text-gold-400 underline-gold">done right</span>
+          {" "}for
+          <br />
+          professional firms
         </h1>
 
-        {/* Sub */}
-        <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-          Most AI consultants deploy a tool and disappear. High street and regional
-          professional services firms need something different — peers who've solved
-          the same compliance questions, at the same firm size, in the same regulators'
-          sights.
+        {/* Category creation — kills the consultant model */}
+        <p className="text-xl md:text-2xl text-ink-300 max-w-2xl mx-auto mb-4 leading-relaxed font-light">
+          Most AI consultants deploy a tool and disappear.
+        </p>
+        <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+          AI Integrity closes the gap — with peers who've solved the same compliance
+          questions at the same firm size, in the same regulators' sights.
         </p>
 
+        {/* Sector labels */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+          {["Solicitors", "Accountants", "IFAs", "Architects", "Surveyors", "Consultants"].map((s) => (
+            <span
+              key={s}
+              className="px-3 py-1 rounded-full border border-ink-600 text-ink-300 text-xs font-medium"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a
             href={SKOOL_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-500 text-white font-semibold text-base hover:bg-brand-600 transition-colors shadow-md shadow-brand-200"
+            className="inline-flex items-center gap-2 px-7 py-4 rounded bg-gold-500 text-ink-900 font-bold text-base hover:bg-gold-400 transition-colors shadow-lg shadow-gold-500/20"
           >
-            Join the community free
+            Join the community — free
             <ArrowRight size={18} />
           </a>
           <a
-            href="#how"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-slate-700 font-semibold text-base border border-slate-200 hover:border-brand-300 hover:text-brand-600 transition-colors"
+            href="#sectors"
+            className="inline-flex items-center gap-2 px-7 py-4 rounded border border-ink-600 text-ink-200 font-semibold text-base hover:border-gold-500/50 hover:text-white transition-colors"
           >
-            See how it works
+            Find your sector
           </a>
         </div>
 
-        {/* Proof strip */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-          {proof.map((item) => (
-            <div key={item} className="flex items-center gap-1.5 text-sm text-slate-500">
-              <CheckCircle2 size={15} className="text-brand-400 shrink-0" />
-              {item}
+        {/* Stats row */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-ink-700 rounded-xl overflow-hidden max-w-3xl mx-auto">
+          {stats.map((s) => (
+            <div key={s.value} className="bg-ink-800 px-6 py-5 text-center">
+              <p className="font-serif text-3xl font-bold text-gold-400 mb-1">{s.value}</p>
+              <p className="text-xs text-ink-400 leading-snug">{s.label}</p>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-parchment-50 to-transparent" />
     </section>
   );
 }

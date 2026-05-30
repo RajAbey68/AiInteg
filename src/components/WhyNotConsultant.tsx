@@ -1,77 +1,85 @@
 import { X, CheckCircle2 } from "lucide-react";
 
-const consultantProblems = [
-  "Deploys one tool, charges £1,500–£8,000, and walks away",
-  "No answer when SRA/FCA guidance changes next quarter",
-  "No peers to ask 'what did you do when this happened?'",
-  "Tells you what to implement — not what others tried and rejected",
+const before = [
+  { text: "Pays £1,500–£8,000 for a single tool deployment" },
+  { text: "Consultant deploys, invoices, and disappears" },
+  { text: "No answer when SRA or FCA guidance changes" },
+  { text: "No peers to ask: 'what did you do when this happened?'" },
+  { text: "Buys what the consultant sells, not what peers have tested" },
 ];
 
-const communityGains = [
-  "Peers who've navigated the same compliance questions at the same firm size",
-  "Ongoing: compliance updates, new tool reviews, policy template revisions",
-  "A solicitor in Cardiff who solved your exact problem six months ago",
-  "What works across law, accounting, and IFA practices — not generic AI advice",
+const after = [
+  { text: "Free community entry; paid membership from £49/month" },
+  { text: "Ongoing — the community runs as the AI landscape changes" },
+  { text: "Monthly compliance updates as SRA, FCA, ICAEW guidance evolves" },
+  { text: "Direct peer Q&A with solicitors, accountants, IFAs in similar firms" },
+  { text: "Vetted tool library built by practitioners, not vendors" },
 ];
 
 export default function WhyNotConsultant() {
   return (
-    <section className="py-20 px-6 bg-slate-900 text-white">
+    <section id="why" className="py-24 px-6 bg-ink-900">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
-          <p className="text-sm font-semibold text-brand-400 uppercase tracking-wider mb-3">
-            Why not just hire a consultant?
+          <p className="text-xs font-semibold text-gold-500 uppercase tracking-widest mb-3">
+            Why community beats a consultant
           </p>
-          <h2 className="text-4xl font-bold text-balance mb-4">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-5 text-balance">
             A consultant deploys the tool.
-            <br />A community runs it.
+            <br />
+            <span className="text-gold-400">A community runs it.</span>
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            The software licence is the easy part. The cost barrier for small firms is
-            everything around it — training, policy, ongoing support. That's what
-            AI Integrity provides, at a fraction of the project cost.
+          <p className="text-lg text-ink-300 max-w-2xl mx-auto">
+            The software licence costs £25/month. The real cost is the training, the policy,
+            and someone to answer questions at 9am on a Tuesday. That's what a community absorbs.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Consultant column */}
-          <div className="rounded-2xl bg-slate-800 border border-slate-700 p-7">
-            <p className="text-slate-400 font-semibold text-sm uppercase tracking-wider mb-5">
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Before */}
+          <div className="rounded-2xl bg-ink-800 border border-ink-700 p-7">
+            <p className="text-ink-400 font-semibold text-xs uppercase tracking-widest mb-1">
               Traditional AI consultancy
             </p>
+            <p className="text-ink-200 font-serif text-lg font-semibold mb-6">
+              One project. One invoice. Gone.
+            </p>
             <ul className="space-y-3">
-              {consultantProblems.map((p) => (
-                <li key={p} className="flex items-start gap-3">
-                  <X size={16} className="text-red-400 shrink-0 mt-0.5" />
-                  <span className="text-slate-300 text-sm leading-relaxed">{p}</span>
+              {before.map((item) => (
+                <li key={item.text} className="flex items-start gap-3">
+                  <X size={15} className="text-red-400 shrink-0 mt-0.5" />
+                  <span className="text-ink-300 text-sm leading-relaxed">{item.text}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 pt-5 border-t border-slate-700">
-              <p className="text-slate-500 text-xs">
-                Reference: UK AI consultancy project pricing £1,500–£8,000
-                per engagement. Source: verified market research, May 2026.
+            <div className="mt-6 pt-5 border-t border-ink-700">
+              <p className="text-ink-500 text-xs">
+                Source: UK AI consultancy SME project pricing — £1,500 single-solution,
+                £3,000–£8,000 multi-solution. Verified May 2026.
               </p>
             </div>
           </div>
 
-          {/* Community column */}
-          <div className="rounded-2xl bg-brand-500 border border-brand-400 p-7">
-            <p className="text-brand-200 font-semibold text-sm uppercase tracking-wider mb-5">
+          {/* After */}
+          <div className="rounded-2xl bg-gold-500 border border-gold-400 p-7">
+            <p className="text-gold-700 font-semibold text-xs uppercase tracking-widest mb-1">
               AI Integrity community
             </p>
+            <p className="text-ink-900 font-serif text-lg font-semibold mb-6">
+              Ongoing. Peer-led. Built for your sector.
+            </p>
             <ul className="space-y-3">
-              {communityGains.map((g) => (
-                <li key={g} className="flex items-start gap-3">
-                  <CheckCircle2 size={16} className="text-white shrink-0 mt-0.5" />
-                  <span className="text-brand-50 text-sm leading-relaxed">{g}</span>
+              {after.map((item) => (
+                <li key={item.text} className="flex items-start gap-3">
+                  <CheckCircle2 size={15} className="text-ink-900 shrink-0 mt-0.5" />
+                  <span className="text-ink-800 text-sm leading-relaxed">{item.text}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 pt-5 border-t border-brand-400">
-              <p className="text-brand-200 text-xs">
-                Free to join. Ongoing for as long as AI keeps changing — which is
-                not a problem that a one-off engagement was ever going to solve.
+            <div className="mt-6 pt-5 border-t border-gold-400">
+              <p className="text-gold-700 text-xs">
+                Free to join. The AI landscape changes every quarter.
+                That's not a problem a one-off engagement was ever going to solve.
               </p>
             </div>
           </div>

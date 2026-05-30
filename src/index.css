@@ -1,26 +1,39 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --color-brand: 90 114 245;
-    --color-accent: 249 115 22;
-  }
-
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-white text-slate-900 font-sans antialiased;
+    @apply bg-parchment-50 text-ink-800 font-sans antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Gold shimmer underline for hero highlights */
+  .underline-gold {
+    text-decoration: underline;
+    text-decoration-color: theme('colors.gold.400');
+    text-decoration-thickness: 3px;
+    text-underline-offset: 5px;
   }
 }

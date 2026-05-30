@@ -1,82 +1,89 @@
-export default function Footer() {
-  const year = new Date().getFullYear();
+const year = new Date().getFullYear();
 
+const sectors = ["Solicitors", "Accountants", "IFAs", "Architects", "Surveyors", "Consultants"];
+
+export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 py-12 px-6">
+    <footer className="bg-ink-950 text-ink-400 py-14 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-8 mb-10">
+        <div className="grid md:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg bg-brand-500 flex items-center justify-center">
-                <span className="text-white font-bold text-xs">AI</span>
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded bg-gold-500 flex items-center justify-center">
+                <span className="text-ink-900 font-serif font-bold text-sm">AI</span>
               </div>
-              <span className="text-white font-semibold">AI Integrity</span>
+              <span className="text-white font-serif font-semibold text-lg">AI Integrity</span>
             </div>
-            <p className="text-sm leading-relaxed">
-              Practical AI implementation for high street and regional professional services firms.
-              Built by practitioners, for practitioners.
+            <p className="text-sm leading-relaxed max-w-xs mb-4">
+              Practical AI implementation for high street and regional professional services
+              firms. Built by practitioners, for practitioners.
+            </p>
+            <p className="text-xs text-ink-600">
+              Grounded in The Digital Law Firm — Law Society Publishing, Q4 2026.
             </p>
           </div>
 
-          {/* Links */}
+          {/* Sectors */}
           <div>
-            <p className="text-white font-semibold text-sm mb-3">Navigate</p>
+            <p className="text-white font-semibold text-sm mb-4">Sectors</p>
             <ul className="space-y-2 text-sm">
-              {["Who it's for", "How it works", "Community", "The Book", "Pricing"].map((l) => (
-                <li key={l}>
-                  <a href="#" className="hover:text-white transition-colors">{l}</a>
+              {sectors.map((s) => (
+                <li key={s}>
+                  <a href="#sectors" className="hover:text-gold-400 transition-colors">{s}</a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Related */}
+          {/* Ecosystem */}
           <div>
-            <p className="text-white font-semibold text-sm mb-3">Ecosystem</p>
+            <p className="text-white font-semibold text-sm mb-4">Ecosystem</p>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href="https://asimov-ai.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-gold-400 transition-colors"
                 >
                   ASIMOV-AI — enterprise audit →
                 </a>
               </li>
               <li>
-                <a
-                  href="#book"
-                  className="hover:text-white transition-colors"
-                >
-                  The Digital Law Firm (book)
+                <a href="#book" className="hover:text-gold-400 transition-colors">
+                  The Digital Law Firm
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:raj@ai-integrity.com"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-gold-400 transition-colors"
                 >
                   Contact Rajiv
                 </a>
               </li>
             </ul>
+            <div className="mt-6 pt-5 border-t border-ink-800">
+              <p className="text-xs text-ink-600">
+                Need a formal AI governance audit?
+              </p>
+              <a
+                href="https://asimov-ai.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-gold-500 hover:text-gold-400 transition-colors"
+              >
+                ASIMOV-AI — 251-control framework →
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div className="border-t border-ink-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
           <p>© {year} AI Integrity. All rights reserved.</p>
-          <p>
-            Need a formal AI governance audit?{" "}
-            <a
-              href="https://asimov-ai.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-brand-400 hover:text-brand-300"
-            >
-              ASIMOV-AI →
-            </a>
+          <p className="text-ink-600">
+            Regulated professionals · UK · High street and regional
           </p>
         </div>
       </div>
