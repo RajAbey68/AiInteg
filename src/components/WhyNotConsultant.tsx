@@ -1,19 +1,21 @@
 import { X, CheckCircle2 } from "lucide-react";
 
+// Pricing range sourced from theaiconsultancy.ai (verified May 2026):
+// "from £1,500" single-solution, "typically £3,000 to £8,000" multi-solution.
 const before = [
-  { text: "Pays £1,500–£8,000 for a single tool deployment" },
-  { text: "Consultant deploys, invoices, and disappears" },
-  { text: "No answer when SRA or FCA guidance changes" },
+  { text: "Project fees from £1,500 for a single tool deployment¹" },
+  { text: "Consultant deploys, invoices, and the relationship ends" },
+  { text: "No guidance when your regulator's AI position evolves" },
   { text: "No peers to ask: 'what did you do when this happened?'" },
-  { text: "Buys what the consultant sells, not what peers have tested" },
+  { text: "Buys what the consultant recommends, not what peers have tested" },
 ];
 
 const after = [
   { text: "Free community entry; paid membership from £49/month" },
-  { text: "Ongoing — the community runs as the AI landscape changes" },
-  { text: "Monthly compliance updates as SRA, FCA, ICAEW guidance evolves" },
-  { text: "Direct peer Q&A with solicitors, accountants, IFAs in similar firms" },
-  { text: "Vetted tool library built by practitioners, not vendors" },
+  { text: "Ongoing — the community continues as the AI landscape changes" },
+  { text: "Compliance updates as FCA, ICO, and professional body guidance evolves" },
+  { text: "Peer Q&A with solicitors, accountants, IFAs, and architects at similar firms" },
+  { text: "Vetted tool library built by practitioners, reviewed for your regulator" },
 ];
 
 export default function WhyNotConsultant() {
@@ -54,8 +56,9 @@ export default function WhyNotConsultant() {
             </ul>
             <div className="mt-6 pt-5 border-t border-ink-700">
               <p className="text-ink-500 text-xs">
-                Source: UK AI consultancy SME project pricing — £1,500 single-solution,
-                £3,000–£8,000 multi-solution. Verified May 2026.
+                ¹ Source: theaiconsultancy.ai published pricing, verified May 2026.
+                "From £1,500" single-solution; "typically £3,000 to £8,000" multi-solution.
+                This is the only UK firm in our verified research set with published SME pricing.
               </p>
             </div>
           </div>

@@ -4,9 +4,9 @@ import WaitlistModal from "./WaitlistModal";
 import { CTA_LABEL } from "@/lib/waitlist";
 
 const stats = [
-  { value: "~14%", label: "Small firm AI adoption — the gap is your advantage" },
-  { value: "Aug 2026", label: "EU AI Act high-risk deadline — are you ready?" },
-  { value: "£0", label: "Cost to join the founding cohort today" },
+  { value: "~14%", label: "Sole practitioner AI adoption in law (SRA, 2025) — the gap is your advantage" },
+  { value: "Aug 2026", label: "EU AI Act high-risk system deadline — the compliance clock is running" },
+  { value: "Free", label: "Cost to join the founding cohort — no credit card required" },
 ];
 
 export default function Hero() {
