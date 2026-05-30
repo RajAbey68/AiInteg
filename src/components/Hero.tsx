@@ -3,9 +3,9 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 const SKOOL_URL = "https://www.skool.com/ai-integrity";
 
 const proof = [
-  "SRA · ICO · FCA compliant frameworks",
-  "Built for high street and regional firms",
-  "Grounded in The Digital Law Firm",
+  "SRA · FCA · ICO frameworks — plain English",
+  "~14% of small firms use AI. Be the early majority.",
+  "Grounded in The Digital Law Firm (Law Society Publishing)",
 ];
 
 export default function Hero() {
@@ -15,22 +15,23 @@ export default function Hero() {
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-100 text-brand-700 text-sm font-medium mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
-          For law firms · accountants · consultants
+          For law firms · accountants · IFAs · consultants
         </div>
 
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl font-bold text-slate-900 leading-tight tracking-tight mb-6 text-balance">
-          AI that works for{" "}
-          <span className="text-brand-500">your firm</span>,
+          The community for firms
           <br />
-          not just the big four
+          implementing AI{" "}
+          <span className="text-brand-500">the right way</span>
         </h1>
 
         {/* Sub */}
         <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-          A practical community for high street and regional professional services firms
-          implementing AI — without the enterprise price tag, the consultancy jargon,
-          or the compliance risk.
+          Most AI consultants deploy a tool and disappear. High street and regional
+          professional services firms need something different — peers who've solved
+          the same compliance questions, at the same firm size, in the same regulators'
+          sights.
         </p>
 
         {/* CTAs */}

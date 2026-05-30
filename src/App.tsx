@@ -1,6 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import UrgencyBand from "@/components/UrgencyBand";
 import WhoItsFor from "@/components/WhoItsFor";
+import WhyNotConsultant from "@/components/WhyNotConsultant";
 import HowItWorks from "@/components/HowItWorks";
 import Community from "@/components/Community";
 import BookCredibility from "@/components/BookCredibility";
@@ -15,7 +17,9 @@ export default function App() {
       <Navigation />
       <main>
         <Hero />
+        <UrgencyBand />
         <WhoItsFor />
+        <WhyNotConsultant />
         <HowItWorks />
         <Community />
         <BookCredibility />
