@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import UrgencyBand from "@/components/UrgencyBand";
@@ -13,6 +14,11 @@ import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
 export default function App() {
+  // Signal to vite-plugin-prerender that the page is fully rendered
+  useEffect(() => {
+    document.dispatchEvent(new Event("app-rendered"));
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Navigation />
