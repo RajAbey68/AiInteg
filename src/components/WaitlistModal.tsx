@@ -51,7 +51,7 @@ export default function WaitlistModal({ open, onClose, source }: Props) {
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nSector: ${sector}\nFirm size: ${firmSize}\nSource: ${source ?? "website"}`
     );
-    window.location.href = `mailto:raj@ai-integrity.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:raj@ai-integ.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 

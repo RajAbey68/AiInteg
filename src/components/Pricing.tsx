@@ -42,7 +42,7 @@ const tiers = [
     period: "/month",
     description: "For firms wanting an implementation partner, not just a community.",
     cta: "Talk to us",
-    ctaHref: "mailto:raj@ai-integrity.com",
+    ctaHref: "mailto:raj@ai-integ.com",
     primary: false,
     features: [
       "Everything in Member",

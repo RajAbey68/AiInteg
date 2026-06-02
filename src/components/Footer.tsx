@@ -72,7 +72,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:raj@ai-integrity.com"
+                  href="mailto:raj@ai-integ.com"
                   className="hover:text-gold-400 transition-colors"
                 >
                   Contact Rajiv
