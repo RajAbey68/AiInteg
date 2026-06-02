@@ -13,7 +13,7 @@ const sectors = [
     pain: "You know AI is coming. You don't know where to start — and you can't afford to get your legal regulator compliance wrong.",
     gain: "Regulator-aware tool recommendations, peer-tested policies, and a community of solicitors who've navigated the same decisions.",
     urgencies: ["Duty of competence in the AI era", "Confidentiality & data residency", "Client best interests obligations"],
-    example: "[COMMUNITY CASE STUDY — to be added from member submissions after launch]",
+    example: "Founding members will contribute the first case studies. Join now to shape what gets shared.",
   },
   {
     id: "accounting",
@@ -24,7 +24,7 @@ const sectors = [
     pain: "AI-powered competitors are undercutting your compliance and advisory work. Your clients are asking whether you use it.",
     gain: "Tools reviewed against your professional body's ethical standards. Implementation guidance from practices of the same size.",
     urgencies: ["Professional body ethical standards", "Quality management obligations", "Client data and confidentiality"],
-    example: "[COMMUNITY CASE STUDY — to be added from member submissions after launch]",
+    example: "Founding members will contribute the first case studies. Join now to shape what gets shared.",
   },
   {
     id: "financial",
@@ -35,7 +35,7 @@ const sectors = [
     pain: "Consumer Duty and SM&CR make every AI tool decision a named individual's responsibility. The FCA has no new AI rules — which means your existing obligations apply directly.",
     gain: "Consumer Duty-aligned implementation guidance. SM&CR accountability frameworks. Peer IFAs and wealth managers who've already worked through the same questions.",
     urgencies: ["Consumer Duty — demonstrable good outcomes", "SM&CR named accountability for AI decisions", "FCA: existing frameworks govern AI (confirmed Feb 2026)"],
-    example: "[COMMUNITY CASE STUDY — to be added from member submissions after launch]",
+    example: "Founding members will contribute the first case studies. Join now to shape what gets shared.",
   },
   {
     id: "architecture",
@@ -46,7 +46,7 @@ const sectors = [
     pain: "AI is reshaping design, specification, and project management — but the professional liability questions aren't answered anywhere.",
     gain: "Implementation guidance for ARB-registered practices. AI tools reviewed for professional indemnity and PI insurance implications.",
     urgencies: ["ARB Code of Conduct obligations", "Professional indemnity insurance implications", "BIM and AI workflow integration"],
-    example: "[COMMUNITY CASE STUDY — to be added from member submissions after launch]",
+    example: "Founding members will contribute the first case studies. Join now to shape what gets shared.",
   },
   {
     id: "surveying",
@@ -57,7 +57,7 @@ const sectors = [
     pain: "Valuation, compliance reporting, and client-facing documents are all ripe for AI — but RICS professional standards create complexity.",
     gain: "RICS-aware implementation guidance. AI tools reviewed against RICS professional standards and AML obligations.",
     urgencies: ["RICS professional standards compliance", "Red Book valuation ethics", "AML and client due diligence"],
-    example: "[COMMUNITY CASE STUDY — to be added from member submissions after launch]",
+    example: "Founding members will contribute the first case studies. Join now to shape what gets shared.",
   },
   {
     id: "consulting",
@@ -68,7 +68,7 @@ const sectors = [
     pain: "You're advising clients on AI but your own practice isn't using it effectively. That gap is widening every month.",
     gain: "Practical implementation guidance without vendor hype. Peer benchmarking across consulting disciplines.",
     urgencies: ["Client data confidentiality obligations", "Deliverable quality and professional standards", "Sector-specific regulatory requirements"],
-    example: "[COMMUNITY CASE STUDY — to be added from member submissions after launch]",
+    example: "Founding members will contribute the first case studies. Join now to shape what gets shared.",
   },
 ];
 
