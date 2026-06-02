@@ -118,12 +118,17 @@ export default function WaitlistModal({ open, onClose, source }: Props) {
                 </p>
               )}
 
+              {/* TODO(REQUIRED-BEFORE-ANALYTICS): This form uses mailto: for
+                  submission. Before adding any analytics, tracking, or third-party
+                  form service, migrate to a server-side handler to prevent PII
+                  leaking into client-side event streams. */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-ink-700 mb-1">
+                  <label htmlFor="waitlist-name" className="block text-xs font-semibold text-ink-700 mb-1">
                     Your name
                   </label>
                   <input
+                    id="waitlist-name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -133,10 +138,11 @@ export default function WaitlistModal({ open, onClose, source }: Props) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-ink-700 mb-1">
+                  <label htmlFor="waitlist-email" className="block text-xs font-semibold text-ink-700 mb-1">
                     Work email <span className="text-red-400">*</span>
                   </label>
                   <input
+                    id="waitlist-email"
                     ref={emailRef}
                     type="email"
                     required
@@ -148,10 +154,11 @@ export default function WaitlistModal({ open, onClose, source }: Props) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-ink-700 mb-1">
+                  <label htmlFor="waitlist-sector" className="block text-xs font-semibold text-ink-700 mb-1">
                     Your sector <span className="text-red-400">*</span>
                   </label>
                   <select
+                    id="waitlist-sector"
                     required
                     value={sector}
                     onChange={(e) => setSector(e.target.value)}
@@ -165,10 +172,11 @@ export default function WaitlistModal({ open, onClose, source }: Props) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-ink-700 mb-1">
+                  <label htmlFor="waitlist-firmsize" className="block text-xs font-semibold text-ink-700 mb-1">
                     Firm size (optional)
                   </label>
                   <select
+                    id="waitlist-firmsize"
                     value={firmSize}
                     onChange={(e) => setFirmSize(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-lg border border-ink-200 text-ink-900 text-sm focus:outline-none focus:border-gold-400 focus:ring-2 focus:ring-gold-100 bg-white"

@@ -66,6 +66,7 @@ export default function Navigation() {
             className="md:hidden p-2 text-ink-200"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
+            aria-expanded={open}
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>

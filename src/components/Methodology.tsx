@@ -70,7 +70,7 @@ export default function Methodology() {
                   onClick={() => setLightbox(fw.id)}
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => e.key === "Enter" && setLightbox(fw.id)}
+                  onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), setLightbox(fw.id))}
                   aria-label={`Enlarge: ${fw.title}`}
                 >
                   <img
@@ -141,16 +141,19 @@ export default function Methodology() {
           aria-label="Framework enlarged view"
         >
           <div className="relative max-w-6xl w-full" onClick={(e) => e.stopPropagation()}>
-            {frameworks.filter((fw) => fw.id === lightbox).map((fw) => (
-              <div key={fw.id}>
-                <img
-                  src={fw.image}
-                  alt={fw.alt}
-                  className="w-full h-auto rounded-xl shadow-2xl"
-                />
-                <p className="text-center text-ink-300 text-sm mt-4">{fw.title}</p>
-              </div>
-            ))}
+            {(() => {
+              const activeFw = frameworks.find((fw) => fw.id === lightbox);
+              return activeFw ? (
+                <div>
+                  <img
+                    src={activeFw.image}
+                    alt={activeFw.alt}
+                    className="w-full h-auto rounded-xl shadow-2xl"
+                  />
+                  <p className="text-center text-ink-300 text-sm mt-4">{activeFw.title}</p>
+                </div>
+              ) : null;
+            })()}
             <button
               onClick={() => setLightbox(null)}
               className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-ink-700 text-white flex items-center justify-center text-lg hover:bg-ink-500 transition-colors"

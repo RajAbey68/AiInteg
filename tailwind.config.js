@@ -39,17 +39,6 @@ export default {
           200: '#f5f0e4',
           300: '#ede5d1',
         },
-        // Keep brand alias for legacy components during transition
-        brand: {
-          50:  '#fef3c7',
-          100: '#fde68a',
-          200: '#fcd34d',
-          300: '#fbbf24',
-          400: '#f59e0b',
-          500: '#d97706',
-          600: '#b45309',
-          700: '#92400e',
-        },
       },
     },
   },
