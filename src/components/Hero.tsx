@@ -3,9 +3,12 @@ import { ArrowRight } from "lucide-react";
 import WaitlistModal from "./WaitlistModal";
 import { CTA_LABEL } from "@/lib/waitlist";
 
+// H2 fix: SRA source cited properly
+// Source: SRA, "Technology, AI and the legal market" (2025), Section 3 — adoption rates
+// URL: https://www.sra.org.uk/sra/research-publications/artificial-intelligence-legal-market/
 const stats = [
-  { value: "~14%", label: "Sole practitioner AI adoption in law (SRA, 2025) — the gap is your advantage" },
-  { value: "Aug 2026", label: "EU AI Act high-risk system deadline — the compliance clock is running" },
+  { value: "~14%", label: "Sole practitioner AI adoption (SRA Technology & AI report, 2025)" },
+  { value: "Aug 2026", label: "EU AI Act high-risk deadline — for new systems placed on the market" },
   { value: "Free", label: "Cost to join the founding cohort — no credit card required" },
 ];
 
@@ -32,15 +35,19 @@ export default function Hero() {
             For regulated professional services firms · UK
           </div>
 
+          {/* H1 fix: headline now carries the value prop in 5 seconds */}
           <h1 className="font-serif text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 text-balance">
-            Your firm. Using AI.
+            AI governance
             <br />
-            <span className="text-gold-400">Fully defensible.</span>
+            for your practice.
+            <br />
+            <span className="text-gold-400">Peer-led. Regulator-ready.</span>
           </h1>
 
+          {/* H3 fix: "for new systems" qualifier. H4 fix: "expected to report" */}
           <p className="text-xl md:text-2xl text-ink-300 max-w-2xl mx-auto mb-4 leading-relaxed font-light">
-            The EU AI Act high-risk deadline is August 2026.
-            The FCA Mills Review reports late 2026.
+            The EU AI Act high-risk deadline for new systems is August 2026.
+            The FCA Mills Review is expected to report late 2026.
           </p>
           <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
             AI Integrity is the community where high street and regional professional

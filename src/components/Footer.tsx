@@ -97,9 +97,12 @@ export default function Footer() {
 
         <div className="border-t border-ink-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
           <p>© {year} AI Integrity. All rights reserved.</p>
-          <p className="text-ink-600">
-            Regulated professionals · UK · High street and regional
-          </p>
+          <div className="flex items-center gap-4">
+            <a href="/privacy" className="text-ink-500 hover:text-gold-400 transition-colors">Privacy Policy</a>
+            <a href="/terms" className="text-ink-500 hover:text-gold-400 transition-colors">Terms of Service</a>
+            <span className="text-ink-700">·</span>
+            <span className="text-ink-600">Regulated professionals · UK</span>
+          </div>
         </div>
       </div>
     </footer>

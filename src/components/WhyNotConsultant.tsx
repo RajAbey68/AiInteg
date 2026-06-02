@@ -4,10 +4,10 @@ import { X, CheckCircle2 } from "lucide-react";
 // "from £1,500" single-solution, "typically £3,000 to £8,000" multi-solution.
 const before = [
   { text: "Project fees from £1,500 for a single tool deployment¹" },
-  { text: "Consultant deploys, invoices, and the relationship ends" },
-  { text: "No guidance when your regulator's AI position evolves" },
-  { text: "No peers to ask: 'what did you do when this happened?'" },
-  { text: "Buys what the consultant recommends, not what peers have tested" },
+  { text: "Some offer retainers — but most engagements end at deployment" },
+  { text: "Limited ongoing guidance as your regulator's AI position evolves" },
+  { text: "No peer network to ask: 'what did you do when this happened?'" },
+  { text: "Recommendations shaped by the consultant's partnerships, not peer evidence" },
 ];
 
 const after = [

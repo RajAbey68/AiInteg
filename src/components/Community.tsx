@@ -60,13 +60,13 @@ export default function Community() {
               </h2>
               <p className="text-lg text-ink-600 mb-5 leading-relaxed">
                 Implementation is 10% tool selection and 90% the conversations around it.
-                Who handles client objections? What's your policy when the AI gets something
-                wrong? How do you train staff who don't trust it yet?
+                Who will handle client objections? What's your policy when the AI gets something
+                wrong? How will you train staff who don't trust it yet?
               </p>
               <p className="text-lg text-ink-600 mb-8 leading-relaxed">
-                Those answers don't come from a vendor's blog. They come from a solicitor
-                in Cardiff who solved the same problem six months ago and is happy to
-                tell you exactly what worked.
+                Those answers won't come from a vendor's blog. They'll come from a solicitor
+                in Cardiff who solved the same problem and is happy to tell you what worked.
+                That's what this community is building.
               </p>
 
               <button
