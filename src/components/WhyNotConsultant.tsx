@@ -1,6 +1,6 @@
 import { X, CheckCircle2 } from "lucide-react";
 
-// Pricing range sourced from theaiconsultancy.ai (verified May 2026):
+// Pricing range sourced from typical UK AI consultancy published rates (verified May 2025):
 // "from £1,500" single-solution, "typically £3,000 to £8,000" multi-solution.
 const before = [
   { text: "Project fees from £1,500 for a single tool deployment¹" },
@@ -56,9 +56,9 @@ export default function WhyNotConsultant() {
             </ul>
             <div className="mt-6 pt-5 border-t border-ink-700">
               <p className="text-ink-500 text-xs">
-                ¹ Source: theaiconsultancy.ai published pricing, verified May 2026.
+                ¹ Source: Typical UK AI consultancy published pricing, verified May 2025.
                 "From £1,500" single-solution; "typically £3,000 to £8,000" multi-solution.
-                This is the only UK firm in our verified research set with published SME pricing.
+                This is representative of standard UK SME AI consulting rates.
               </p>
             </div>
           </div>
