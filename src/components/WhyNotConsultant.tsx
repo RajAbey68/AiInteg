@@ -12,7 +12,7 @@ const before = [
 
 const after = [
   { text: "Free community entry; paid membership from £49/month" },
-  { text: "Ongoing — the community continues as the AI landscape changes" },
+  { text: "Ongoing — the community continues as the AI technology shifts" },
   { text: "Compliance updates as FCA, ICO, and professional body guidance evolves" },
   { text: "Peer Q&A with solicitors, accountants, IFAs, and architects at similar firms" },
   { text: "Vetted tool library built by practitioners, reviewed for your regulator" },
@@ -81,7 +81,7 @@ export default function WhyNotConsultant() {
             </ul>
             <div className="mt-6 pt-5 border-t border-gold-400">
               <p className="text-gold-700 text-xs">
-                Free to join. The AI landscape changes every quarter.
+                Free to join. AI technology shifts every quarter.
                 That's not a problem a one-off engagement was ever going to solve.
               </p>
             </div>
