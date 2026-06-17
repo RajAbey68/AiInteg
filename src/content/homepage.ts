@@ -8,6 +8,26 @@ export const homepageCopy = {
   },
   differentiator:
     "A consultancy hands you a plan and invoices you for the thinking. We hand you a system and invoice you for the delivery. If it does not run in production, we have not finished. Every engagement ends with something your team can operate, extend, and own — not a recommendation that sits in a folder.",
+  hooks: [
+    {
+      id: "outcome-contrast",
+      headline: "We don't sell powerpoints. We don't deliver speculative pilots.",
+      body: "A consultancy hands you a plan and invoices you for the thinking. We hand you a system and invoice you for the delivery. We engineer resilient, production-ready AI pipelines that own business outcomes. If it does not run in production, we have not finished.",
+      subhook: "Resilient, production-ready AI. We own what ships.",
+    },
+    {
+      id: "workflow-reality",
+      headline: "Your team spends up to 20% of their billable week hunting for information.",
+      body: "Professional services firms are drowning in fragmented data silos, emails, and PDFs. We build the private, secure semantic search and document reasoning systems that return those hours to your bottom line safely, without exposing your data to public models.",
+      subhook: "Private semantic search. Safe retrieval. Billable hours saved.",
+    },
+    {
+      id: "value-paradox",
+      headline: "If you deploy AI within an hourly-billing model, efficiency erodes your revenue.",
+      body: "Many firms fear that automation will reduce their billable hours and damage their top-line. We build the operational multiplier and pricing structures that let your firm transition to highly profitable, value-based pricing, capturing the margin instead of losing it.",
+      subhook: "Transition from hourly billing to high-margin value pricing.",
+    },
+  ],
   programme: {
     headline: "The AI Integ Programme",
     phases: [

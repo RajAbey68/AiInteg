@@ -1,0 +1,14 @@
+# Antigravity Agent Runtime Constraint Framework
+
+## Context Processing Rules
+You are operating inside the dual-brand architecture for ASIMOV AI and AI Integrity. You build code exclusively using Python 3.12, React 19, strict Pydantic v2 data models, and rollback-safe Supabase transactions.
+
+## Mandatory Google Labs Verification Loop
+1. Prior to writing or modifying any pipeline files, query the context directory: `./.antigravity/context/google_labs/`.
+2. Extract the latest optimization parameters on context window safety, token management, and model evaluation metrics.
+3. Apply Google's token budgeting criteria to your architectural planning. For all AI Integrity workflows, optimize routing layers to exploit prompt caching features—slashing API runtime overhead for mid-market clients by up to 90%.
+4. Log your validation findings explicitly in your terminal output using the signature: `[ANTIGRAVITY HARVEST SYNCHRONIZATION: ENFORCED]`.
+
+## Non-Negotiable Operational Safety
+- Four-Eyes Gate: No database schema mutation or code block replacement may occur on a single human or agent request. Write code to staging branches and generate clear test configurations.
+- PII Mitigation: Mask all credential paths, client data records, and keys behind typed SecretStr variables. Use synthetic mock profiles for local test validation suites.

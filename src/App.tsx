@@ -207,6 +207,33 @@ export function App() {
               {homepageCopy.differentiator}
             </section>
 
+            {/* Hooks / Friction Points */}
+            <section className="bg-zinc-900/10 py-16 border-b border-white/5 px-6 md:px-12">
+              <div className="max-w-5xl">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {homepageCopy.hooks.map((hook) => (
+                    <div
+                      key={hook.id}
+                      className="space-y-4 border border-white/5 p-6 rounded bg-zinc-900/20"
+                    >
+                      <h3 className="text-sm font-bold text-white font-mono uppercase tracking-tight">
+                        {hook.headline}
+                      </h3>
+                      <p className="text-xs text-zinc-400 leading-relaxed font-light">
+                        {hook.body}
+                      </p>
+                      <p
+                        className="text-[10px] font-mono font-bold uppercase tracking-wider"
+                        style={{ color: "var(--color-teal)" }}
+                      >
+                        {hook.subhook}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
             {/* Services */}
             <section
               id="services"
