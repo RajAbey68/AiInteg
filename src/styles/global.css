@@ -63,3 +63,14 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Prevent Layout Shift (CLS) for ligatures in Material Symbols Outlined */
+.material-symbols-outlined {
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
