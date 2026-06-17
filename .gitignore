@@ -1,6 +1,38 @@
-node_modules
-dist
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment files — never commit secrets
 .env
 .env.local
+.env.*.local
+
+# Test coverage
+coverage/
+
+# Playwright output
+playwright-report/
+test-results/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+.idea/
+
+# TypeScript incremental build cache
 *.tsbuildinfo
+node_modules/.cache/
+
+# Supabase local dev
+.supabase/
+
+# Vercel
+.vercel/
+
+# Logs
+*.log
+logs/
 .vercel
