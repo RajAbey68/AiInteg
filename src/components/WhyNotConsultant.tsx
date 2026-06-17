@@ -20,18 +20,18 @@ const after = [
 
 export default function WhyNotConsultant() {
   return (
-    <section id="why" className="py-24 px-6 bg-ink-900">
+    <section id="why" className="py-24 px-6 bg-zinc-950 border-t border-white/5">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
-          <p className="text-xs font-semibold text-gold-500 uppercase tracking-widest mb-3">
+          <p className="text-xs font-mono font-bold uppercase tracking-widest mb-3" style={{ color: "var(--color-teal)" }}>
             Why community beats a consultant
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-5 text-balance">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 tracking-tight" style={{ fontFamily: "var(--font-heading)" }}>
             A consultant deploys the tool.
             <br />
-            <span className="text-gold-400">A community runs it.</span>
+            <span style={{ color: "var(--color-teal)" }}>A community runs it.</span>
           </h2>
-          <p className="text-lg text-ink-300 max-w-2xl mx-auto">
+          <p className="text-sm text-zinc-400 max-w-2xl mx-auto leading-relaxed font-light">
             The software licence costs £25/month. The real cost is the training, the policy,
             and someone to answer questions at 9am on a Tuesday. That's what a community absorbs.
           </p>
@@ -39,23 +39,23 @@ export default function WhyNotConsultant() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Before */}
-          <div className="rounded-2xl bg-ink-800 border border-ink-700 p-7">
-            <p className="text-ink-400 font-semibold text-xs uppercase tracking-widest mb-1">
+          <div className="rounded border border-white/5 p-7 bg-zinc-900/10">
+            <p className="text-zinc-500 font-mono text-[10px] font-bold uppercase tracking-widest mb-1">
               Traditional AI consultancy
             </p>
-            <p className="text-ink-200 font-serif text-lg font-semibold mb-6">
+            <p className="text-zinc-300 text-lg font-bold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
               One project. One invoice. Gone.
             </p>
             <ul className="space-y-3">
               {before.map((item) => (
                 <li key={item.text} className="flex items-start gap-3">
-                  <X size={15} className="text-red-400 shrink-0 mt-0.5" />
-                  <span className="text-ink-300 text-sm leading-relaxed">{item.text}</span>
+                  <X size={14} className="text-red-400 shrink-0 mt-1" />
+                  <span className="text-zinc-400 text-xs leading-relaxed">{item.text}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 pt-5 border-t border-ink-700">
-              <p className="text-ink-500 text-xs">
+            <div className="mt-6 pt-5 border-t border-white/5">
+              <p className="text-zinc-500 text-[10px] leading-relaxed">
                 ¹ Source: Typical UK AI consultancy published pricing, verified May 2025.
                 "From £1,500" single-solution; "typically £3,000 to £8,000" multi-solution.
                 This is representative of standard UK SME AI consulting rates.
@@ -64,23 +64,23 @@ export default function WhyNotConsultant() {
           </div>
 
           {/* After */}
-          <div className="rounded-2xl bg-gold-500 border border-gold-400 p-7">
-            <p className="text-gold-700 font-semibold text-xs uppercase tracking-widest mb-1">
+          <div className="rounded border p-7 bg-zinc-900/40" style={{ borderColor: "var(--color-teal)" }}>
+            <p className="font-mono text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: "var(--color-teal)" }}>
               AI Integrity community
             </p>
-            <p className="text-ink-900 font-serif text-lg font-semibold mb-6">
+            <p className="text-white text-lg font-bold mb-6" style={{ fontFamily: "var(--font-heading)" }}>
               Ongoing. Peer-led. Built for your sector.
             </p>
             <ul className="space-y-3">
               {after.map((item) => (
                 <li key={item.text} className="flex items-start gap-3">
-                  <CheckCircle2 size={15} className="text-ink-900 shrink-0 mt-0.5" />
-                  <span className="text-ink-800 text-sm leading-relaxed">{item.text}</span>
+                  <CheckCircle2 size={14} className="shrink-0 mt-1" style={{ color: "var(--color-teal)" }} />
+                  <span className="text-zinc-300 text-xs leading-relaxed">{item.text}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 pt-5 border-t border-gold-400">
-              <p className="text-gold-700 text-xs">
+            <div className="mt-6 pt-5 border-t border-white/5">
+              <p className="text-zinc-400 text-[10px] leading-relaxed">
                 Free to join. AI technology shifts every quarter.
                 That's not a problem a one-off engagement was ever going to solve.
               </p>
