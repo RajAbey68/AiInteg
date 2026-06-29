@@ -355,14 +355,6 @@ export function App() {
                   >
                     Scope Project Now
                   </button>
-                  <a
-                    href="https://skool.com/ghostwriter-tandem-6940"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded border border-white/10 hover:border-white/30 px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider transition-colors text-white"
-                  >
-                    Join the Community
-                  </a>
                 </div>
               </div>
             </section>
@@ -561,16 +553,14 @@ export function App() {
                   {roadmap}
                 </div>
                 <div className="text-center pt-2">
-                  <a
-                    href="https://skool.com/ghostwriter-tandem-6940"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={() => setModalOpen(false)}
                     className="inline-flex items-center gap-2 rounded px-6 py-3 text-xs font-bold uppercase tracking-wider transition-all hover:opacity-90 active:scale-95"
                     style={{ backgroundColor: "var(--color-teal)", color: "var(--color-black)" }}
                   >
-                    Enter Skool Community
-                    <span className="material-symbols-outlined text-sm">login</span>
-                  </a>
+                    Close Window
+                  </button>
                 </div>
               </div>
             )}

@@ -107,13 +107,13 @@ Format clearly in Markdown. Start directly with the Briefing.
     const generatedContent =
       resJson.candidates?.[0]?.content?.parts?.[0]?.text || "Roadmap generation in progress.";
 
-    // 3. Return results to the client along with the Skool destination
+    // 3. Return results to the client along with the fallback destination
     return new Response(
       JSON.stringify({
         success: true,
         submissionId: dbData.id,
         roadmap: generatedContent,
-        skoolRedirect: "https://skool.com/ghostwriter-tandem-6940",
+        skoolRedirect: "https://ai-integ.com",
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },

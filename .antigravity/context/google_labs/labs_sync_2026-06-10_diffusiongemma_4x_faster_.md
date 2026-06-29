@@ -1,6 +1,6 @@
 ---
 origin: Google DeepMind
-synced: 2026-06-17T12:34:09.751143
+synced: 2026-06-18T18:41:27.932896
 target: Tiers 2-4 Optimisation
 ---
 
