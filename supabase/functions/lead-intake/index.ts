@@ -24,30 +24,48 @@ serve(async (req) => {
     const supabaseClient = createClient(supabaseUrl, supabaseServiceRoleKey);
 
     const payload = await req.json();
-    const {
-      full_name,
-      job_title,
-      organisation,
-      sector,
-      what_to_build,
-      timeline,
-      referral_source,
-      priority_callback,
-      concern,
-      headcount,
-    } = payload;
+    const { full_name, organisation, email, sector, what_to_build, priority_callback, concern } =
+      payload;
+
+    // Honeypot — bots fill the hidden "website" field. Pretend success, store nothing.
+    if (payload.website) {
+      return new Response(JSON.stringify({ success: true }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 200,
+      });
+    }
+
+    // Server-side validation — never trust the client.
+    const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (typeof email !== "string" || email.length > 254 || !EMAIL_PATTERN.test(email)) {
+      return new Response(JSON.stringify({ success: false, error: "Valid email required" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+    const freeText = String(what_to_build || concern || "");
+    if (freeText.length > 1000) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Project description too long (1000 characters max)",
+        }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 400,
+        }
+      );
+    }
 
     // 1. Insert into database using Service Role (bypassing RLS)
     const { data: dbData, error: dbError } = await supabaseClient
       .from("intake_submissions")
       .insert({
         full_name: full_name || "Anonymous Prospect",
-        job_title: job_title || "",
         organisation: organisation || "",
-        sector: sector || payload.sector || "",
-        what_to_build: (what_to_build || concern || "Not specified").substring(0, 300),
-        timeline: timeline || "",
-        referral_source: referral_source || "",
+        email,
+        sector: sector || "",
+        what_to_build: (freeText || "Not specified").substring(0, 300),
         priority_callback: !!priority_callback,
       })
       .select()
@@ -57,69 +75,37 @@ serve(async (req) => {
       throw dbError;
     }
 
-    // 2. Call Google AI Studio / Gemini API to generate the roadmap and briefing
-    const geminiKey = Deno.env.get("GEMINI_API_KEY");
-    if (!geminiKey) {
-      throw new Error("Missing GEMINI_API_KEY environment variable.");
-    }
-
-    const prompt = `
-You are the AI Integrity Senior Architect. Generate a customized 2-page Executive Briefing Document and a 90-Day Implementation Roadmap for:
-- Prospect Name: ${full_name || "Prospect"} (${job_title || "Operator"})
-- Firm/Organisation: ${organisation || "Regulated Firm"}
-- Sector: ${sector || "Regulated Professional Services"}
-- Main AI Concern / Focus: ${what_to_build || concern || "Vetting and integrating AI safely"}
-- Scaling / Headcount: ${headcount || "Mid-market"}
-
-Ensure compliance with SRA Code of Conduct, FCA SM&CR, and EU AI Act constraints.
-The tone must be practical, builder-focused, and direct (no marketing buzzwords like "transformative", "delve", "seamless").
-Structure the roadmap using our Crawl-Walk-Run-Fly framework:
-- Crawl: Immediate compliance check & sandbox setup.
-- Walk: Single-use-case pilot automation.
-- Run: Secure API gateways and multi-agent pipeline scaling.
-- Fly: Continuous observability & board audit readiness.
-
-Format clearly in Markdown. Start directly with the Briefing.
-`;
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${geminiKey}`,
-      {
+    // 2. Notify the owner so the one-working-day reply promise is operable.
+    // SLA support: set LEAD_NOTIFY_WEBHOOK before launch — without it, leads
+    // are only visible in the intake_submissions table.
+    const notifyWebhook = Deno.env.get("LEAD_NOTIFY_WEBHOOK");
+    if (notifyWebhook) {
+      // Fire-and-forget — a notification failure must never fail the lead.
+      fetch(notifyWebhook, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.2,
-          },
+          full_name: dbData.full_name,
+          organisation: dbData.organisation,
+          email: dbData.email,
+          sector: dbData.sector,
+          created_at: dbData.created_at,
         }),
-      }
-    );
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Gemini API error: ${errorText}`);
+      }).catch((notifyError) => {
+        console.error(JSON.stringify({ event: "lead_notify_failed", error: String(notifyError) }));
+      });
+    } else {
+      // Structured log line — queryable in Supabase Logs until a webhook is set.
+      console.log(JSON.stringify({ event: "lead_received", email_domain: email.split("@")[1] }));
     }
 
-    const resJson = await response.json();
-    const generatedContent =
-      resJson.candidates?.[0]?.content?.parts?.[0]?.text || "Roadmap generation in progress.";
-
-    // 3. Return results to the client along with the fallback destination
-    return new Response(
-      JSON.stringify({
-        success: true,
-        submissionId: dbData.id,
-        roadmap: generatedContent,
-        skoolRedirect: "https://ai-integ.com",
-      }),
-      {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 200,
-      }
-    );
+    // 3. Done. Flow is: validate → insert → notify → return success.
+    // Roadmap generation was removed from the request path; if wanted later,
+    // it moves to an async job.
+    return new Response(JSON.stringify({ success: true, submissionId: dbData.id }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+      status: 200,
+    });
   } catch (error) {
     return new Response(JSON.stringify({ success: false, error: error.message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
