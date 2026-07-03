@@ -261,7 +261,7 @@ export function App() {
                   {
                     title: "AI Governance Referral",
                     description:
-                      "Implementation and governance are distinct disciplines. When boards need standing AI risk counsel, we refer to ASIMOV AI — our sister advisory practice.",
+                      "Implementation and governance are distinct disciplines. When boards need standing AI risk counsel, we refer to ASIMOV AI — our sister advisory practice. The conflict wall applies both ways: separate engagement teams, no shared client files, and an ASIMOV audit verdict is never contingent on AI Integ winning the build.",
                   },
                 ].map((service) => (
                   <article
