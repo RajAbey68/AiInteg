@@ -2,7 +2,7 @@ export const homepageCopy = {
   hero: {
     h1: "We build the AI system. We own what ships.",
     subhead:
-      "You get a working system in production — tested, documented, handed over with the skills to run it. Not a slide deck. Not a proof of concept that dies in staging.",
+      "Firms like yours are buying AI tools nobody installs properly. We do the build. We test it against criteria you set. We hand it over running — with one named person accountable for the lot.",
     primaryCta: { label: "Scope your project", href: "/scope" },
     secondaryCta: { label: "See how the programme works", href: "/programme" },
   },
@@ -28,6 +28,14 @@ export const homepageCopy = {
       subhook: "Transition from hourly billing to high-margin value pricing.",
     },
   ],
+
+  // Vendor-gap hook — approved P0 copy.
+  vendorGapHook: "Harvey. Copilot. Clio. Great tools. Zero implementation support.",
+
+  // Analogy line appended to the rendered hook — approved P0 copy.
+  hookAnalogy:
+    "Buying AI software without implementation is buying a filing system and leaving it in the boxes. The invoice arrives either way.",
+
   programme: {
     headline: "The AI Integ Programme",
     phases: [
@@ -93,6 +101,7 @@ export const homepageCopy = {
     ],
     accountabilityStatement:
       "One named delivery lead. Accountable for every sprint, every gate, and the final handover. Not a rotating team of associates.",
+    closingLine: "One person answers for the whole build. Not a rotating cast of associates.",
   },
   skool: {
     headline: "Post-delivery: the AI Integrity community",
@@ -114,4 +123,7 @@ export const homepageCopy = {
   ],
   pricingSignal:
     "Typical programme: 6–14 weeks · Discovery: fixed fee · Build: sprint-based · Scope confirmed at project intake",
+
+  pricingCommitment:
+    "Discovery is a fixed fee, agreed before we start. The build is priced per sprint. You see the number before any code is written.",
 } as const;
