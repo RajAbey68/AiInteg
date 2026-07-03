@@ -169,6 +169,74 @@ describe("App", () => {
     expect(screen.getByText(/Please consent/i)).toBeInTheDocument();
   });
 
+  it("shows a plain-English error for an invalid email and does not call the API", async () => {
+    const mockFetch = vi.fn();
+    vi.stubGlobal("fetch", mockFetch);
+
+    const { container } = render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: /Scope your project/i }));
+    fillForm();
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "not-an-email" },
+    });
+    fireEvent.click(screen.getByLabelText(/We use these details/i));
+
+    const form = container.querySelector("form");
+    if (!form) throw new Error("Form not found");
+    fireEvent.submit(form);
+
+    expect(screen.getByText(/Enter a valid email address so we can reply\./)).toBeInTheDocument();
+    expect(mockFetch).not.toHaveBeenCalled();
+
+    vi.unstubAllGlobals();
+  });
+
+  it("honeypot: silently short-circuits to success without calling the API", async () => {
+    const mockFetch = vi.fn();
+    vi.stubGlobal("fetch", mockFetch);
+
+    const { container } = render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: /Scope your project/i }));
+    fillForm();
+    fireEvent.click(screen.getByLabelText(/We use these details/i));
+
+    const honeypot = container.querySelector("input[name='website']");
+    if (!honeypot) throw new Error("Honeypot input not found");
+    expect(honeypot).toHaveAttribute("tabindex", "-1");
+    fireEvent.change(honeypot, { target: { value: "https://spam.example" } });
+
+    const form = container.querySelector("form");
+    if (!form) throw new Error("Form not found");
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Received\. We reply within one working day\./)).toBeInTheDocument();
+    });
+    expect(mockFetch).not.toHaveBeenCalled();
+
+    vi.unstubAllGlobals();
+  });
+
+  it("shows the timeout message when the request aborts", async () => {
+    const abortError = new DOMException("The operation was aborted.", "AbortError");
+    const mockFetch = vi.fn().mockRejectedValue(abortError);
+    vi.stubGlobal("fetch", mockFetch);
+
+    render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: /Scope your project/i }));
+    fillForm();
+    fireEvent.click(screen.getByLabelText(/We use these details/i));
+    fireEvent.click(screen.getByRole("button", { name: /^Send$/i }));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Request timed out — email us instead and we'll pick it up\./)
+      ).toBeInTheDocument();
+    });
+
+    vi.unstubAllGlobals();
+  });
+
   it("submits the form and shows the received message — no roadmap rendered", async () => {
     const mockFetch = vi.fn().mockResolvedValue({
       ok: true,

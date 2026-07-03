@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { homepageCopy } from "./content/homepage";
 
 const ASIMOV_AI_URL = "https://asimov-ai.org";
 // TODO(owner): rename Skool slug to ai-integrity and update this URL
 const SKOOL_URL = "https://skool.com/ghostwriter-tandem-6940";
 const SKOOL_LABEL = "Not ready to commission? Join the AI Integrity community — free.";
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const SUBMIT_TIMEOUT_MS = 15000;
 
 export function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -15,10 +17,12 @@ export function App() {
     sector: "",
     what_to_build: "",
   });
+  const [honeypot, setHoneypot] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [consent, setConsent] = useState(false);
   const [success, setSuccess] = useState(false);
+  const submittingRef = useRef(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -28,12 +32,28 @@ export function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Honeypot — bots fill it, humans never see it. Pretend success, send nothing.
+    if (honeypot) {
+      setSuccess(true);
+      return;
+    }
     if (!consent) {
       setError("Please consent to the privacy policy.");
       return;
     }
+    if (!EMAIL_PATTERN.test(formData.email)) {
+      setError("Enter a valid email address so we can reply.");
+      return;
+    }
+    // Double-submit guard — ref catches re-entry before React re-renders the disabled button.
+    if (submittingRef.current) {
+      return;
+    }
+    submittingRef.current = true;
     setLoading(true);
     setError("");
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
     try {
       const response = await fetch(
         "https://qcawafyfaqjwolgczhap.supabase.co/functions/v1/lead-intake",
@@ -43,6 +63,7 @@ export function App() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
+          signal: controller.signal,
         }
       );
       const data = await response.json();
@@ -51,9 +72,15 @@ export function App() {
       }
       setSuccess(true);
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "An unexpected error occurred.";
-      setError(message);
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setError("Request timed out — email us instead and we'll pick it up.");
+      } else {
+        const message = err instanceof Error ? err.message : "An unexpected error occurred.";
+        setError(message);
+      }
     } finally {
+      clearTimeout(timeoutId);
+      submittingRef.current = false;
       setLoading(false);
     }
   };
@@ -409,6 +436,22 @@ export function App() {
 
             {!success ? (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot — hidden from humans, catnip for bots */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden"
+                >
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
                 {error && (
                   <div className="text-base text-red-400 bg-red-950/20 border border-red-500/20 p-3 rounded">
                     {error}
