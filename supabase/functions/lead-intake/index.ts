@@ -80,20 +80,29 @@ serve(async (req) => {
     // are only visible in the intake_submissions table.
     const notifyWebhook = Deno.env.get("LEAD_NOTIFY_WEBHOOK");
     if (notifyWebhook) {
-      // Fire-and-forget — a notification failure must never fail the lead.
-      fetch(notifyWebhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          full_name: dbData.full_name,
-          organisation: dbData.organisation,
-          email: dbData.email,
-          sector: dbData.sector,
-          created_at: dbData.created_at,
-        }),
-      }).catch((notifyError) => {
+      // The ping carries NO personal data (webhook host is a third party):
+      // it says a lead exists; the details stay in intake_submissions.
+      const notifyHeaders: Record<string, string> = {
+        "Content-Type": "text/plain",
+        Title: "New lead - reply due within 1 working day", // ASCII only: header values must be ByteStrings
+        Priority: "high",
+        Tags: "briefcase",
+      };
+      // NOTE: no X-Email mirror — ntfy.sh rejects anonymous email sending (400)
+      // and the rejection drops the entire notification. Email mirroring needs
+      // a paid ntfy account or a separate route.
+      // Awaited (not fire-and-forget): the edge runtime freezes the instance
+      // after the response returns, which silently kills detached fetches.
+      // A notify failure still never fails the lead — errors are swallowed here.
+      try {
+        await fetch(notifyWebhook, {
+          method: "POST",
+          headers: notifyHeaders,
+          body: `New lead received (sector: ${dbData.sector || "unspecified"}). Check intake_submissions — id ${dbData.id}.`,
+        });
+      } catch (notifyError) {
         console.error(JSON.stringify({ event: "lead_notify_failed", error: String(notifyError) }));
-      });
+      }
     } else {
       // Structured log line — queryable in Supabase Logs until a webhook is set.
       console.log(JSON.stringify({ event: "lead_received", email_domain: email.split("@")[1] }));
