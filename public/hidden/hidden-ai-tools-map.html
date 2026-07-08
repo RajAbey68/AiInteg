@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hidden Map of AI Power - Tool Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .modal { transition: opacity 0.25s ease; }
+        body { background-color: #0b0f19; color: #f3f4f6; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <header class="border-b border-gray-800 bg-gray-900 bg-opacity-50 backdrop-blur sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-fuchsia-500 bg-clip-text text-transparent">
+                    <i class="fas fa-map-marked-alt mr-2"></i>The Hidden Map of AI Power
+                </h1>
+                <p class="text-xs text-gray-400 mt-1">A curated ecosystem of asymmetric capabilities.</p>
+            </div>
+            <div class="flex flex-wrap gap-2" id="filter-container">
+                <button onclick="filterCategory('all')" id="btn-all" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-cyan-600 text-white transition">All Tools</button>
+                <button onclick="filterCategory('design')" id="btn-design" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Visuals & Design</button>
+                <button onclick="filterCategory('presentation')" id="btn-presentation" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Presentations</button>
+                <button onclick="filterCategory('audio')" id="btn-audio" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Audio & Music</button>
+                <button onclick="filterCategory('research')" id="btn-research" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Research & Search</button>
+                <button onclick="filterCategory('coding')" id="btn-coding" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Coding & Dev</button>
+                <button onclick="filterCategory('ops')" id="btn-ops" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Ops & Meetings</button>
+                <button onclick="filterCategory('support')" id="btn-support" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-800 text-gray-300 hover:bg-gray-700 transition">Customer Support</button>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="tools-grid">
+            </div>
+    </main>
+    <div id="detail-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-gray-950 opacity-80" onclick="closeModal()"></div>
+
+        <div class="modal-container bg-gray-900 border border-gray-800 w-11/12 md:max-w-2xl mx-auto rounded-xl shadow-2xl z-50 overflow-y-auto max-h-[90vh]">
+            <div class="modal-content py-6 text-left px-6">
+                <div class="flex justify-between items-center pb-4 border-b border-gray-800">
+                    <div class="flex items-center gap-3">
+                        <span id="modal-icon" class="text-3xl text-cyan-400"></span>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white" id="modal-title">Tool Title</h2>
+                            <span id="modal-badge" class="inline-block mt-1 text-xs px-2 py-0.5 rounded-full font-semibold bg-gray-800 text-gray-300">Category</span>
+                        </div>
+                    </div>
+                    <button class="text-gray-400 hover:text-white text-2xl" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="my-5 space-y-4">
+                    <div>
+                        <h4 class="text-sm font-semibold text-cyan-400 uppercase tracking-wider">Core Asymmetry (What it does)</h4>
+                        <p id="modal-desc" class="text-gray-300 mt-1 text-sm leading-relaxed"></p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 bg-gray-950 p-3 rounded-lg border border-gray-800">
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase">Community Rating</h4>
+                            <div id="modal-stars" class="text-amber-400 mt-1 text-sm"></div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold text-gray-400 uppercase">Cost Profile</h4>
+                            <p id="modal-cost" class="text-sm text-emerald-400 font-medium mt-1"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold text-amber-400 uppercase tracking-wider"><i class="fas fa-exclamation-triangle mr-1"></i> Strategic Caveats</h4>
+                        <p id="modal-caveats" class="text-gray-400 mt-1 text-sm italic"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-semibold text-purple-400 uppercase tracking-wider"><i class="fas fa-comment-alt mr-1"></i> User Review Highlight</h4>
+                        <p id="modal-review" class="text-gray-300 mt-1 text-sm bg-gray-950 p-3 rounded border-l-4 border-purple-500"></p>
+                    </div>
+                </div>
+                <div class="flex justify-end pt-4 border-t border-gray-800 gap-3">
+                    <button class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg text-sm font-medium transition" onclick="closeModal()">Close</button>
+                    <a id="modal-link" href="#" target="_blank" class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-medium rounded-lg text-sm transition flex items-center gap-2">
+                        Deploy Application <i class="fas fa-external-link-alt text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // The 10 Curated Tools Dataset
+        const toolsData = [
+            {
+                id: "napkin-ai",
+                name: "Napkin AI",
+                category: "design",
+                categoryLabel: "Visuals & Design",
+                icon: "fas fa-project-diagram",
+                shortDesc: "Transforms plain written text into professional, structured visual diagrams and flowcharts instantly.",
+                longDesc: "Pastes in logic-dense text, business plans, or research summaries and immediately translates the structural logic into clean, corporate-ready visuals. Leverages the psychological advantage that the human brain processes visual elements 60,000x faster than raw text.",
+                stars: 4.8,
+                cost: "Free / Freemium Tier",
+                caveats: "Diagrams are highly structured; complex artistic designs or abstract concepts are outside its scope.",
+                review: "\"Saves me hours trying to turn meeting minutes into client-ready slide assets. It parses nested lists flawlessly.\"",
+                url: "https://www.napkin.ai"
+            },
+            {
+                id: "gamma",
+                name: "Gamma",
+                category: "presentation",
+                categoryLabel: "Presentations",
+                icon: "fas fa-sliders-h",
+                shortDesc: "Generates stunning presentations, comprehensive reports, and active webpages from a single prompt.",
+                longDesc: "Eliminates administrative slide layout work completely. In 2026, it seamlessly blurs the line between slide decks and dynamic web landing pages, packaging design systems instantly to deliver functional narrative assets in under 10 minutes.",
+                stars: 4.9,
+                cost: "Freemium with Credits",
+                caveats: "Requires refined prompts to break away from highly predictable AI structure templates.",
+                review: "\"We built a pitch microsite and investor deck from a single brief. It saves us roughly 5 hours of visual alignment a week.\"",
+                url: "https://gamma.app"
+            },
+            {
+                id: "eleven-labs",
+                name: "ElevenLabs",
+                category: "audio",
+                categoryLabel: "Audio & Music",
+                icon: "fas fa-microphone-alt",
+                shortDesc: "High-fidelity human voice cloning and instant cross-lingual translation preserving emotive quality.",
+                longDesc: "Clones distinctive human voices with unprecedented emotional nuance, accents, and rhythms. Supports generation in over 40 distinct languages, letting localized content instantly operate on global stages without native rerecording.",
+                stars: 4.9,
+                cost: "Usage-Based Tiered Plans",
+                caveats: "Facing intense ongoing legal disruptions and deep ethical scrutiny over vocal authorship rights.",
+                review: "\"The vocal pacing and subtle breathing capture are so precise it's almost terrifying. Perfect for multilingual channels.\"",
+                url: "https://elevenlabs.io"
+            },
+            {
+                id: "perplexity",
+                name: "Perplexity AI",
+                category: "research",
+                categoryLabel: "Research & Search",
+                icon: "fas fa-search-dollar",
+                shortDesc: "A real-time search engine that bypasses traditional link farms to deliver direct, fully cited syntheses.",
+                longDesc: "Bypasses typical SEO manipulation and sponsor traps by directly analyzing live search index nodes, synthesizing information, and attaching visible source verification anchors to maximize information retrieval speed.",
+                stars: 4.7,
+                cost: "Free / Pro Subscriptions",
+                caveats: "Can occasionally map adjacent contextual claims incorrectly if the origin site contains conflicting facts.",
+                review: "\"Completely replaced my reliance on standard search indices for complex technical debugging and cross-referencing.\"",
+                url: "https://www.perplexity.ai"
+            },
+            {
+                id: "udio",
+                name: "Udio",
+                category: "audio",
+                categoryLabel: "Audio & Music",
+                icon: "fas fa-music",
+                shortDesc: "Generates fully arranged studio-grade musical tracks, complete with vocals, across any creative genre.",
+                longDesc: "Dismantles traditional instrumentation barriers by rendering studio-quality soundscapes, vocal distributions, and multi-track instrumentation depths across folk, hip-hop, electronic, and cinematic score landscapes.",
+                stars: 4.6,
+                cost: "Free Tier Available",
+                caveats: "Music distribution rights remain complex due to active industry licensing and copyright disputes.",
+                review: "\"The full track harmonies feel like deliberate creative decisions rather than mathematical approximations.\"",
+                url: "https://www.udio.com"
+            },
+            {
+                id: "consensus",
+                name: "Consensus",
+                category: "research",
+                categoryLabel: "Research & Search",
+                icon: "fas fa-graduation-cap",
+                shortDesc: "An AI search engine scanning millions of peer-reviewed papers to extract consensus scientific truth.",
+                longDesc: "Acts as an engine of epistemic justice, breaking through academic paywalls and dense technical terminology to synthesize direct scientific conclusions to user health, climate, and public policy inquiries with absolute traceability.",
+                stars: 4.8,
+                cost: "Free / Premium Research Tiers",
+                caveats: "Relies entirely on published academic texts; topics lacking a deep baseline of peer-reviewed research return thin analysis.",
+                review: "\"An essential shield against online health misinformation. It isolates actual data outcomes from lifestyle blogger noise.\"",
+                url: "https://consensus.app"
+            },
+            {
+                id: "ideogram",
+                name: "Ideogram",
+                category: "design",
+                categoryLabel: "Visuals & Design",
+                icon: "fas fa-paint-brush",
+                shortDesc: "AI image generator specializing in clean, reliable typographic graphic art execution.",
+                longDesc: "Solves the traditional vector corruption layout issues found in generative art engines. Seamlessly burns crisp, perfectly formatted text directly into complex branding materials, book jackets, poster configurations, and marketing banners.",
+                stars: 4.7,
+                cost: "Freemium Daily Limits",
+                caveats: "Can sometimes face difficulty with extremely lengthy text string injections into abstract vector canvas forms.",
+                review: "\"Finally, a generative image engine that knows how to write words without melting them into runic nonsense.\"",
+                url: "https://ideogram.ai"
+            },
+            {
+                id: "tome",
+                name: "Tome",
+                category: "presentation",
+                categoryLabel: "Presentations",
+                icon: "fas fa-book-open",
+                shortDesc: "AI-native canvas engine constructing immersive, variable layout responsive narrative documents.",
+                longDesc: "Challenges classic fixed slide infrastructures by crafting responsive, interactive canvases where embedded data auto-visualizes natively and layouts automatically format themselves to preserve fluid reading flow.",
+                stars: 4.5,
+                cost: "Freemium / Enterprise Plans",
+                caveats: "Optimized heavily for digital viewports; structural layouts can become rigid if forced into legacy physical printing styles.",
+                review: "\"A staple utility within modern venture pipelines. Our startup deck felt structurally modern and uniquely dynamic.\"",
+                url: "https://tome.app"
+            },
+            {
+                id: "suno",
+                name: "Suno",
+                category: "audio",
+                categoryLabel: "Audio & Music",
+                icon: "fas fa-compact-disc",
+                shortDesc: "Text-to-song platform delivering deep emotional resonance and highly precise lyrical theme matching.",
+                longDesc: "Generates emotionally expressive songs from standard textual prompts. Highly adopted for both commercial scoring and deep personalization workflows, rendering fully realized vocal performances embedded into rich genre compositions.",
+                stars: 4.8,
+                cost: "Free and Paid Tiers",
+                caveats: "Vocal tuning structures can occasionally drift into an identifiable electronic artificial space under sudden tempo shifts.",
+                review: "\"Created a hyper-customized anniversary track with specific inside references that genuinely brought my family to tears.\"",
+                url: "https://suno.com"
+            },
+            {
+                id: "notebook-lm",
+                name: "Notebook LM",
+                category: "research",
+                categoryLabel: "Research & Search",
+                icon: "fas fa-brain",
+                shortDesc: "Google-engineered private knowledge base model that interrogates your own uploaded text corpora.",
+                longDesc: "Maintains strict isolation boundaries, responding to queries using *only* your uploaded source books, research sets, or discovery files. Features a radical automated podcast feature that transforms static records into fully conversational audio dialogue.",
+                stars: 4.9,
+                cost: "Free (Google Ecosystem)",
+                caveats: "The scope of discovery remains locked to your uploaded documents; it will not draw outside information from the live internet.",
+                review: "\"The dual AI-host podcast generation feature is black magic. It converted 400 pages of legal discovery into an accessible overview.\"",
+                url: "https://notebooklm.google"
+            },
+            {
+                id: "cursor",
+                name: "Cursor",
+                category: "coding",
+                categoryLabel: "Coding & Dev",
+                icon: "fas fa-code",
+                shortDesc: "AI-native code editor (built on VS Code) that understands your whole codebase, not just the current line.",
+                longDesc: "Lets a solo founder ship software that would normally require hiring a developer. Understands project-wide context, edits across multiple files at once, and explains unfamiliar code. Screened as tier-one via G2, not community hype.",
+                stars: 4.7,
+                cost: "Free tier / $20+ per month Pro",
+                caveats: "Real learning curve remains — a non-technical founder still needs basic terminal and deployment literacy to actually ship. AI-generated code can look correct while hiding subtle bugs; frontier-model usage costs need watching.",
+                review: "G2 reviewers (180+, 4.7/5) consistently cite meaningful productivity gains from whole-codebase understanding, well beyond simple autocomplete.",
+                url: "https://cursor.com"
+            },
+            {
+                id: "v0-vercel",
+                name: "v0 by Vercel",
+                category: "coding",
+                categoryLabel: "Coding & Dev",
+                icon: "fas fa-layer-group",
+                shortDesc: "Turns a text prompt or screenshot into working, production-quality React/Next.js UI in the browser.",
+                longDesc: "Bridges the gap Cursor leaves for founders who aren't ready to work in an IDE — describe an interface in plain English and get real, editable component code back, following React best practice and accessibility conventions.",
+                stars: 4.6,
+                cost: "Free tier / usage-based paid plans",
+                caveats: "Strongest at UI generation specifically — full-stack logic and complex custom behaviour is weaker, and it can loop or hallucinate fixes on intricate bugs rather than resolve them cleanly.",
+                review: "A G2 reviewer noted converting designer screenshots directly into Next.js pages, saving roughly half a day of build time per use.",
+                url: "https://v0.dev"
+            },
+            {
+                id: "descript",
+                name: "Descript",
+                category: "audio",
+                categoryLabel: "Audio & Music",
+                icon: "fas fa-cut",
+                shortDesc: "Edit audio and video by editing a text transcript — delete a word, the clip disappears too.",
+                longDesc: "Acts as a one-person post-production team for podcasters and course creators: transcript-based editing, AI studio-sound cleanup, and overdub voice correction, replacing what used to need a dedicated editor.",
+                stars: 4.5,
+                cost: "Free tier / $12+ per month",
+                caveats: "Electron-based and can get resource-heavy on long recordings; some users report stability issues on bigger projects. Fairly mainstream at this point, so less of a hidden pick than others here — included on merit, not obscurity.",
+                review: "Widely and consistently praised on G2 and Capterra for turning text-editing into video editing, particularly for podcast production workflows.",
+                url: "https://www.descript.com"
+            },
+            {
+                id: "granola",
+                name: "Granola",
+                category: "ops",
+                categoryLabel: "Ops & Meetings",
+                icon: "fas fa-clipboard-list",
+                shortDesc: "AI meeting notes that run locally on your machine — no visible bot joining the call.",
+                longDesc: "Captures and structures meeting notes, action items, and cross-meeting recall without the awkward 'notetaker has joined' bot that other transcription tools drop into a solo founder's sales calls.",
+                stars: 4.9,
+                cost: "Free tier / $14+ per month",
+                caveats: "No Android app and some iPad/iOS capture limits. It's a young product without a long enterprise track record — the near-perfect aggregate score (6,900+ reviews across app stores and Product Hunt) reflects an early, enthusiastic user base more than years of scale testing.",
+                review: "Users report saving roughly five hours a week and repeatedly highlight that meetings feel normal — no bot, no disclosure friction.",
+                url: "https://www.granola.ai"
+            },
+            {
+                id: "chatbase",
+                name: "Chatbase",
+                category: "support",
+                categoryLabel: "Customer Support",
+                icon: "fas fa-headset",
+                shortDesc: "Trains a support chatbot on your own site or documents in minutes, at a fraction of enterprise support-platform cost.",
+                longDesc: "Point it at a website or a set of PDFs and it stands up an AI support agent that can be embedded as a widget or rolled out to WhatsApp and Slack — a realistic Intercom alternative for a bootstrapped solo business rather than an enterprise one.",
+                stars: 4.8,
+                cost: "Free tier / paid plans scale with usage",
+                caveats: "G2 rating is based on a small sample (19 reviews) — directionally positive, not a large-scale verdict. Customisation is limited next to full CX platforms, and costs climb quickly past the entry plan.",
+                review: "G2 reviewers highlight fast setup and easy multi-channel rollout to WhatsApp and Slack without rebuilding the bot from scratch.",
+                url: "https://www.chatbase.co"
+            },
+            {
+                id: "midjourney",
+                name: "Midjourney",
+                category: "design",
+                categoryLabel: "Visuals & Design",
+                icon: "fas fa-wand-magic-sparkles",
+                shortDesc: "The original and still most iconic AI image generator — replaces a concept illustrator.",
+                longDesc: "Lives mostly in Discord rather than a polished SaaS dashboard, which is why it has no single confirmed G2 aggregate — its reputation is built on years of prosumer and creative-industry adoption instead. Best for artistic exploration and mood/concept work.",
+                stars: 4.6,
+                cost: "From ~$10/month, no free tier",
+                caveats: "No confirmed G2/Capterra rating found this pass — included on long-standing reputation, not a review score. Output style can be hard to art-direct precisely; commercial usage rights vary by plan.",
+                review: "Consistently cited across design and AI-tool comparisons as the benchmark for visual quality, even against newer challengers.",
+                url: "https://www.midjourney.com"
+            },
+            {
+                id: "recraft",
+                name: "Recraft",
+                category: "design",
+                categoryLabel: "Visuals & Design",
+                icon: "fas fa-vector-square",
+                shortDesc: "The only mainstream AI image model that outputs real, editable SVG vector files — not raster upscales.",
+                longDesc: "Genuine technical differentiator: generates production-ready Bezier-curve vectors you can open directly in Illustrator or Figma, which matters for logos, icon sets, and brand assets a solo founder needs to actually hand off or reuse.",
+                stars: 4.5,
+                cost: "Free tier / paid credits",
+                caveats: "No confirmed G2 aggregate found this pass — assessment is based on independent tool comparisons rather than a review-platform score. Newer and smaller community than Midjourney.",
+                review: "Repeatedly singled out in 2026 design-tool comparisons as the pick for brand-consistent, production-ready vector output rather than raster art.",
+                url: "https://www.recraft.ai"
+            },
+            {
+                id: "relume",
+                name: "Relume",
+                category: "design",
+                categoryLabel: "Visuals & Design",
+                icon: "fas fa-object-group",
+                shortDesc: "Turns a prompt into a full website sitemap, wireframe, and style guide — exports straight to Figma or Webflow.",
+                longDesc: "Replaces the first pass a UX designer would normally do: structure, component mapping, and copywriting for a site, using a library of 1,000+ pre-built components. A solo founder gets from blank page to a buildable wireframe in minutes.",
+                stars: 4.5,
+                cost: "Free tier / paid plans for export",
+                caveats: "No confirmed G2 aggregate found this pass. Output is a strong starting structure, not a finished design — still needs a design pass for anything customer-facing and polished.",
+                review: "Cited as used by over a million designers and developers specifically to skip manual wireframing setup.",
+                url: "https://www.relume.io"
+            },
+            {
+                id: "heygen",
+                name: "HeyGen",
+                category: "presentation",
+                categoryLabel: "Presentations",
+                icon: "fas fa-video",
+                shortDesc: "Generates studio-quality video presentations and pitches using realistic AI avatars — no camera required.",
+                longDesc: "Replaces a video production team for a camera-shy solo founder: script in, AI-avatar video out, including dedicated pitch-deck-to-video and investor-pitch templates.",
+                stars: 4.8,
+                cost: "Free tier / $29+ per month",
+                caveats: "Avatar realism is strong but still detectable on close viewing by some audiences; heavier use of custom avatars/voice cloning costs more.",
+                review: "G2: 4.8/5 from 900+ reviews.",
+                url: "https://www.heygen.com"
+            },
+            {
+                id: "opus-clip",
+                name: "Opus Clip",
+                category: "presentation",
+                categoryLabel: "Presentations",
+                icon: "fas fa-film",
+                shortDesc: "Turns one long-form video or webinar into a batch of edited, ready-to-post short clips.",
+                longDesc: "Replaces a video editor for repurposing: feed it a recorded presentation, podcast, or webinar and it identifies the strongest moments, auto-captions them, and reframes for short-form vertical formats.",
+                stars: 4.5,
+                cost: "Free tier / paid plans for volume",
+                caveats: "No confirmed G2 aggregate found this pass. Clip selection is AI-driven and occasionally picks a less compelling moment over the best one — still needs a quick human review pass.",
+                review: "Widely referenced across 2026 video-tool roundups as the standard long-to-short repurposing tool.",
+                url: "https://www.opus.pro"
+            },
+            {
+                id: "slidebean",
+                name: "Slidebean",
+                category: "presentation",
+                categoryLabel: "Presentations",
+                icon: "fas fa-chart-line",
+                shortDesc: "AI pitch-deck builder purpose-built for startup fundraising, not general-purpose slides.",
+                longDesc: "Unlike Gamma/Tome's general-purpose deck generation, Slidebean's entire workflow — templates, financial modeling, investor CRM — is built around how founders actually pitch investors.",
+                stars: 4.4,
+                cost: "Free tier / $19+ per month",
+                caveats: "Narrower use case than Gamma/Tome by design — less useful outside fundraising-style decks. No confirmed G2 aggregate found this pass.",
+                review: "Consistently recommended in startup-fundraising tool roundups specifically for its founder-pitch-oriented workflow, not general presentation design.",
+                url: "https://slidebean.com"
+            },
+            {
+                id: "adobe-podcast",
+                name: "Adobe Podcast (Enhance Speech)",
+                category: "audio",
+                categoryLabel: "Audio & Music",
+                icon: "fas fa-wave-square",
+                shortDesc: "Makes a recording made on a phone in a noisy room sound like it was recorded in a studio.",
+                longDesc: "A single, narrow feature done extremely well: upload rough speech audio and it strips room noise and echo, replacing what would otherwise require an audio engineer or acoustic treatment.",
+                stars: 4.2,
+                cost: "Free (Adobe account required)",
+                caveats: "Single-purpose tool, not a full editor — pair with Descript for actual cutting/arranging. Best results on speech; not designed for music.",
+                review: "G2: 4.2/5. Backed by Adobe, so unlikely to disappear or get acquired-and-shut-down the way smaller point tools sometimes do.",
+                url: "https://podcast.adobe.com/enhance"
+            },
+            {
+                id: "elicit",
+                name: "Elicit",
+                category: "research",
+                categoryLabel: "Research & Search",
+                icon: "fas fa-magnifying-glass-chart",
+                shortDesc: "Reads and extracts structured findings across hundreds of academic papers at once.",
+                longDesc: "Built for literature review and evidence synthesis — pulls objective, method, sample size, and variables out of papers automatically. Most useful for a solo founder doing serious market, scientific, or policy research rather than quick lookups.",
+                stars: 4.5,
+                cost: "Free tier / paid plans for volume",
+                caveats: "Has essentially zero reviews on G2 despite 5M+ users — its user base (academics, R&D teams) doesn't tend to leave B2B software reviews, so treat the rating here as reputation-based, not aggregate-verified. Overkill for simple questions; built for deep literature work.",
+                review: "Reported 2026 benchmarks cite ~95%+ search recall and ~97% extraction performance on systematic-review tasks.",
+                url: "https://elicit.com"
+            },
+            {
+                id: "chatgpt-deep-research",
+                name: "ChatGPT Deep Research",
+                category: "research",
+                categoryLabel: "Research & Search",
+                icon: "fas fa-robot",
+                shortDesc: "An agent mode that spends up to 30 minutes actually researching a question — reading pages, comparing sources, writing a structured report.",
+                longDesc: "Goes further than a normal chat answer: it plans a research approach, browses and reads multiple sources, and returns a cited, structured report — effectively a junior research analyst on demand.",
+                stars: 4.6,
+                cost: "Included with ChatGPT Plus/Pro ($20+/month)",
+                caveats: "Runs can take a long time for a simple question; quality depends heavily on how the prompt is scoped. Like any AI research tool, source claims still need spot-checking.",
+                review: "Positioned by OpenAI and widely covered in 2026 tool comparisons as the most structured, exhaustive-report option among deep-research agents.",
+                url: "https://chatgpt.com"
+            },
+            {
+                id: "lovable",
+                name: "Lovable",
+                category: "coding",
+                categoryLabel: "Coding & Dev",
+                icon: "fas fa-heart",
+                shortDesc: "Describe an app in plain English and get a working full-stack build — the current leader in \"vibe coding.\"",
+                longDesc: "Aimed squarely at non-technical solo founders: ranked top of 2026 vibe-coding comparisons for turning a plain-language product description into a working, deployable app with minimal hand-holding.",
+                stars: 4.7,
+                cost: "Free tier / usage-based paid plans",
+                caveats: "Best for greenfield builds rather than editing a large existing codebase — for that, pair with Cursor. Complex custom logic can still require a developer's judgment to finish properly.",
+                review: "Ranked highest (8.9/10) among 'vibe coding' tools for absolute beginners in 2026 aggregate comparisons.",
+                url: "https://lovable.dev"
+            },
+            {
+                id: "bolt-new",
+                name: "Bolt.new",
+                category: "coding",
+                categoryLabel: "Coding & Dev",
+                icon: "fas fa-bolt",
+                shortDesc: "Browser-based AI app builder from StackBlitz — spins up a full working environment instantly, no local setup.",
+                longDesc: "Complements v0 (which leans UI/frontend) by handling heavier full-stack scaffolding entirely in-browser — useful when a solo founder wants to go from idea to a running app the same day.",
+                stars: 4.5,
+                cost: "Free tier / usage-based paid plans",
+                caveats: "Token/credit usage can climb fast on complex builds — same category of cost-surprise risk as other agentic coding tools; worth watching usage from day one.",
+                review: "Rated 8.7/10 in 2026 aggregate 'vibe coding' tool comparisons, just behind Lovable.",
+                url: "https://bolt.new"
+            },
+            {
+                id: "aider",
+                name: "Aider",
+                category: "coding",
+                categoryLabel: "Coding & Dev",
+                icon: "fas fa-terminal",
+                shortDesc: "An AI pair-programmer that edits your actual local codebase from the command line.",
+                longDesc: "For a founder who's at least a little comfortable in a terminal: pairs with Claude/GPT-class models and edits files directly in your local repo, rather than generating a new hosted app — genuinely different leverage than the browser-based builders above.",
+                stars: 4.4,
+                cost: "Free/open-source (pay only for the underlying model API calls)",
+                caveats: "No confirmed G2 listing — it's an open-source developer tool, not a tracked SaaS product, so reputation comes from developer-community standing rather than a review platform. Requires basic command-line comfort.",
+                review: "Widely referenced in 2026 AI-coding-tool roundups as the terminal-native alternative to browser-based app builders.",
+                url: "https://aider.chat"
+            },
+            {
+                id: "make-com",
+                name: "Make.com",
+                category: "ops",
+                categoryLabel: "Ops & Meetings",
+                icon: "fas fa-diagram-project",
+                shortDesc: "Visual automation canvas that's more AI-forward and flexible than Zapier for connecting apps and running backend workflows.",
+                longDesc: "Lets a solo founder wire AI APIs directly into complex, multi-step automations rather than being boxed into rigid if/then Zaps — effectively an ops manager for repetitive backend work.",
+                stars: 4.6,
+                cost: "Free tier / paid plans scale with usage",
+                caveats: "Steeper learning curve than Zapier's simplicity; complex scenarios can become hard to debug without some technical patience.",
+                review: "Frequently recommended over Zapier in 2026 comparisons specifically for AI-agent-style workflows and cost efficiency at scale.",
+                url: "https://www.make.com"
+            },
+            {
+                id: "julius-ai",
+                name: "Julius AI",
+                category: "ops",
+                categoryLabel: "Ops & Meetings",
+                icon: "fas fa-chart-pie",
+                shortDesc: "Upload a messy spreadsheet or Stripe export and get it cleaned, analyzed, and charted back — no analyst required.",
+                longDesc: "Replaces the first-pass work of a data analyst: point it at CSVs, Stripe/QuickBooks exports, or a database, and it handles cleaning, analysis, and visualization from a plain-English request.",
+                stars: 4.4,
+                cost: "Free tier / paid plans for volume",
+                caveats: "No confirmed G2 aggregate found this pass. Best treated as a fast first pass on data — verify any number that will inform a real financial decision.",
+                review: "Frequently recommended in 2026 solo-founder tool roundups specifically for turning raw exports into usable charts without spreadsheet formulas.",
+                url: "https://julius.ai"
+            },
+            {
+                id: "n8n",
+                name: "n8n",
+                category: "ops",
+                categoryLabel: "Ops & Meetings",
+                icon: "fas fa-share-nodes",
+                shortDesc: "Open-source, AI-native workflow automation — build actual AI agents directly into your automations.",
+                longDesc: "The open-source alternative to Make/Zapier, with native LangChain integration and roughly 70 AI-specific nodes as of its 2026 release — appeals to a founder who wants automation logic they fully own and can self-host.",
+                stars: 4.5,
+                cost: "Free (self-hosted) / paid cloud plans",
+                caveats: "Self-hosting requires real technical setup; the cloud version narrows that gap but at a recurring cost. Steeper learning curve than Zapier.",
+                review: "Cited for its early and deep LangChain/AI-node integration relative to Zapier and Make as of its 2026 platform update.",
+                url: "https://n8n.io"
+            },
+            {
+                id: "zapier-agents",
+                name: "Zapier Agents",
+                category: "ops",
+                categoryLabel: "Ops & Meetings",
+                icon: "fas fa-network-wired",
+                shortDesc: "Autonomous AI teammates, built on Zapier's automation graph, that read email, do research, and take action on their own.",
+                longDesc: "Distinct from base Zapier's if/then Zaps — Agents are given plain-English instructions and access to Zapier's 8,000+ app connections and MCP server to act semi-autonomously, closer to the 'AI power' theme than classic Zapier plumbing.",
+                stars: 4.5,
+                cost: "Included in higher Zapier plans / usage-based",
+                caveats: "New relative to core Zapier — expect rougher edges than the decade-refined base product. Base Zapier itself was judged too generic for this catalogue; Agents earns its spot specifically for autonomous action, not the underlying platform.",
+                review: "Zapier's 2025-26 platform additions (Copilot, Agents, MCP server) are widely covered as its answer to AI-native automation competitors.",
+                url: "https://zapier.com/agents"
+            },
+            {
+                id: "sitegpt",
+                name: "SiteGPT",
+                category: "support",
+                categoryLabel: "Customer Support",
+                icon: "fas fa-comments",
+                shortDesc: "Trains a support chatbot on your site content, with a stronger review track record than most Chatbase alternatives.",
+                longDesc: "Functionally close to Chatbase — point it at your content, get an embeddable AI support agent — but included on the strength of its review base rather than as a redundant pick.",
+                stars: 4.6,
+                cost: "Free tier / paid plans scale with usage",
+                caveats: "Meaningfully overlaps with Chatbase already in this catalogue — worth trialing both before committing, rather than assuming you need both.",
+                review: "G2: 4.6/5 from 340+ reviews.",
+                url: "https://www.sitegpt.ai"
+            },
+            {
+                id: "vapi",
+                name: "Vapi",
+                category: "support",
+                categoryLabel: "Customer Support",
+                icon: "fas fa-phone-volume",
+                shortDesc: "Build an AI voice agent that answers real phone calls — inbound or outbound — with low-latency, human-like conversation.",
+                longDesc: "Replaces a call center for a solo business: a developer-first platform for standing up conversational voice AI that handles customer phone calls directly, not just chat.",
+                stars: 4.8,
+                cost: "Usage-based, pay-per-minute style pricing",
+                caveats: "Rating sources disagree — G2 shows 4.8/5 from 1,400+ reviews on the main listing, but at least one smaller G2 profile shows only 3 reviews, which G2 itself flags as too few to be meaningful. Also developer-first: expect to need technical setup, not a no-code drag-and-drop experience.",
+                review: "Named G2's 2026 Best Agentic AI Software award winner, with the largest review volume of any AI voice platform on the list.",
+                url: "https://vapi.ai"
+            },
+            {
+                id: "kraftful",
+                name: "Kraftful",
+                category: "support",
+                categoryLabel: "Customer Support",
+                icon: "fas fa-comment-dots",
+                shortDesc: "Reads through thousands of app reviews and support tickets and hands you a synthesized list of what to fix or build next.",
+                longDesc: "Replaces the first-pass work of a product manager: ingests App Store reviews, Zendesk tickets, and other user feedback, then surfaces patterns — recurring bugs, most-requested features — a solo founder would otherwise have to read manually.",
+                stars: 4.3,
+                cost: "Paid plans (contact for pricing)",
+                caveats: "No confirmed G2 aggregate found this pass — smaller, more niche product than the other support tools here. Most valuable once you have real feedback volume; not useful pre-launch.",
+                review: "Positioned in 2026 roundups as filling the 'feedback synthesis' gap that generic support chatbots don't address.",
+                url: "https://www.kraftful.com"
+            },
+            {
+                id: "threado-ai",
+                name: "Threado AI",
+                category: "support",
+                categoryLabel: "Customer Support",
+                icon: "fas fa-users-gear",
+                shortDesc: "An AI copilot for Slack/Discord communities that answers member questions from past conversations automatically.",
+                longDesc: "Fills a gap the other support tools don't: if a solo founder runs a paid community or user forum instead of (or alongside) a support inbox, this learns from historical threads and resolves repeat questions without a human moderator.",
+                stars: 4.4,
+                cost: "Paid plans (contact for pricing)",
+                caveats: "No confirmed G2 aggregate found this pass. Only relevant if you're actually running a Slack/Discord community — narrow fit by design.",
+                review: "Referenced in 2026 community-management tooling roundups as an AI layer specifically for Slack/Discord support, distinct from website chatbots.",
+                url: "https://threado.com"
+            }
+        ];
+        // Star Renderer helper
+        function renderStars(rating) {
+            let starsHtml = '';
+            const fullStars = Math.floor(rating);
+            const hasHalf = rating % 1 !== 0;
+            for(let i=0; i<5; i++) {
+                if (i < fullStars) {
+                    starsHtml += '<i class="fas fa-star mr-0.5"></i>';
+                } else if (i === fullStars && hasHalf) {
+                    starsHtml += '<i class="fas fa-star-half-alt mr-0.5"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star mr-0.5"></i>';
+                }
+            }
+            return starsHtml + ` <span class="text-xs text-gray-400 font-normal ml-1">(${rating})</span>`;
+        }
+        // Render Cards to DOM
+        function renderCards(filter = 'all') {
+            const grid = document.getElementById('tools-grid');
+            grid.innerHTML = '';
+
+            let filteredTools = filter === 'all' ? [...toolsData] : toolsData.filter(t => t.category === filter);
+
+            // Within a single category, rank by rating so the top 5 surface first.
+            // This stays meaningful even as future research runs add more than 5 per category.
+            if (filter !== 'all') {
+                filteredTools = filteredTools.sort((a, b) => b.stars - a.stars);
+            }
+
+            filteredTools.forEach((tool, index) => {
+                const rank = index + 1;
+                const showRankBadge = filter !== 'all' && rank <= 5;
+                const card = document.createElement('div');
+                card.className = "relative bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-cyan-500 transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between shadow-lg";
+                card.innerHTML = `
+                    ${showRankBadge ? `<span class="absolute -top-2 -right-2 w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold ${rank === 1 ? 'bg-amber-400 text-gray-900' : 'bg-gray-800 text-cyan-300 border border-cyan-700'}">${rank}</span>` : ''}
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="p-3 bg-gray-950 rounded-lg text-cyan-400 text-xl border border-gray-800">
+                                <i class="${tool.icon}"></i>
+                            </div>
+                            <span class="text-xs px-2 py-1 rounded-full font-semibold bg-gray-950 text-gray-400 border border-gray-800">${tool.categoryLabel}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">${tool.name}${rank === 1 && filter !== 'all' ? ' <span class=\"text-amber-400 text-xs align-middle\">★ Top Pick</span>' : ''}</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">${tool.shortDesc}</p>
+                    </div>
+                    <div>
+                        <div class="flex items-center text-amber-400 text-xs mb-4">
+                            ${renderStars(tool.stars)}
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openModal('${tool.id}')" class="flex-1 text-center py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg text-xs font-semibold tracking-wide transition">
+                                Inspect Details
+                            </button>
+                            <a href="${tool.url}" target="_blank" class="px-3 py-2 bg-cyan-950 hover:bg-cyan-900 text-cyan-400 rounded-lg text-xs border border-cyan-800 transition flex items-center justify-center">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        // Handle Category Filtering Toggle Buttons
+        function filterCategory(category) {
+            const container = document.getElementById('filter-container');
+            const buttons = container.getElementsByTagName('button');
+            for (let btn of buttons) {
+                btn.className = "px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-800 text-gray-300 hover:bg-gray-700 transition";
+            }
+            document.getElementById(`btn-${category}`).className = "px-3 py-1.5 rounded-lg text-sm font-medium bg-cyan-600 text-white transition";
+            renderCards(category);
+        }
+        // Modal Controls
+        function openModal(id) {
+            const tool = toolsData.find(t => t.id === id);
+            if(!tool) return;
+            document.getElementById('modal-title').innerText = tool.name;
+            document.getElementById('modal-badge').innerText = tool.categoryLabel;
+            document.getElementById('modal-desc').innerText = tool.longDesc;
+            document.getElementById('modal-stars').innerHTML = renderStars(tool.stars);
+            document.getElementById('modal-cost').innerText = tool.cost;
+            document.getElementById('modal-caveats').innerText = tool.caveats;
+            document.getElementById('modal-review').innerText = tool.review;
+            document.getElementById('modal-link').href = tool.url;
+
+            const iconContainer = document.getElementById('modal-icon');
+            iconContainer.className = `text-3xl text-cyan-400 ${tool.icon}`;
+            const modal = document.getElementById('detail-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+        // Escape Key Modal Dismissal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+        // Initialize App View
+        renderCards();
+    </script>
+</body>
+</html>
