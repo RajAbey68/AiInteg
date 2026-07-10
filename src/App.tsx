@@ -1406,67 +1406,59 @@ export function App() {
               </span>
             </button>
 
-            <h2 className="text-xl font-bold mb-4 text-zinc-100">
-              Calculation Basis & Peer Citations
-            </h2>
+            <h2 className="text-xl font-bold mb-4 text-zinc-100">How We Calculate These Figures</h2>
 
             <div className="space-y-6 text-sm text-zinc-400 leading-relaxed font-light">
               <div>
                 <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider mb-2">
-                  1. Administrative Overhead & Time Leakage
+                  1. Time Lost on Admin Work
                 </h3>
-                <p className="mb-2">
-                  <strong>McKinsey Global Institute (MGI):</strong> In their study{" "}
-                  <em>
-                    "The social economy: Unlocking value and productivity through social
-                    technologies"
-                  </em>
-                  , MGI established that the average high-skill knowledge worker spends{" "}
-                  <strong>1.8 hours per day</strong> (approx. <strong>9.3 hours per week</strong>)
-                  searching and gathering information.
-                </p>
                 <p>
-                  <strong>Accelo / Affinity Live Study:</strong> The research paper{" "}
-                  <em>
-                    "United States of Billing: The $7.4 Billion Daily Cost of Unrecorded Time"
-                  </em>{" "}
-                  showed that delayed or weekly time logging results in professionals leaking{" "}
-                  <strong>21.3%</strong> of their billable capacity to untracked triage.
+                  Business studies show that office staff spend an average of{" "}
+                  <strong>1.8 hours every day</strong> (nearly 20% of their working week) just
+                  searching for files, retrieving documents, and dealing with administrative
+                  clutter.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-white/5">
                 <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider mb-2">
-                  2. Realization Rate Benchmarks
+                  2. Forgotten Work Hours
                 </h3>
-                <p className="mb-2">
-                  <strong>The CPA Journal:</strong> In{" "}
-                  <em>"Managing Firm Profitability: Focus on Realization and Utilization"</em>,
-                  researchers define the transition from Worked Realization (actual time) to Billed
-                  and Paid Realization (collected cash).
-                </p>
                 <p>
-                  <strong>Thomson Reuters & Georgetown Law Center:</strong> The{" "}
-                  <em>"Report on the State of the Legal Market"</em> benchmarks the average
-                  realization rate in professional service firms between{" "}
-                  <strong>85% and 88%</strong> due to partner pre-bill write-downs.
+                  When work is not tracked automatically, small tasks like phone calls, quick
+                  replies, and client updates get forgotten. Research indicates companies lose over{" "}
+                  <strong>20% of their billable capacity</strong> to these untracked minutes.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-white/5">
                 <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider mb-2">
-                  3. Calculator Mathematical Assumptions
+                  3. Realization Rate (What is actually billed)
+                </h3>
+                <p>
+                  Not every hour saved becomes a paid hour. Industry benchmarks show that businesses
+                  collect around <strong>85%</strong> of their recorded work. We apply a
+                  conservative <strong>75% realization rate</strong> in our default calculation to
+                  keep your projections realistic.
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/5">
+                <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider mb-2">
+                  4. Calculation Assumptions
                 </h3>
                 <ul className="list-disc pl-4 space-y-1">
                   <li>
-                    <strong>Gross Capacity Leakage:</strong> Earners × Hourly Rate × Wasted
-                    Hours/Week × 48 working weeks per year (accounting for standard holiday,
-                    sickness, and public holiday allowances).
+                    <strong>Gross Capacity:</strong> Fee Earners × Hourly Rate × Wasted Hours/Week ×
+                    48 working weeks per year (accounting for standard holiday, sickness, and public
+                    holiday allowances).
                   </li>
                   <li>
-                    <strong>Net Recoverable Revenue:</strong> Gross capacity adjusted by the
-                    selected Time-to-Bill Realization Rate slider, acknowledging that not all
-                    administrative time immediately translates to successfully billed client work.
+                    <strong>Net Recoverable Revenue:</strong> Gross capacity adjusted by your
+                    selected Realization Rate slider, acknowledging that some administrative time
+                    will simply be recovered as personal breathing room for staff rather than extra
+                    client bills.
                   </li>
                 </ul>
               </div>

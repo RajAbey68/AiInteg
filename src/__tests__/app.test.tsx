@@ -506,20 +506,20 @@ describe("App", () => {
 
     // Citations modal is not open initially
     expect(
-      screen.queryByRole("heading", { name: /Calculation Basis & Peer Citations/i })
+      screen.queryByRole("heading", { name: /How We Calculate These Figures/i })
     ).not.toBeInTheDocument();
 
     // Click the button
     fireEvent.click(linkButton);
     expect(
-      screen.getByRole("heading", { name: /Calculation Basis & Peer Citations/i })
+      screen.getByRole("heading", { name: /How We Calculate These Figures/i })
     ).toBeInTheDocument();
 
     // Click close button inside modal
     const closeBtn = screen.getByText("Close");
     fireEvent.click(closeBtn);
     expect(
-      screen.queryByRole("heading", { name: /Calculation Basis & Peer Citations/i })
+      screen.queryByRole("heading", { name: /How We Calculate These Figures/i })
     ).not.toBeInTheDocument();
   });
 });
