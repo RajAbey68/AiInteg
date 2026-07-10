@@ -50,6 +50,9 @@ export function App() {
   const calcTotalLeakage = calcEarners * calcRate * calcHours * 48;
   const calcRecoverable = Math.round(calcTotalLeakage * (calcRealization / 100));
 
+  // Citations modal state
+  const [citationsOpen, setCitationsOpen] = useState(false);
+
   // Navigation state
   const [view, setView] = useState<"home" | "framework">("home");
 
@@ -852,6 +855,13 @@ export function App() {
                       >
                         Reclaim This Revenue
                       </button>
+                      <button
+                        type="button"
+                        onClick={() => setCitationsOpen(true)}
+                        className="w-full text-center text-xs text-zinc-500 hover:text-zinc-300 transition-colors mt-3 bg-transparent border-0 cursor-pointer block mx-auto"
+                      >
+                        View calculation basis & citations
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1377,6 +1387,101 @@ export function App() {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Citations Modal */}
+      {citationsOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-zinc-900 border border-white/10 rounded max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 relative text-left">
+            <button
+              type="button"
+              onClick={() => setCitationsOpen(false)}
+              aria-label="close"
+              className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
+            >
+              <span aria-hidden="true" className="text-lg">
+                ✕
+              </span>
+            </button>
+
+            <h2 className="text-xl font-bold mb-4 text-zinc-100">
+              Calculation Basis & Peer Citations
+            </h2>
+
+            <div className="space-y-6 text-sm text-zinc-400 leading-relaxed font-light">
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider mb-2">
+                  1. Administrative Overhead & Time Leakage
+                </h3>
+                <p className="mb-2">
+                  <strong>McKinsey Global Institute (MGI):</strong> In their study{" "}
+                  <em>
+                    "The social economy: Unlocking value and productivity through social
+                    technologies"
+                  </em>
+                  , MGI established that the average high-skill knowledge worker spends{" "}
+                  <strong>1.8 hours per day</strong> (approx. <strong>9.3 hours per week</strong>)
+                  searching and gathering information.
+                </p>
+                <p>
+                  <strong>Accelo / Affinity Live Study:</strong> The research paper{" "}
+                  <em>
+                    "United States of Billing: The $7.4 Billion Daily Cost of Unrecorded Time"
+                  </em>{" "}
+                  showed that delayed or weekly time logging results in professionals leaking{" "}
+                  <strong>21.3%</strong> of their billable capacity to untracked triage.
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/5">
+                <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider mb-2">
+                  2. Realization Rate Benchmarks
+                </h3>
+                <p className="mb-2">
+                  <strong>The CPA Journal:</strong> In{" "}
+                  <em>"Managing Firm Profitability: Focus on Realization and Utilization"</em>,
+                  researchers define the transition from Worked Realization (actual time) to Billed
+                  and Paid Realization (collected cash).
+                </p>
+                <p>
+                  <strong>Thomson Reuters & Georgetown Law Center:</strong> The{" "}
+                  <em>"Report on the State of the Legal Market"</em> benchmarks the average
+                  realization rate in professional service firms between{" "}
+                  <strong>85% and 88%</strong> due to partner pre-bill write-downs.
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/5">
+                <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider mb-2">
+                  3. Calculator Mathematical Assumptions
+                </h3>
+                <ul className="list-disc pl-4 space-y-1">
+                  <li>
+                    <strong>Gross Capacity Leakage:</strong> Earners × Hourly Rate × Wasted
+                    Hours/Week × 48 working weeks per year (accounting for standard holiday,
+                    sickness, and public holiday allowances).
+                  </li>
+                  <li>
+                    <strong>Net Recoverable Revenue:</strong> Gross capacity adjusted by the
+                    selected Time-to-Bill Realization Rate slider, acknowledging that not all
+                    administrative time immediately translates to successfully billed client work.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="pt-6 mt-6 border-t border-white/5">
+              <button
+                type="button"
+                onClick={() => setCitationsOpen(false)}
+                className="w-full text-center rounded py-2 text-sm font-semibold transition-all hover:opacity-90 active:scale-95"
+                style={{ backgroundColor: "var(--color-teal)", color: "var(--color-black)" }}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

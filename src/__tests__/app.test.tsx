@@ -498,4 +498,28 @@ describe("App", () => {
     locationSpy.mockRestore();
     vi.unstubAllGlobals();
   });
+
+  it("opens and closes the calculation basis & citations modal", () => {
+    render(<App />);
+    const linkButton = screen.getByRole("button", { name: /View calculation basis & citations/i });
+    expect(linkButton).toBeInTheDocument();
+
+    // Citations modal is not open initially
+    expect(
+      screen.queryByRole("heading", { name: /Calculation Basis & Peer Citations/i })
+    ).not.toBeInTheDocument();
+
+    // Click the button
+    fireEvent.click(linkButton);
+    expect(
+      screen.getByRole("heading", { name: /Calculation Basis & Peer Citations/i })
+    ).toBeInTheDocument();
+
+    // Click close button inside modal
+    const closeBtn = screen.getByText("Close");
+    fireEvent.click(closeBtn);
+    expect(
+      screen.queryByRole("heading", { name: /Calculation Basis & Peer Citations/i })
+    ).not.toBeInTheDocument();
+  });
 });
