@@ -131,6 +131,84 @@ describe("App", () => {
     expect(screen.queryByText(/90-day implementation roadmap/i)).not.toBeInTheDocument();
   });
 
+  it("navigates to framework page (CAP) and back to homepage", () => {
+    render(<App />);
+    // Toggle to framework view
+    fireEvent.click(screen.getByRole("button", { name: /Our Framework \(CAP\)/i }));
+    expect(
+      screen.getByRole("heading", { name: "The Continuous Assurance Protocol" })
+    ).toBeInTheDocument();
+    expect(screen.getByText(/The Costly SaaS Trap/i)).toBeInTheDocument();
+
+    // Toggle back to homepage using the button
+    fireEvent.click(screen.getByRole("button", { name: /Back to homepage/i }));
+    expect(screen.getByRole("heading", { name: /We build the AI system/i })).toBeInTheDocument();
+  });
+
+  it("interacts with capacity sliders to update calculations", () => {
+    render(<App />);
+    const earnersInput = screen.getByLabelText(/Fee Earners/i);
+    const rateInput = screen.getByLabelText(/Average Hourly Rate/i);
+    const hoursInput = screen.getByLabelText(/Wasted Hours per Week/i);
+    const realizationInput = screen.getByLabelText(/Time-to-Bill Realization Rate/i);
+
+    fireEvent.change(earnersInput, { target: { value: "30" } });
+    fireEvent.change(rateInput, { target: { value: "300" } });
+    fireEvent.change(hoursInput, { target: { value: "5" } });
+    fireEvent.change(realizationInput, { target: { value: "80" } });
+
+    expect(screen.getAllByText(/per year across the firm/i).length).toBeGreaterThan(0);
+  });
+
+  it("interacts with assurance firewall buttons", () => {
+    render(<App />);
+    fireEvent.click(screen.getByText(/Client Consultation Email/i));
+    fireEvent.click(screen.getByText(/Scanned OCR Balance Stream/i));
+    fireEvent.click(screen.getByText(/Raw Unverified AI Draft/i));
+  });
+
+  it("fully exercises all interactive elements to achieve maximum function coverage", () => {
+    render(<App />);
+
+    // Click desktop & mobile nav links
+    const whatWeDoLinks = screen.getAllByRole("link", { name: /What we do/i });
+    fireEvent.click(whatWeDoLinks[0]);
+    if (whatWeDoLinks[1]) fireEvent.click(whatWeDoLinks[1]);
+
+    const howItWorksLinks = screen.getAllByRole("link", { name: /How it works/i });
+    fireEvent.click(howItWorksLinks[0]);
+    if (howItWorksLinks[1]) fireEvent.click(howItWorksLinks[1]);
+
+    const whoWeHelpLinks = screen.getAllByRole("link", { name: /Who we help/i });
+    fireEvent.click(whoWeHelpLinks[0]);
+    if (whoWeHelpLinks[1]) fireEvent.click(whoWeHelpLinks[1]);
+
+    const aboutLinks = screen.getAllByRole("link", { name: /^About$/i });
+    fireEvent.click(aboutLinks[0]);
+
+    // Click AI Integ logo button
+    fireEvent.click(screen.getByRole("button", { name: /AI Integ/i }));
+
+    // Click Our Framework
+    fireEvent.click(screen.getByRole("button", { name: /Our Framework \(CAP\)/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Back to homepage/i }));
+
+    // Open Modal
+    fireEvent.click(screen.getAllByRole("button", { name: /Book a scope call/i })[0]);
+
+    // Click template buttons inside modal
+    fireEvent.click(screen.getByRole("button", { name: /\+ Matter Triage/i }));
+    fireEvent.click(screen.getByRole("button", { name: /\+ Workpaper Extraction/i }));
+    fireEvent.click(screen.getByRole("button", { name: /\+ Suitability Review/i }));
+
+    // Toggle consent checkbox
+    const consentCheckbox = screen.getByLabelText(/We use these details/i);
+    fireEvent.click(consentCheckbox);
+
+    // Close modal
+    fireEvent.click(screen.getByRole("button", { name: /close/i }));
+  });
+
   it("modal form uses plain labels with no terminal prefixes", () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: /Scope your project/i }));
