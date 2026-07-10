@@ -118,7 +118,7 @@ describe("App", () => {
     const skoolLink = screen.getByRole("link", {
       name: /Join the AI Integrity community — free/i,
     });
-    expect(skoolLink).toHaveAttribute("href", "https://skool.com/ghostwriter-tandem-6940");
+    expect(skoolLink).toHaveAttribute("href", "https://skool.com/ai-integrity");
   });
 
   it("opens modal titled 'Book a scope call' when clicking the hero CTA", () => {
@@ -200,7 +200,7 @@ describe("App", () => {
     fillForm();
     fireEvent.click(screen.getByLabelText(/We use these details/i));
 
-    const honeypot = container.querySelector("input[name='website']");
+    const honeypot = container.querySelector("input[name='fax_number']");
     if (!honeypot) throw new Error("Honeypot input not found");
     expect(honeypot).toHaveAttribute("tabindex", "-1");
     fireEvent.change(honeypot, { target: { value: "https://spam.example" } });
@@ -210,7 +210,7 @@ describe("App", () => {
     fireEvent.submit(form);
 
     await waitFor(() => {
-      expect(screen.getByText(/Received\. We reply within one working day\./)).toBeInTheDocument();
+      expect(screen.getByText(/Scope Request Received/i)).toBeInTheDocument();
     });
     expect(mockFetch).not.toHaveBeenCalled();
 
@@ -251,7 +251,7 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("button", { name: /^Send$/i }));
 
     await waitFor(() => {
-      expect(screen.getByText(/Received\. We reply within one working day\./)).toBeInTheDocument();
+      expect(screen.getByText(/Scope Request Received/i)).toBeInTheDocument();
     });
     expect(screen.queryByText(/SHOULD NOT RENDER/)).not.toBeInTheDocument();
 
@@ -322,5 +322,71 @@ describe("App", () => {
     expect(result).toContain("py-2");
     expect(result).toContain("font-bold");
     expect(result).not.toContain("italic");
+  });
+
+  it("renders the billable leakage calculator with default values and responds to input updates", () => {
+    render(<App />);
+    expect(
+      screen.getByRole("heading", { name: /Calculate Your Wasted Billable Hours/i })
+    ).toBeInTheDocument();
+
+    // Sliders exist and display correct defaults
+    expect(screen.getByText("20")).toBeInTheDocument();
+    expect(screen.getByText("£250/hr")).toBeInTheDocument();
+    expect(screen.getByText("4 hrs")).toBeInTheDocument();
+    expect(screen.getByText("75%")).toBeInTheDocument();
+
+    // Outputs match default calculations
+    expect(screen.getByText("£960,000")).toBeInTheDocument();
+    expect(screen.getByText("£720,000")).toBeInTheDocument();
+
+    // Trigger slider updates
+    const earnersSlider = screen.getByLabelText("Fee Earners");
+    const rateSlider = screen.getByLabelText("Average Hourly Rate");
+    const hoursSlider = screen.getByLabelText("Wasted Hours per Week");
+    const realizationSlider = screen.getByLabelText("Time-to-Bill Realization Rate");
+
+    fireEvent.change(earnersSlider, { target: { value: "10" } });
+    fireEvent.change(rateSlider, { target: { value: "300" } });
+    fireEvent.change(hoursSlider, { target: { value: "5" } });
+    fireEvent.change(realizationSlider, { target: { value: "80" } });
+
+    // Verify recalculated outputs
+    // Leakage = 10 earners * £300 rate * 5 hours * 48 weeks = £720,000
+    // Recoverable = £720,000 * 80% = £576,000
+    expect(screen.getByText("£720,000")).toBeInTheDocument();
+    expect(screen.getByText("£576,000")).toBeInTheDocument();
+  });
+
+  it("pre-fills the scoping description textarea when clicking template buttons", () => {
+    render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: /Scope your project/i }));
+
+    const textarea = screen.getByLabelText("What do you want built?") as HTMLTextAreaElement;
+    expect(textarea.value).toBe("");
+
+    // Click the "Matter Triage" template button
+    const templateButton = screen.getByRole("button", { name: /\+ Matter Triage/i });
+    fireEvent.click(templateButton);
+
+    expect(textarea.value).toContain("Automate client query intake");
+  });
+
+  it("Assurance Firewall toggles inputs and updates deterministic JSON outputs accordingly", () => {
+    render(<App />);
+    expect(screen.getByRole("heading", { name: "The Assurance Firewall" })).toBeInTheDocument();
+
+    // Default active should display Email JSON format
+    expect(screen.getByText(/"sender_id": "masked_user_449"/)).toBeInTheDocument();
+
+    // Click on OCR Stream button
+    const ocrButton = screen.getByRole("button", { name: /Scanned OCR Balance Stream/i });
+    fireEvent.click(ocrButton);
+    expect(screen.getByText(/"matter_ref": "489-A"/)).toBeInTheDocument();
+
+    // Click on AI response draft button
+    const halButton = screen.getByRole("button", { name: /Raw Unverified AI Draft/i });
+    fireEvent.click(halButton);
+    expect(screen.getByText(/"draft_status": "rejected"/)).toBeInTheDocument();
   });
 });

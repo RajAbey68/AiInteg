@@ -1,9 +1,9 @@
+import { AlertTriangle, Bot, Briefcase, Calendar, CheckCircle, Sparkles } from "lucide-react";
 import { useRef, useState } from "react";
 import { homepageCopy } from "./content/homepage";
 
 const ASIMOV_AI_URL = "https://asimov-ai.org";
-// TODO(owner): rename Skool slug to ai-integrity and update this URL
-const SKOOL_URL = "https://skool.com/ghostwriter-tandem-6940";
+const SKOOL_URL = "https://skool.com/ai-integrity";
 const SKOOL_LABEL = "Not ready to commission? Join the AI Integrity community — free.";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SUBMIT_TIMEOUT_MS = 15000;
@@ -23,6 +23,18 @@ export function App() {
   const [consent, setConsent] = useState(false);
   const [success, setSuccess] = useState(false);
   const submittingRef = useRef(false);
+
+  // Calculator states
+  const [calcEarners, setCalcEarners] = useState(20);
+  const [calcRate, setCalcRate] = useState(250);
+  const [calcHours, setCalcHours] = useState(4);
+  const [calcRealization, setCalcRealization] = useState(75);
+
+  const calcTotalLeakage = calcEarners * calcRate * calcHours * 48;
+  const calcRecoverable = Math.round(calcTotalLeakage * (calcRealization / 100));
+
+  // Firewall interactive state
+  const [firewallActiveInput, setFirewallActiveInput] = useState<"email" | "ocr" | "hal">("email");
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -55,17 +67,17 @@ export function App() {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
     try {
-      const response = await fetch(
-        "https://qcawafyfaqjwolgczhap.supabase.co/functions/v1/lead-intake",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-          signal: controller.signal,
-        }
-      );
+      const LEAD_INTAKE_URL =
+        import.meta.env.VITE_SUPABASE_FUNCTION_URL ||
+        "https://qcawafyfaqjwolgczhap.supabase.co/functions/v1/lead-intake";
+      const response = await fetch(LEAD_INTAKE_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, fax_number: honeypot }),
+        signal: controller.signal,
+      });
       const data = await response.json();
       if (!response.ok || !data.success) {
         throw new Error(data.error || "Form submission failed.");
@@ -191,6 +203,169 @@ export function App() {
             </div>
           </section>
 
+          {/* Interactive Assurance Firewall Section */}
+          <section
+            id="assurance-firewall"
+            aria-labelledby="firewall-heading"
+            className="px-6 md:px-12 py-16 border-t border-white/5 max-w-4xl mx-auto"
+          >
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <h2
+                id="firewall-heading"
+                className="text-xl md:text-2xl font-bold mb-4 tracking-tight"
+              >
+                The Assurance Firewall
+              </h2>
+              <p className="text-base text-zinc-400 leading-relaxed font-light">
+                Professional services require 100% predictable, audit-ready data. Here is how we
+                enforce deterministic rules on top of probabilistic AI models to prevent
+                hallucinations and PII leaks.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+              {/* Left Panel: Inputs (4 cols) */}
+              <div className="lg:col-span-4 flex flex-col justify-between space-y-4">
+                <div className="text-left space-y-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                    Step 1: Raw Unstructured Input
+                  </span>
+                  <p className="text-xs text-zinc-400 font-light">
+                    Select a typical raw input scenario received by a professional services firm:
+                  </p>
+                </div>
+
+                <div className="space-y-2 flex-grow flex flex-col justify-center">
+                  {[
+                    { id: "email" as const, label: "📧 Client Consultation Email" },
+                    { id: "ocr" as const, label: "📄 Scanned OCR Balance Stream" },
+                    { id: "hal" as const, label: "🤖 Raw Unverified AI Draft" },
+                  ].map((btn) => (
+                    <button
+                      key={btn.id}
+                      type="button"
+                      onClick={() => setFirewallActiveInput(btn.id)}
+                      className={`w-full text-left px-4 py-3 rounded border text-sm font-medium transition-all ${
+                        firewallActiveInput === btn.id
+                          ? "border-teal-400 bg-teal-950/20 text-teal-300"
+                          : "border-white/5 bg-zinc-900/10 text-zinc-400 hover:border-white/20"
+                      }`}
+                    >
+                      {btn.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="bg-zinc-950 border border-white/5 p-4 rounded text-left font-mono text-xs text-zinc-400 min-h-[100px] flex items-center justify-center">
+                  {firewallActiveInput === "email" && (
+                    <span>
+                      "From: client@firm.com
+                      <br />
+                      Subject: Dispute
+                      <br />
+                      Hi, I want to sue my landlord at 12 Baker St. My phone is 07700 900077..."
+                    </span>
+                  )}
+                  {firewallActiveInput === "ocr" && (
+                    <span>
+                      "[OCR Stream] | M@tter Ref: 489-A | Date: 12/05/2026 | CL1ENT: ACME CORP |
+                      TOTAL: L10,500"
+                    </span>
+                  )}
+                  {firewallActiveInput === "hal" && (
+                    <span>
+                      "AI response draft: Based on Sec 4, you can terminate. For advice, visit
+                      http://hallucinated-links.co.uk..."
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Center Panel: Glowing Firewall Validator Nodes (3 cols) */}
+              <div className="lg:col-span-3 flex flex-col justify-center items-center py-6 lg:py-0 border-t lg:border-t-0 lg:border-l lg:border-r border-white/5 relative">
+                <div className="absolute inset-0 bg-teal-400/5 blur-xl pointer-events-none rounded-full" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-teal-400 mb-6 relative">
+                  Step 2: Verification
+                </span>
+
+                <div className="space-y-4 relative w-full px-4">
+                  {[
+                    { label: "PII Masking Shield", status: "Active" },
+                    { label: "Schema Conformance Node", status: "Strict" },
+                    { label: "Hallucination Domain Block", status: "Enforced" },
+                  ].map((node) => (
+                    <div
+                      key={node.label}
+                      className="flex items-center justify-between bg-zinc-950 border border-teal-500/20 px-3 py-2.5 rounded text-xs"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-teal-400 animate-pulse" />
+                        <span className="text-zinc-300 font-medium">{node.label}</span>
+                      </div>
+                      <span className="text-[10px] text-teal-300 font-semibold">{node.status}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right Panel: Deterministic JSON Outputs (5 cols) */}
+              <div className="lg:col-span-5 flex flex-col justify-between space-y-4 text-left">
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                    Step 3: Secure Audit-Ready Output
+                  </span>
+                  <p className="text-xs text-zinc-400 font-light mt-1">
+                    Structured, sanitized data ready to load safely into your core business
+                    applications:
+                  </p>
+                </div>
+
+                <div className="bg-zinc-950 border border-white/5 p-4 rounded font-mono text-xs text-teal-300 overflow-x-auto min-h-[220px] flex items-center">
+                  <pre className="w-full">
+                    {firewallActiveInput === "email" &&
+                      JSON.stringify(
+                        {
+                          sender_id: "masked_user_449",
+                          extracted_intent: "tenant_dispute",
+                          extracted_entities: {
+                            address: "12 Baker St",
+                            phone: "[MASKED_PII_001]",
+                          },
+                          attachment_status: "scanned_for_viruses_ok",
+                        },
+                        null,
+                        2
+                      )}
+                    {firewallActiveInput === "ocr" &&
+                      JSON.stringify(
+                        {
+                          matter_ref: "489-A",
+                          date_parsed: "2026-05-12",
+                          client_name: "ACME CORP",
+                          total_due_gbp: 10500.0,
+                          ocr_confidence: 0.992,
+                        },
+                        null,
+                        2
+                      )}
+                    {firewallActiveInput === "hal" &&
+                      JSON.stringify(
+                        {
+                          draft_status: "rejected",
+                          validation_errors: [
+                            "Unverifiable domain reference blocked: hallucinated-links.co.uk",
+                            "Section 4 citations mismatched with loaded precedent database",
+                          ],
+                        },
+                        null,
+                        2
+                      )}
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Differentiator Text Block */}
           <section className="px-6 md:px-12 py-10 bg-zinc-900/20 border-t border-b border-white/5 font-light text-zinc-400 text-base leading-relaxed">
             <div className="max-w-4xl mx-auto">
@@ -244,6 +419,91 @@ export function App() {
             </div>
           </section>
 
+          {/* Maze to Machine Governance Section */}
+          <section
+            id="maze-to-machine"
+            aria-labelledby="governance-heading"
+            className="px-6 md:px-12 py-16 border-t border-white/5 max-w-5xl mx-auto"
+          >
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2
+                id="governance-heading"
+                className="text-xl md:text-2xl font-bold mb-4 tracking-tight"
+              >
+                Governance: Maze to Machine
+              </h2>
+              <p className="text-base text-zinc-400 leading-relaxed font-light">
+                Compliance is not a document to be filed. It is software that operates. We convert
+                traditional regulatory compliance guidelines into machine-enforced validators.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+              {/* Left Card: The Maze */}
+              <div className="border border-red-500/10 bg-zinc-950 p-6 md:p-8 rounded flex flex-col justify-between group hover:border-red-500/30 transition-all duration-300">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
+                      Traditional Compliance (The Maze)
+                    </span>
+                    <span className="text-[10px] bg-red-950/30 text-red-400 px-2 py-0.5 rounded border border-red-500/20">
+                      Static & Ignored
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-zinc-200 mb-3">150-Page Policy Binders</h3>
+                  <p className="text-base text-zinc-400 leading-relaxed font-light mb-6">
+                    Risk advisors hand you slide decks and policy guidelines. They outline what you
+                    *should* check (PII protection, conflict rules, license constraints). But
+                    developers rarely read them, and human compliance teams audit files weeks
+                    *after* the errors have occurred.
+                  </p>
+                </div>
+                <div className="border-t border-white/5 pt-4 text-xs font-mono text-zinc-500 space-y-1 text-left">
+                  <div>✗ Manual quarterly sampling audits</div>
+                  <div>✗ No technical prevention mechanisms</div>
+                  <div>✗ Disconnected from live code repositories</div>
+                </div>
+              </div>
+
+              {/* Right Card: The Machine */}
+              <div className="border border-teal-500/10 bg-zinc-950 p-6 md:p-8 rounded flex flex-col justify-between group hover:border-teal-500/30 transition-all duration-300">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span
+                      className="text-xs font-semibold uppercase tracking-wider"
+                      style={{ color: "var(--color-teal)" }}
+                    >
+                      AI-Integ Methodology (The Machine)
+                    </span>
+                    <span
+                      className="text-[10px] bg-teal-950/30 px-2 py-0.5 rounded border border-teal-500/20"
+                      style={{ color: "var(--color-teal)" }}
+                    >
+                      Enforced in Real-Time
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-zinc-200 mb-3">
+                    Automated Runtime Validators
+                  </h3>
+                  <p className="text-base text-zinc-400 leading-relaxed font-light mb-6">
+                    We translate the compliance PDF into actual system checkers. Code linters block
+                    unauthorized dependencies, database triggers mask PII, and automated testing
+                    checks audit logs before a lead or file is processed. If a rule is violated, the
+                    system stops the transaction in real-time.
+                  </p>
+                </div>
+                <div
+                  className="border-t border-white/5 pt-4 text-xs font-mono space-y-1 text-left"
+                  style={{ color: "var(--color-teal)" }}
+                >
+                  <div>✓ Real-time validator checks on every API submission</div>
+                  <div>✓ Automated daily end-to-end assurance pipeline</div>
+                  <div>✓ Policy changes deployed directly as system code</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Process */}
           <section
             id="process"
@@ -265,6 +525,74 @@ export function App() {
                 </li>
               ))}
             </ol>
+
+            {/* The Continuous Thread Step-by-Step Stepper */}
+            <div className="mt-16 border-t border-white/5 pt-12 text-left">
+              <div className="max-w-2xl mb-8">
+                <span className="text-xs font-semibold uppercase tracking-wider text-teal-400">
+                  Methodology: The Continuous Thread
+                </span>
+                <h3 className="text-lg font-bold text-zinc-200 mt-1 mb-2">
+                  Daily End-to-End Assurance Pipelines
+                </h3>
+                <p className="text-sm text-zinc-400 font-light">
+                  How do we maintain release velocity without risking regulated compliance? Every
+                  delivery runs through our automated testing thread.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                {[
+                  {
+                    step: "01",
+                    title: "Code Commit",
+                    desc: "Developer checks in code changes or workflow updates.",
+                    assurance: "Checks syntactic cleanliness using local Biome linters.",
+                  },
+                  {
+                    step: "02",
+                    title: "LLM Evaluation",
+                    desc: "Automated regression tests run client prompts to detect drift.",
+                    assurance: "Verifies model responses maintain schema structure.",
+                  },
+                  {
+                    step: "03",
+                    title: "E2E Playwright",
+                    desc: "Simulated browser bots test all forms and button clicks.",
+                    assurance: "Confirms lead-intake forms operate on mobile viewports.",
+                  },
+                  {
+                    step: "04",
+                    title: "Production Shield",
+                    desc: "Code updates push to Deno Edge runtime with locked CORS.",
+                    assurance: "Ensures the intake endpoint responds within 2 seconds.",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.step}
+                    className="border border-white/5 bg-zinc-950 p-5 rounded hover:border-teal-500/30 transition-all duration-200 group relative"
+                  >
+                    <span className="text-xs font-semibold font-mono text-zinc-500 block mb-2">
+                      STEP {item.step}
+                    </span>
+                    <h4 className="text-sm font-bold text-zinc-200 mb-1 group-hover:text-teal-300 transition-colors">
+                      {item.title}
+                    </h4>
+                    <p className="text-xs text-zinc-400 leading-relaxed font-light mb-3">
+                      {item.desc}
+                    </p>
+                    <div className="border-t border-white/5 pt-2 mt-auto">
+                      <span className="text-[10px] text-zinc-500 font-mono block uppercase">
+                        Assurance Guarantee
+                      </span>
+                      <span className="text-[11px] text-zinc-400 font-light leading-relaxed block mt-0.5">
+                        {item.assurance}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
 
           {/* Sectors */}
@@ -288,6 +616,145 @@ export function App() {
                   </p>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* Billable Leakage Calculator Section */}
+          <section
+            id="calculator"
+            aria-labelledby="calculator-heading"
+            className="px-6 md:px-12 py-16 border-t border-white/5 max-w-4xl mx-auto"
+          >
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <h2
+                id="calculator-heading"
+                className="text-xl md:text-2xl font-bold mb-4 tracking-tight"
+              >
+                Calculate Your Wasted Billable Hours
+              </h2>
+              <p className="text-base text-zinc-400 leading-relaxed font-light">
+                Professional services firms lose significant revenue to manual data tasks, file
+                retrieval, and administrative triage. Adjust the sliders below to estimate your
+                leakage.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border border-white/5 bg-zinc-900/10 p-6 md:p-8 rounded">
+              {/* Sliders Block */}
+              <div className="space-y-6">
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-zinc-400">Fee Earners / Staff</span>
+                    <span className="font-semibold text-white">{calcEarners}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="100"
+                    value={calcEarners}
+                    aria-label="Fee Earners"
+                    onChange={(e) => setCalcEarners(Number(e.target.value))}
+                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-teal-400"
+                  />
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-zinc-400">Average Hourly Rate</span>
+                    <span className="font-semibold text-white">£{calcRate}/hr</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="100"
+                    max="600"
+                    step="25"
+                    value={calcRate}
+                    aria-label="Average Hourly Rate"
+                    onChange={(e) => setCalcRate(Number(e.target.value))}
+                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-teal-400"
+                  />
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-zinc-400">Wasted Hours per Week (per person)</span>
+                    <span className="font-semibold text-white">{calcHours} hrs</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="10"
+                    step="0.5"
+                    value={calcHours}
+                    aria-label="Wasted Hours per Week"
+                    onChange={(e) => setCalcHours(Number(e.target.value))}
+                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-teal-400"
+                  />
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-zinc-400">Time-to-Bill Realization Rate</span>
+                    <span className="font-semibold text-white">{calcRealization}%</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="10"
+                    max="100"
+                    step="5"
+                    value={calcRealization}
+                    aria-label="Time-to-Bill Realization Rate"
+                    onChange={(e) => setCalcRealization(Number(e.target.value))}
+                    className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-teal-400"
+                  />
+                  <p className="text-[11px] text-zinc-500 mt-1 font-light">
+                    How much of the reclaimed hours actually convert to billable work.
+                  </p>
+                </div>
+              </div>
+
+              {/* Outputs Block */}
+              <div className="bg-zinc-950 border border-white/5 p-6 rounded flex flex-col justify-between text-left">
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                      Total Wasted Capacity
+                    </span>
+                    <h3 className="text-3xl font-extrabold text-zinc-200 mt-1">
+                      £{calcTotalLeakage.toLocaleString()}
+                      <span className="text-xs font-normal text-zinc-500 block">
+                        per year across the firm
+                      </span>
+                    </h3>
+                  </div>
+
+                  <div className="pt-4 border-t border-white/5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-teal-400">
+                      Recoverable Revenue
+                    </span>
+                    <h3
+                      className="text-3xl font-extrabold mt-1"
+                      style={{ color: "var(--color-teal)" }}
+                    >
+                      £{calcRecoverable.toLocaleString()}
+                      <span className="text-xs font-normal text-zinc-500 block">
+                        added annual billable margin
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="pt-6">
+                  <button
+                    type="button"
+                    onClick={() => setModalOpen(true)}
+                    className="w-full text-center rounded py-3 text-sm font-semibold transition-all hover:opacity-90 active:scale-95"
+                    style={{ backgroundColor: "var(--color-teal)", color: "var(--color-black)" }}
+                  >
+                    Reclaim This Revenue
+                  </button>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -389,19 +856,22 @@ export function App() {
           className="flex flex-col items-center justify-center text-zinc-400 hover:text-white transition-colors text-xs"
           href="#services"
         >
-          What we do
+          <Briefcase className="h-4 w-4 mb-1" />
+          <span>What we do</span>
         </a>
         <a
           className="flex flex-col items-center justify-center text-zinc-400 hover:text-white transition-colors text-xs"
           href="#process"
         >
-          How it works
+          <Calendar className="h-4 w-4 mb-1" />
+          <span>How it works</span>
         </a>
         <a
           className="flex flex-col items-center justify-center text-zinc-400 hover:text-white transition-colors text-xs"
           href="#sectors"
         >
-          Who we help
+          <Sparkles className="h-4 w-4 mb-1" />
+          <span>Who we help</span>
         </a>
         <button
           type="button"
@@ -409,7 +879,8 @@ export function App() {
           className="flex flex-col items-center justify-center text-xs font-semibold"
           style={{ color: "var(--color-teal)" }}
         >
-          Book a call
+          <Bot className="h-4 w-4 mb-1" />
+          <span>Book a call</span>
         </button>
       </nav>
 
@@ -437,15 +908,12 @@ export function App() {
             {!success ? (
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Honeypot — hidden from humans, catnip for bots */}
-                <div
-                  aria-hidden="true"
-                  className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden"
-                >
-                  <label htmlFor="website">Website</label>
+                <div aria-hidden="true" style={{ display: "none" }}>
+                  <label htmlFor="fax_number">Fax Number</label>
                   <input
                     type="text"
-                    id="website"
-                    name="website"
+                    id="fax_number"
+                    name="fax_number"
                     tabIndex={-1}
                     autoComplete="off"
                     value={honeypot}
@@ -453,8 +921,9 @@ export function App() {
                   />
                 </div>
                 {error && (
-                  <div className="text-base text-red-400 bg-red-950/20 border border-red-500/20 p-3 rounded">
-                    {error}
+                  <div className="text-base text-red-400 bg-red-950/20 border border-red-500/20 p-3 rounded flex items-center gap-2">
+                    <AlertTriangle className="h-5 w-5 shrink-0 text-red-400" />
+                    <span>{error}</span>
                   </div>
                 )}
                 <div className="space-y-1 text-left">
@@ -467,7 +936,7 @@ export function App() {
                     required
                     value={formData.full_name}
                     onChange={handleInputChange}
-                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 focus:outline-none focus:border-teal-400"
+                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 transition-all duration-200 focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400/30"
                   />
                 </div>
                 <div className="space-y-1 text-left">
@@ -480,7 +949,7 @@ export function App() {
                     required
                     value={formData.organisation}
                     onChange={handleInputChange}
-                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 focus:outline-none focus:border-teal-400"
+                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 transition-all duration-200 focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400/30"
                   />
                 </div>
                 <div className="space-y-1 text-left">
@@ -493,7 +962,7 @@ export function App() {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 focus:outline-none focus:border-teal-400"
+                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 transition-all duration-200 focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400/30"
                   />
                 </div>
                 <div className="space-y-1 text-left">
@@ -505,7 +974,7 @@ export function App() {
                     required
                     value={formData.sector}
                     onChange={handleInputChange}
-                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 focus:outline-none focus:border-teal-400"
+                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 transition-all duration-200 focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400/30"
                   >
                     <option value="">Select a sector</option>
                     <option value="Legal">Legal</option>
@@ -525,8 +994,33 @@ export function App() {
                     value={formData.what_to_build}
                     onChange={handleInputChange}
                     placeholder="e.g. matter intake triage, workpaper extraction, suitability review"
-                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 focus:outline-none focus:border-teal-400"
+                    className="w-full bg-zinc-950 border border-white/10 rounded px-3 py-2 text-base text-zinc-300 transition-all duration-200 focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400/30"
                   />
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {[
+                      {
+                        label: "Matter Triage",
+                        text: "Automate client query intake, classify queries, run conflict checks, and surface precedent documents.",
+                      },
+                      {
+                        label: "Workpaper Extraction",
+                        text: "Automate extraction and reconciliation of standard workpapers and trial balance commentary.",
+                      },
+                      {
+                        label: "Suitability Review",
+                        text: "Monitor and re-verify client portfolios against risk profiles for compliance checks.",
+                      },
+                    ].map((template) => (
+                      <button
+                        key={template.label}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, what_to_build: template.text })}
+                        className="text-xs border border-white/10 hover:border-teal-400/50 hover:text-teal-300 rounded-full px-2.5 py-1 text-zinc-400 transition-all"
+                      >
+                        + {template.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 <div className="flex items-start gap-2 mt-4 text-left">
                   <input
@@ -554,7 +1048,7 @@ export function App() {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    disabled={loading}
+                    disabled={loading || submittingRef.current}
                     className="w-full text-center rounded py-3 text-base font-semibold transition-all hover:opacity-90 active:scale-95 disabled:opacity-50"
                     style={{ backgroundColor: "var(--color-teal)", color: "var(--color-black)" }}
                   >
@@ -563,18 +1057,28 @@ export function App() {
                 </div>
               </form>
             ) : (
-              <div className="space-y-6 text-left">
-                <div className="text-base text-zinc-100 bg-zinc-950 border border-white/10 p-4 rounded">
-                  Received. We reply within one working day.
+              <div className="space-y-6 text-center py-6">
+                <div className="flex justify-center">
+                  <CheckCircle
+                    className="h-16 w-16 animate-pulse"
+                    style={{ color: "var(--color-teal)" }}
+                  />
                 </div>
-                <div className="text-center pt-2">
+                <h3 className="text-xl font-bold text-zinc-100">Scope Request Received</h3>
+                <p className="text-base text-zinc-400 max-w-sm mx-auto leading-relaxed">
+                  Thank you. One named person accountable (Rajiv Abeysinghe) will review your query
+                  and reply within one working day.
+                </p>
+                <div className="pt-4 border-t border-white/5">
+                  <p className="text-xs text-zinc-500 mb-2">Want support while you wait?</p>
                   <a
                     href={SKOOL_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block text-base text-zinc-300 underline hover:text-white transition-colors"
+                    className="inline-block text-sm font-semibold border border-white/10 hover:border-white/20 hover:bg-zinc-950 px-4 py-2.5 rounded transition-all"
+                    style={{ color: "var(--color-teal)" }}
                   >
-                    {SKOOL_LABEL}
+                    Join the AI Integrity community on Skool — free
                   </a>
                 </div>
               </div>
