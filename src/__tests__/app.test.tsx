@@ -467,4 +467,35 @@ describe("App", () => {
     fireEvent.click(halButton);
     expect(screen.getByText(/"draft_status": "rejected"/)).toBeInTheDocument();
   });
+
+  it("automatically parses referral parameters from URL search query on mount", async () => {
+    const locationSpy = vi.spyOn(window, "location", "get").mockReturnValue({
+      ...window.location,
+      search: "?ref=skool_test_source&tier=partner",
+    });
+
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ success: true, submissionId: "test-uuid" }),
+    });
+    vi.stubGlobal("fetch", mockFetch);
+
+    render(<App />);
+
+    fireEvent.click(screen.getByRole("button", { name: /Scope your project/i }));
+    fillForm();
+    fireEvent.click(screen.getByLabelText(/We use these details/i));
+    fireEvent.click(screen.getByRole("button", { name: /^Send$/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText(/Scope Request Received/i)).toBeInTheDocument();
+    });
+
+    const body = JSON.parse(mockFetch.mock.calls[0][1].body as string);
+    expect(body.referral_source).toBe("skool_test_source");
+    expect(body.skool_tier).toBe("partner");
+
+    locationSpy.mockRestore();
+    vi.unstubAllGlobals();
+  });
 });

@@ -1,5 +1,5 @@
 import { AlertTriangle, Bot, Briefcase, Calendar, CheckCircle, Sparkles } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { homepageCopy } from "./content/homepage";
 
 const ASIMOV_AI_URL = "https://asimov-ai.org";
@@ -16,6 +16,8 @@ export function App() {
     email: "",
     sector: "",
     what_to_build: "",
+    referral_source: "",
+    skool_tier: "",
   });
   const [honeypot, setHoneypot] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,6 +25,21 @@ export function App() {
   const [consent, setConsent] = useState(false);
   const [success, setSuccess] = useState(false);
   const submittingRef = useRef(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const ref = params.get("ref") || params.get("referral_source") || "";
+      const tier = params.get("tier") || params.get("skool_tier") || "";
+      if (ref || tier) {
+        setFormData((prev) => ({
+          ...prev,
+          referral_source: ref,
+          skool_tier: tier,
+        }));
+      }
+    }
+  }, []);
 
   // Calculator states
   const [calcEarners, setCalcEarners] = useState(20);
@@ -84,12 +101,20 @@ export function App() {
       const LEAD_INTAKE_URL =
         import.meta.env.VITE_SUPABASE_FUNCTION_URL ||
         "https://qcawafyfaqjwolgczhap.supabase.co/functions/v1/lead-intake";
+
+      const submitData = {
+        ...formData,
+        fax_number: honeypot,
+        referral_source: formData.referral_source || undefined,
+        skool_tier: formData.skool_tier || undefined,
+      };
+
       const response = await fetch(LEAD_INTAKE_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...formData, fax_number: honeypot }),
+        body: JSON.stringify(submitData),
         signal: controller.signal,
       });
       const data = await response.json();
