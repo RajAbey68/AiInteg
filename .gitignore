@@ -36,3 +36,7 @@ node_modules/.cache/
 *.log
 logs/
 .vercel
+
+# Local Manim Video Assets & Venv
+.venv_manim/
+media/
