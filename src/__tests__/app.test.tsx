@@ -118,7 +118,7 @@ describe("App", () => {
     const skoolLink = screen.getByRole("link", {
       name: /Join the AI Integrity community — free/i,
     });
-    expect(skoolLink).toHaveAttribute("href", "https://skool.com/ai-integrity");
+    expect(skoolLink).toHaveAttribute("href", "https://www.skool.com/ghostwriter-tandem-6940");
   });
 
   it("opens modal titled 'Book a scope call' when clicking the hero CTA", () => {

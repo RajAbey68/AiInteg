@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { homepageCopy } from "./content/homepage";
 
 const ASIMOV_AI_URL = "https://asimov-ai.org";
-const SKOOL_URL = "https://skool.com/ai-integrity";
+const SKOOL_URL = "https://www.skool.com/ghostwriter-tandem-6940";
 const SKOOL_LABEL = "Not ready to commission? Join the AI Integrity community — free.";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SUBMIT_TIMEOUT_MS = 15000;
