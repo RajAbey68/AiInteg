@@ -40,3 +40,5 @@ logs/
 # Local Manim Video Assets & Venv
 .venv_manim/
 media/
+__pycache__/
+*.pyc
