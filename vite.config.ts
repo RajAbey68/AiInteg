@@ -31,6 +31,8 @@ export default defineConfig({
         "src/__tests__/setup.ts",
         "src/main.tsx",
         "vite.config.ts",
+        "playwright.config.ts",
+        ".venv_manim/**",
         "src/content/**",
         "supabase/**",
       ],

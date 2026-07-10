@@ -44,8 +44,17 @@ serve(async (req) => {
     const supabaseClient = createClient(supabaseUrl, supabaseServiceRoleKey);
 
     const payload = await req.json();
-    const { full_name, organisation, email, sector, what_to_build, priority_callback, concern } =
-      payload;
+    const {
+      full_name,
+      organisation,
+      email,
+      sector,
+      what_to_build,
+      priority_callback,
+      concern,
+      referral_source,
+      skool_tier,
+    } = payload;
 
     // Honeypot — bots fill the hidden "fax_number" field. Pretend success, store nothing.
     if (payload.fax_number) {
@@ -95,6 +104,38 @@ serve(async (req) => {
       throw dbError;
     }
 
+    // 1.5. Optional Skool referral tracking insert (non-blocking)
+    let referralId: string | null = null;
+    const refSource = String(referral_source || "").toLowerCase();
+    if (refSource.includes("skool") || skool_tier) {
+      let tier = "firm";
+      if (["firm", "individual", "partner"].includes(skool_tier)) {
+        tier = skool_tier;
+      }
+      try {
+        const { data: refData, error: refError } = await supabaseClient
+          .from("skool_referrals")
+          .insert({
+            intake_id: dbData.id,
+            tier,
+          })
+          .select()
+          .single();
+
+        if (refError) {
+          console.error(
+            JSON.stringify({ event: "skool_referral_insert_failed", error: refError.message })
+          );
+        } else if (refData) {
+          referralId = refData.id;
+        }
+      } catch (refError) {
+        console.error(
+          JSON.stringify({ event: "skool_referral_insert_failed", error: String(refError) })
+        );
+      }
+    }
+
     // 2. Notify the owner so the one-working-day reply promise is operable.
     // SLA support: set LEAD_NOTIFY_WEBHOOK before launch — without it, leads
     // are only visible in the intake_submissions table.
@@ -131,7 +172,7 @@ serve(async (req) => {
     // 3. Done. Flow is: validate → insert → notify → return success.
     // Roadmap generation was removed from the request path; if wanted later,
     // it moves to an async job.
-    return new Response(JSON.stringify({ success: true, submissionId: dbData.id }), {
+    return new Response(JSON.stringify({ success: true, submissionId: dbData.id, referralId }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
