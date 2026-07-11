@@ -1,10 +1,22 @@
 #!/usr/bin/env python3
 import os
+import subprocess
 import sys
 import json
 import urllib.request
 
-API_KEY = os.environ.get("LINEAR_API_KEY", "")
+API_KEY = os.environ.get("LINEAR_API_KEY")
+
+# Fallback to macOS Keychain if not set in environment
+if not API_KEY and sys.platform == "darwin":
+    try:
+        API_KEY = subprocess.check_output(
+            ["security", "find-generic-password", "-w", "-s", "Linear API Key"],
+            text=True
+        ).strip()
+    except Exception:
+        pass
+
 TEAM_ID = "e53b9f72-c372-4bf6-bfe4-8dd343900f90"
 DONE_STATE_ID = "b2f061dc-077c-451a-a997-faa51e68aa06"
 
