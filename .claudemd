@@ -12,3 +12,9 @@ You are operating inside the dual-brand architecture for ASIMOV AI and AI Integr
 ## Non-Negotiable Operational Safety
 - Four-Eyes Gate: No database schema mutation or code block replacement may occur on a single human or agent request. Write code to staging branches and generate clear test configurations.
 - PII Mitigation: Mask all credential paths, client data records, and keys behind typed SecretStr variables. Use synthetic mock profiles for local test validation suites.
+
+## Custom Agent Operational Guidelines
+- **Actionable Autonomy**: If a task can be done directly by the agent, do it yourself. Do not ask or task the user.
+- **Remote Agent Execution**: When spawning multiple agents to do work, execute them on remote servers where possible.
+- **Model & Agent Mix**: Always use Hermes and a mixture of agents where possible. Default to OpenRouter as the API provider where possible.
+
