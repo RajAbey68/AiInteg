@@ -195,17 +195,17 @@ export function App() {
           </a>
           <button
             type="button"
-            onClick={() => setView("framework")}
-            className={`transition-colors bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold ${view === "framework" ? "text-teal-400" : "text-zinc-300 hover:text-white"}`}
-          >
-            Our Framework (CAP)
-          </button>
-          <button
-            type="button"
             onClick={() => setView("forward")}
             className={`transition-colors bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold ${view === "forward" ? "text-teal-400" : "text-zinc-300 hover:text-white"}`}
           >
             AI Integ Forward
+          </button>
+          <button
+            type="button"
+            onClick={() => setView("framework")}
+            className={`transition-colors bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold ${view === "framework" ? "text-teal-400" : "text-zinc-300 hover:text-white"}`}
+          >
+            Our Framework (CAP)
           </button>
         </nav>
         <button
