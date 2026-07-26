@@ -96,7 +96,9 @@ describe("App", () => {
   it("renders the proof section 'Who answers for the work' with credentials and closing line", () => {
     render(<App />);
     expect(screen.getByRole("heading", { name: /Who answers for the work/i })).toBeInTheDocument();
-    expect(screen.getByText(/Rajiv Abeysinghe/)).toBeInTheDocument();
+    // "Rajiv Abeysinghe" also appears in the hero's delivery-lead prominence
+    // strip (see forward.test.tsx), so this section must have at least one.
+    expect(screen.getAllByText(/Rajiv Abeysinghe/).length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText(/27 years delivering enterprise technology/)).toBeInTheDocument();
     expect(screen.getByText(/The Digital Law Firm/)).toBeInTheDocument();
     expect(
@@ -186,8 +188,9 @@ describe("App", () => {
     const aboutLinks = screen.getAllByRole("link", { name: /^About$/i });
     fireEvent.click(aboutLinks[0]);
 
-    // Click AI Integ logo button
-    fireEvent.click(screen.getByRole("button", { name: /AI Integ/i }));
+    // Click AI Integ logo button (exact match — "AI Integ Forward" nav button
+    // also matches a substring regex of /AI Integ/i)
+    fireEvent.click(screen.getByRole("button", { name: "AI Integ" }));
 
     // Click Our Framework
     fireEvent.click(screen.getByRole("button", { name: /Our Framework \(CAP\)/i }));
