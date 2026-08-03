@@ -1,5 +1,6 @@
 import { AlertTriangle, Bot, Briefcase, Calendar, CheckCircle, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { ToolsRadar } from "./components/ToolsRadar";
 import { homepageCopy } from "./content/homepage";
 
 const ASIMOV_AI_URL = "https://asimov-ai.org";
@@ -54,7 +55,7 @@ export function App() {
   const [citationsOpen, setCitationsOpen] = useState(false);
 
   // Navigation state
-  const [view, setView] = useState<"home" | "framework" | "forward">("home");
+  const [view, setView] = useState<"home" | "framework" | "forward" | "tools">("home");
   const [openGate, setOpenGate] = useState<number | null>(null);
 
   // Firewall interactive state
@@ -207,6 +208,13 @@ export function App() {
           >
             Our Framework (CAP)
           </button>
+          <button
+            type="button"
+            onClick={() => setView("tools")}
+            className={`transition-colors bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold ${view === "tools" ? "text-teal-400" : "text-zinc-300 hover:text-white"}`}
+          >
+            Tool Radar
+          </button>
         </nav>
         <button
           type="button"
@@ -277,6 +285,33 @@ export function App() {
                   >
                     See how the programme works
                   </a>
+                </div>
+              </section>
+
+              {/* Tool Radar prominence banner */}
+              <section className="px-6 md:px-12 py-10 border-t border-white/5 bg-zinc-900/20">
+                <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-teal-400 mb-2">
+                      Updated weekly
+                    </p>
+                    <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-2">
+                      Can you benefit from these tools? Talk to us.
+                    </h2>
+                    <p className="text-base text-zinc-400 leading-relaxed max-w-xl">
+                      We track the AI tools actually worth a solo operator's or a firm's time —
+                      evidence-checked weekly, open-source alternatives included. The tool is the
+                      easy part. Wiring it into your systems is what we deliver.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setView("tools")}
+                    className="font-semibold text-sm px-5 py-3 rounded hover:opacity-90 active:scale-95 transition-all whitespace-nowrap"
+                    style={{ backgroundColor: "var(--color-teal)", color: "var(--color-black)" }}
+                  >
+                    See the tool radar
+                  </button>
                 </div>
               </section>
 
@@ -955,6 +990,11 @@ export function App() {
                 </p>
               </section>
             </>
+          ) : view === "tools" ? (
+            <ToolsRadar
+              onOpenModal={() => setModalOpen(true)}
+              onBackToHome={() => setView("home")}
+            />
           ) : view === "framework" ? (
             <div className="px-6 md:px-12 py-16 max-w-5xl mx-auto space-y-24 text-left">
               {/* Framework Hero */}
@@ -1358,6 +1398,14 @@ export function App() {
           <Sparkles className="h-4 w-4 mb-1" />
           <span>Who we help</span>
         </a>
+        <button
+          type="button"
+          onClick={() => setView("tools")}
+          className={`flex flex-col items-center justify-center text-xs no-underline bg-transparent border-0 cursor-pointer p-0 ${view === "tools" ? "text-teal-400" : "text-zinc-400 hover:text-white"}`}
+        >
+          <Sparkles className="h-4 w-4 mb-1" />
+          <span>Tool Radar</span>
+        </button>
         <button
           type="button"
           onClick={() => setModalOpen(true)}
