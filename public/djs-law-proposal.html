@@ -3,11 +3,7 @@
 <head>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  let email = params.get('email');
-  if (!email) {
-    email = prompt("Please enter your email to access this proposal:");
-  }
+  let email = prompt("Please enter your email to access this proposal:", "");
   if (!email || !email.toLowerCase().includes('darren')) {
     document.documentElement.innerHTML = "<h1 style='color:white; text-align:center; margin-top:50px; font-family:sans-serif;'>Unauthorized</h1><p style='color:gray; text-align:center; font-family:sans-serif;'>This proposal is private. You must use the correct email address.</p>";
   }
