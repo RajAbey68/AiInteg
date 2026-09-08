@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJS Law — Multi-Channel Growth Strategy & Pitch Deck</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .slide-content {
+      display: none;
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-yellow-400 selection:text-slate-950">
+
+  <!-- Header & Controls -->
+  <header class="border-b border-slate-800 bg-[#121B30] px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+    <div class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-lg bg-[#F2DE3F] flex items-center justify-center font-black text-[#1A284E] text-xl shadow">
+        D
+      </div>
+      <div>
+        <h1 class="text-sm md:text-base font-bold text-white tracking-tight flex items-center gap-2">
+          DJS Law <span class="text-xs px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 font-semibold border border-blue-700/40">Growth Proposal</span>
+        </h1>
+        <p class="text-xs text-slate-400">Plain-English Strategic Pitch Deck for Darren Sylvester</p>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <div class="text-xs text-slate-400">
+        Slide <span id="currentSlideNum" class="text-yellow-400 font-bold">1</span> of <span id="totalSlidesNum">9</span>
+      </div>
+      <div class="flex items-center space-x-1 bg-slate-800/80 p-1 rounded-lg border border-slate-700">
+        <button id="prevBtn" onclick="changeSlide(-1)" class="px-3 py-1 text-xs font-semibold rounded bg-slate-700 hover:bg-slate-600 text-white disabled:opacity-30 disabled:cursor-not-allowed transition">
+          ← Prev
+        </button>
+        <button id="nextBtn" onclick="changeSlide(1)" class="px-3 py-1 text-xs font-semibold rounded bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold transition">
+          Next →
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slide Deck Container -->
+  <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-8 flex flex-col justify-center">
+
+    <!-- SLIDE 1: Cover Slide -->
+    <div id="slide-1" class="slide-content active">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-yellow-300 text-xs font-semibold mb-6">
+          <span>⚡</span> Plain-English Growth Proposal
+        </div>
+        <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+          Building a Predictable Sales Engine for <span class="text-[#F2DE3F]">DJS Law</span>
+        </h2>
+        <p class="text-base md:text-lg text-slate-300 max-w-3xl leading-relaxed mb-8">
+          How to turn Darren’s legal publishing (books) into a steady stream of high-paying client instructions, and scale the "Astrology Lawyer" apparel collection into a profitable e-commerce brand using Meta, Google, Reddit, and Etsy.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-6 border-t border-slate-800">
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div class="text-yellow-400 font-bold text-lg mb-1">Separated Funnels</div>
+            <div class="text-xs text-slate-400">Books and Merch have completely different buyers and channels.</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div class="text-blue-400 font-bold text-lg mb-1">Self-Funding Ads</div>
+            <div class="text-xs text-slate-400">Book sales cover your ad spend while bringing in £500+ legal instructions.</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div class="text-emerald-400 font-bold text-lg mb-1">Google AI Powered</div>
+            <div class="text-xs text-slate-400">Targeting grounded in Google AI Studio, Gemini, and NotebookLM.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Jargon Buster (Marketing Explained) -->
+    <div id="slide-2" class="slide-content">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-10 shadow-2xl">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">No Buzzwords</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mt-1">Marketing Terms in Plain English</h2>
+          </div>
+          <span class="px-3 py-1 rounded bg-slate-800 text-slate-300 text-xs font-mono">Clarity First</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">PPC (Pay-Per-Click) & CPC (Cost-Per-Click)</strong>
+            <span class="text-slate-300">You only pay Google or Facebook when someone actually clicks your ad. If 1,000 people see your hoodie ad and don't click, you pay £0. CPC is the actual price per click (e.g. £0.45).</span>
+          </div>
+
+          <div class="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">CPA (Cost-Per-Acquisition)</strong>
+            <span class="text-slate-300">How much ad money you spend to get <strong>one paying customer</strong>. If you spend £40 on ads and sell 2 books, your CPA is £20 per customer.</span>
+          </div>
+
+          <div class="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">ROAS (Return On Ad Spend)</strong>
+            <span class="text-slate-300">How much revenue you make back for every £1 you put in. A 2.5x ROAS means every £1,000 in ad spend brings back £2,500 in sales.</span>
+          </div>
+
+          <div class="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">Self-Funding Offer (Book Sales That Pay for the Ads)</strong>
+            <span class="text-slate-300">Selling a £16.99 book to completely pay off your advertising bill, which lets you meet potential clients who then hire you for your main legal services (£500–£2,500+) for free.</span>
+          </div>
+
+          <div class="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">Exact Match vs Negative Keywords</strong>
+            <span class="text-slate-300">Exact Match tells Google to only show your ad when someone types the exact phrase (e.g. <code>[settlement agreement advice]</code>). Negative keywords block bad searches (e.g. blocking "free" or "word template").</span>
+          </div>
+
+          <div class="p-3.5 rounded-lg bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">Meta Advantage+ & Conversion Tracking</strong>
+            <span class="text-slate-300">Facebook/Instagram's smart algorithm tests multiple hoodie designs to find the exact people who buy clothing, while a tracking pixel on your website confirms when sales occur.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: Audience Separation (Merch vs Books) -->
+    <div id="slide-3" class="slide-content">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-10 shadow-2xl">
+        <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Audience Segmentation</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Why Merch & Books MUST Be Completely Separated</h2>
+        <p class="text-xs text-slate-300 mb-6">Mixing these together would confuse the advertising algorithms and burn money. They appeal to opposite mindsets:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Merch Audience -->
+          <div class="p-5 rounded-xl bg-slate-900/90 border border-yellow-500/40">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xl">👕</span>
+              <h3 class="text-base font-bold text-yellow-400">The Merchandise Audience (Apparel)</h3>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-2.5">
+              <li><strong>Who they are:</strong> 20–32 year old UK law students, pupil barristers, trainee solicitors, and junior associates.</li>
+              <li><strong>The Second Buyer (Gifting):</strong> Proud parents, partners, and colleagues buying graduation or qualification gifts.</li>
+              <li><strong>Why they buy:</strong> Identity, camaraderie, humor, inside legal jokes ("Everything is Billable", "Cited Correctly").</li>
+              <li><strong>Buying style:</strong> <em>Emotional impulse</em> (takes 2 minutes while scrolling Instagram or Etsy).</li>
+              <li><strong>Where to reach them:</strong> Instagram Reels/Carousels, TikTok, Etsy Search, and Reddit (<code>r/uklaw</code>).</li>
+            </ul>
+          </div>
+
+          <!-- Books Audience -->
+          <div class="p-5 rounded-xl bg-slate-900/90 border border-blue-500/40">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xl">📚</span>
+              <h3 class="text-base font-bold text-blue-400">The Books Audience (Digital Guides)</h3>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-2.5">
+              <li><strong>Who they are:</strong> General public aged 32–65 facing a high-stress legal crossroads.</li>
+              <li><strong>Specific triggers:</strong> Being handed a redundancy settlement, caring for an elderly parent (LPA), or an unfair rent hike.</li>
+              <li><strong>Why they buy:</strong> Fear of losing thousands of pounds, fear of costly mistakes, urgency to protect family rights.</li>
+              <li><strong>Buying style:</strong> <em>Active problem solving</em> (they type their exact panic into Google).</li>
+              <li><strong>Where to reach them:</strong> Google Search (High-Intent), Reddit advice forums (<code>r/UKJobs</code>, <code>r/HousingUK</code>).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Competitive Comparison -->
+    <div id="slide-4" class="slide-content">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-10 shadow-2xl">
+        <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Competitive Benchmarking</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">How DJS Law Beats Existing Competitors</h2>
+
+        <div class="space-y-4">
+          <!-- Books Comparison -->
+          <div>
+            <h4 class="text-xs font-bold text-blue-300 uppercase tracking-wider mb-2">1. The Legal Guides vs Competitors</h4>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left text-slate-300 border border-slate-800">
+                <thead class="bg-slate-900 text-slate-200">
+                  <tr>
+                    <th class="p-2.5 border-b border-slate-800">Competitor</th>
+                    <th class="p-2.5 border-b border-slate-800">Their Model & Pricing</th>
+                    <th class="p-2.5 border-b border-slate-800">Their Flaw</th>
+                    <th class="p-2.5 border-b border-slate-800 text-yellow-400">The DJS Law Advantage</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 bg-slate-900/40">
+                  <tr>
+                    <td class="p-2.5 font-semibold text-white">Which? Legal / Lawpack</td>
+                    <td class="p-2.5">£15–£30 DIY booklets</td>
+                    <td class="p-2.5 text-red-300">Generic corporate writers; no trial lawyer insight.</td>
+                    <td class="p-2.5 text-emerald-300 font-semibold">Written by a practicing barrister/solicitor with 20+ years of courtroom experience.</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-semibold text-white">Rocket Lawyer / LawBite</td>
+                    <td class="p-2.5">£15–£40/mo subscription</td>
+                    <td class="p-2.5 text-red-300">Forces people into recurring monthly fees they forget to cancel.</td>
+                    <td class="p-2.5 text-emerald-300 font-semibold">Simple one-time purchase with instant access and zero ongoing commitments.</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-semibold text-white">Claims Companies (Flight Delay)</td>
+                    <td class="p-2.5">Take 35%–40% commission</td>
+                    <td class="p-2.5 text-red-300">Passengers lose £150–£250 of their payout.</td>
+                    <td class="p-2.5 text-emerald-300 font-semibold">Darren’s £24.99 guide teaches passengers how to keep 100% of their compensation.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Merch Comparison -->
+          <div>
+            <h4 class="text-xs font-bold text-yellow-300 uppercase tracking-wider mb-2">2. The "Astrology Lawyer" Apparel vs Competitors</h4>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left text-slate-300 border border-slate-800">
+                <thead class="bg-slate-900 text-slate-200">
+                  <tr>
+                    <th class="p-2.5 border-b border-slate-800">Competitor</th>
+                    <th class="p-2.5 border-b border-slate-800">What They Offer</th>
+                    <th class="p-2.5 border-b border-slate-800 text-yellow-400">The DJS Law Advantage</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 bg-slate-900/40">
+                  <tr>
+                    <td class="p-2.5 font-semibold text-white">Generic Etsy Sellers</td>
+                    <td class="p-2.5">Cheap "Trust Me I'm a Lawyer" text tees (£15–£22).</td>
+                    <td class="p-2.5 text-emerald-300 font-semibold">Distinct astrological artwork paired with witty insider slogans ("Everything is Billable", "Cited Correctly").</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2.5 font-semibold text-white">Legal Cheek Merch</td>
+                    <td class="p-2.5">Self-promotional branded mugs and basic merch.</td>
+                    <td class="p-2.5 text-emerald-300 font-semibold">Celebrates the lawyer's personal identity and personality rather than a media outlet's logo.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Google AI Studio & Google Labs Integration -->
+    <div id="slide-5" class="slide-content">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-10 shadow-2xl">
+        <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Advanced Technology</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Leveraging Google AI Studio, Gemini & Google Labs</h2>
+        <p class="text-xs text-slate-300 mb-6">We don't guess ad copy or keywords. We use Google's cutting-edge AI architecture to guarantee precision:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">🤖</span>
+              <strong class="text-white text-sm">Google AI Studio (Gemini 1.5 Pro)</strong>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              We process massive batches of UK legal search data and community forum questions. The model isolates the exact high-stress questions employees ask right before signing a settlement agreement, turning them into high-converting ad headlines.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">📓</span>
+              <strong class="text-white text-sm">NotebookLM (Google Labs)</strong>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              We ground all ad copy and email answers strictly inside Darren’s actual books and legal transcripts. This guarantees that marketing messages never "hallucinate" legal inaccuracies and strictly follow legal regulations.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">🔍</span>
+              <strong class="text-white text-sm">Google AI Overviews (SGE Optimization)</strong>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              Google now answers legal searches with AI summaries at the very top of page 1. We optimize Darren’s landing pages with structured legal schema so Google’s AI cites DJS Law as the authoritative reference.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">📊</span>
+              <strong class="text-white text-sm">Google Performance Max & Merchant Center</strong>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              Automates the distribution of the 12 Astrology Lawyer hoodies and t-shirts across YouTube, Google Search, and Google Shopping to capture high-intent gift buyers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Channel Blueprints -->
+    <div id="slide-6" class="slide-content">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-10 shadow-2xl">
+        <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Execution</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-6">Three-Channel Game Plan</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Meta Ads -->
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-6 h-6 rounded bg-blue-600 text-white flex items-center justify-center font-bold text-xs">M</div>
+              <h3 class="font-bold text-white text-sm">Meta (Instagram & Facebook)</h3>
+            </div>
+            <div class="text-[11px] text-yellow-400 font-semibold mb-2">Target: Apparel & Gifting</div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Visual carousel ads showing zodiac designs. "Tag the Taurus associate who bills for thinking in the shower." Targets legal professionals, law faculties, and friends/family.
+            </p>
+          </div>
+
+          <!-- Google Ads -->
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-6 h-6 rounded bg-red-600 text-white flex items-center justify-center font-bold text-xs">G</div>
+              <h3 class="font-bold text-white text-sm">Google Search Ads</h3>
+            </div>
+            <div class="text-[11px] text-blue-400 font-semibold mb-2">Target: High-Intent Books</div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Appears at the exact moment someone types <code>settlement agreement solicitor advice</code> or <code>how to do lasting power of attorney uk</code>. Direct to book page + enquiry form.
+            </p>
+          </div>
+
+          <!-- Reddit Ads -->
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-6 h-6 rounded bg-orange-600 text-white flex items-center justify-center font-bold text-xs">R</div>
+              <h3 class="font-bold text-white text-sm">Reddit Conversation Ads</h3>
+            </div>
+            <div class="text-[11px] text-emerald-400 font-semibold mb-2">Target: Community Advice Boards</div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Sponsored posts in <code>r/UKJobs</code>, <code>r/HousingUK</code>, and <code>r/LegalAdviceUK</code> written natively: <em>"I'm a UK solicitor—here are 3 clauses people overlook in redundancy agreements."</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: 3rd Party Adversarial Review -->
+    <div id="slide-7" class="slide-content">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-10 shadow-2xl">
+        <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Independent Stress-Testing</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">How to Get a Critical, Adversarial 3rd-Party Review</h2>
+        <p class="text-xs text-slate-300 mb-6">Before spending any budget, we recommend stress-testing this strategy with independent experts who will challenge every assumption:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">1. Legal Marketing Specialists (Conscious Solutions / Moore Legal)</strong>
+            <p class="text-slate-300">UK agencies that specialize exclusively in legal marketing. They will evaluate whether the landing pages and lead routing comply with SRA marketing guidelines and convert into actual case files.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">2. SRA Compliance Specialist Review</strong>
+            <p class="text-slate-300">Checks the exact disclaimers on book pages (*"This guide is legal information, not formal instruction until a letter of engagement is signed"*) to keep DJS Law 100% compliant with SRA rules on client onboarding.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">3. AI Multi-Model Red-Teaming (Claude 3.5 & OpenAI o1)</strong>
+            <p class="text-slate-300">We run the entire plan through an adversarial "Skeptical CFO & E-Commerce Auditor" prompt to challenge customer acquisition costs, checkout conversion rates, and profit margin assumptions.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+            <strong class="text-yellow-400 text-sm block mb-1">4. Independent E-Commerce Audit (GrowthMentor)</strong>
+            <p class="text-slate-300">Book a 45-minute live screen audit with a top-rated Etsy & Meta Ads growth mentor to independently review the 13 tags and creative video hooks before launch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: Pilot Budgets & ROI -->
+    <div id="slide-8" class="slide-content">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-10 shadow-2xl">
+        <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Financial Pilot</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-6">3-Tier Pilot Budget Options (30 Days)</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="text-xs font-bold text-yellow-400 uppercase mb-1">Option 1: Books Focus</div>
+            <div class="text-2xl font-black text-white mb-2">£600 <span class="text-xs font-normal text-slate-400">/ mo</span></div>
+            <p class="text-xs text-slate-300 mb-3">Google Search (£350) + Reddit (£150) + Meta (£100). Focuses on redundancy & LPA book sales + legal leads.</p>
+            <div class="text-xs text-emerald-400 font-semibold">Target: 25–40 books + 2–4 legal clients</div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+            <div class="text-xs font-bold text-yellow-400 uppercase mb-1">Option 2: Merch Focus</div>
+            <div class="text-2xl font-black text-white mb-2">£900 <span class="text-xs font-normal text-slate-400">/ mo</span></div>
+            <p class="text-xs text-slate-300 mb-3">Meta Reels/Carousels (£500) + Etsy Ads (£250) + Google Shopping (£150). Focuses on Zodiac hoodies and tees.</p>
+            <div class="text-xs text-emerald-400 font-semibold">Target: 35–50 hoodies/tees + Etsy rank boost</div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-blue-950/60 border border-yellow-400/80 relative">
+            <div class="absolute -top-2.5 right-4 bg-yellow-400 text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Recommended</div>
+            <div class="text-xs font-bold text-yellow-400 uppercase mb-1">Option 3: Complete Engine</div>
+            <div class="text-2xl font-black text-white mb-2">£1,500 <span class="text-xs font-normal text-slate-400">/ mo</span></div>
+            <p class="text-xs text-slate-300 mb-3">Meta (£700) + Google (£500) + Reddit (£200) + Etsy (£100). Full deployment across both channels.</p>
+            <div class="text-xs text-emerald-400 font-semibold">Target: 60–85 sales + 4–8 legal leads (£2k–£5k value)</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 flex items-center justify-between">
+          <div>
+            <strong>The Self-Funding Equation:</strong> In redundancy cases, employers pay the solicitor’s advice fee (£350–£750+).
+          </div>
+          <div class="text-emerald-400 font-bold text-sm whitespace-nowrap ml-4">
+            Just 2 legal clients cover the entire ad budget.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: Proposal & Next Steps -->
+    <div id="slide-9" class="slide-content">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-10 shadow-2xl">
+        <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Partnership</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-6">Commercial Packages & Rollout Steps</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div class="p-6 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-base font-bold text-white">30-Day Setup & Pilot Sprint</span>
+                <span class="text-sm font-black text-yellow-400">£1,250 Flat</span>
+              </div>
+              <p class="text-xs text-slate-300 mb-4">Turnkey setup, creative design, Etsy SEO overhaul, tracking, and 30 days of active daily management.</p>
+              <ul class="text-xs text-slate-300 space-y-2 mb-4 list-disc pl-4">
+                <li>Meta Pixel, CAPI, Google Ads, and GA4 tracking setup.</li>
+                <li>Etsy shop SEO overhaul (titles, 13 tags, attributes across 12 signs).</li>
+                <li>Design of 8 Meta ad creatives + 4 Reddit conversational ad templates.</li>
+                <li>Google Search exact-match keyword setup with negative keyword protection.</li>
+                <li>Daily management & weekly reporting catch-ups.</li>
+              </ul>
+            </div>
+            <div class="text-xs text-center p-2 rounded bg-yellow-400/10 text-yellow-300 font-semibold border border-yellow-400/20">
+              Deliverable: Turnkey live ads across 3 channels + optimized Etsy
+            </div>
+          </div>
+
+          <div class="p-6 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-base font-bold text-white">Ongoing Growth Retainer</span>
+                <span class="text-sm font-black text-blue-400">£950 / mo</span>
+              </div>
+              <p class="text-xs text-slate-300 mb-4">Continuous multi-channel scale, creative refreshes, and conversion rate improvements.</p>
+              <ul class="text-xs text-slate-300 space-y-2 mb-4 list-disc pl-4">
+                <li>Continuous multi-channel optimization (Meta, Google, Reddit, Etsy).</li>
+                <li>Bi-weekly creative refreshes (seasonal gifting, bar admission, university terms).</li>
+                <li>Landing page conversion rate optimization.</li>
+                <li>Direct coordination for routing book buyers into legal client instructions.</li>
+              </ul>
+            </div>
+            <div class="text-xs text-center p-2 rounded bg-blue-900/20 text-blue-300 font-semibold border border-blue-700/30">
+              Deliverable: Predictable revenue engine & client lead pipeline
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <strong class="text-white text-sm">Next Steps:</strong>
+            <div class="text-slate-400 mt-0.5">1. Select pilot budget tier • 2. Share partner access to Meta/Google/Etsy • 3. Go live within 7 days.</div>
+          </div>
+          <a href="https://djslaw.co.uk/contact/" target="_blank" class="px-5 py-2 rounded-lg bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-bold transition text-xs whitespace-nowrap">
+            Schedule Kickoff Call
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer Navigation -->
+  <footer class="border-t border-slate-800 bg-[#121B30] px-6 py-3 flex items-center justify-between text-xs text-slate-400">
+    <div>Use Arrow Keys (← / →) or on-screen buttons to navigate slides</div>
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+      <span>Confidential Commercial Proposal for Darren Sylvester</span>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 9;
+
+    function updateSlide() {
+      for (let i = 1; i <= totalSlides; i++) {
+        const slide = document.getElementById(`slide-${i}`);
+        if (slide) {
+          if (i === currentSlide) {
+            slide.classList.add('active');
+          } else {
+            slide.classList.remove('active');
+          }
+        }
+      }
+      document.getElementById('currentSlideNum').innerText = currentSlide;
+      document.getElementById('prevBtn').disabled = (currentSlide === 1);
+      document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+    }
+
+    function changeSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide < 1) currentSlide = 1;
+      if (currentSlide > totalSlides) currentSlide = totalSlides;
+      updateSlide();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft') {
+        changeSlide(-1);
+      }
+    });
+
+    updateSlide();
+  </script>
+</body>
+</html>
