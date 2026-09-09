@@ -1116,6 +1116,92 @@
     });
 
     updateSlide();
+
+    // ----------------------------------------------------------------------
+    // TELEMETRY & TRACKING (n8n Webhook)
+    // ----------------------------------------------------------------------
+    const WEBHOOK_URL = 'http://167.233.236.178:5678/webhook/kolake-marketing';
+    let sessionStartTime = Date.now();
+    let slideEntryTime = Date.now();
+
+    function sendTelemetry(eventCategory, eventData) {
+      // Don't block the UI - send asynchronously
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'djs-law-proposal',
+          viewer: email,
+          event: eventCategory,
+          timestamp: new Date().toISOString(),
+          data: eventData
+        }),
+        mode: 'no-cors' // Prevent CORS issues blocking the request in the browser
+      }).catch(err => console.error('Telemetry err:', err));
+    }
+
+    // 1. Log Initial Visit
+    window.addEventListener('DOMContentLoaded', () => {
+      sendTelemetry('proposal_opened', {
+        userAgent: navigator.userAgent
+      });
+    });
+
+    // 2. Wrap setStance and handleCommentInput to fire webhooks
+    const originalSetStance = setStance;
+    setStance = function(stance, defaultComment) {
+      originalSetStance(stance, defaultComment);
+      sendTelemetry('stance_recorded', {
+        slide: currentSlide,
+        stance: stance,
+        comment: document.getElementById('slideCommentInput').value
+      });
+    };
+
+    const originalHandleCommentInput = handleCommentInput;
+    let commentTypingTimeout;
+    handleCommentInput = function() {
+      originalHandleCommentInput();
+      clearTimeout(commentTypingTimeout);
+      commentTypingTimeout = setTimeout(() => {
+        sendTelemetry('comment_added', {
+          slide: currentSlide,
+          comment: document.getElementById('slideCommentInput').value
+        });
+      }, 2000); // Send 2 seconds after they stop typing
+    };
+
+    // 3. Wrap changeSlide to track Dwell Time
+    const originalChangeSlide = changeSlide;
+    changeSlide = function(direction) {
+      if (direction > 0 && !isCurrentSlideUnlocked()) {
+        originalChangeSlide(direction); // Let it trigger the shake animation
+        return;
+      }
+      
+      const timeSpentSecs = Math.round((Date.now() - slideEntryTime) / 1000);
+      
+      if (currentSlide === totalSlides && direction > 0) {
+        // Completion
+        sendTelemetry('proposal_completed', {
+          totalDurationSecs: Math.round((Date.now() - sessionStartTime) / 1000),
+          feedback: feedbackStorage
+        });
+        originalChangeSlide(direction); // Let it show the summary
+        return;
+      }
+
+      // Log dwell time before moving
+      sendTelemetry('slide_completed', {
+        slide: currentSlide,
+        timeSpentSeconds: timeSpentSecs,
+        direction: direction > 0 ? 'next' : 'prev'
+      });
+
+      slideEntryTime = Date.now(); // Reset timer for the new slide
+      originalChangeSlide(direction);
+    };
+    // ----------------------------------------------------------------------
   </script>
 </body>
 </html>
