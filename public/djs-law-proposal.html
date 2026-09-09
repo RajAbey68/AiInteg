@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    let email = prompt("Please enter your email to access this proposal:", "");
+    if (!email || !email.toLowerCase().includes('darren')) {
+      document.documentElement.innerHTML = "<h1 style='color:white; text-align:center; margin-top:50px; font-family:sans-serif;'>Unauthorized</h1><p style='color:gray; text-align:center; font-family:sans-serif;'>This proposal is private. You must use the correct email address.</p>";
+    }
+  </script>
+  <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DJS Law — Multi-Channel Growth Strategy & Pitch Deck</title>
@@ -190,6 +197,9 @@
           </div>
         </div>
 
+        <div class="text-[9px] text-slate-500 mb-3 italic">
+          *Fee credit applied against DJS Law's formal settlement invoice upon instruction. In qualifying matters, standard employer legal contributions (£350–£750+) often cover advice fees subject to individual terms.
+        </div>
         <!-- TWO DISTINCT AUDIENCES COMPARISON -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
           <div class="p-3.5 rounded-xl bg-slate-900/90 border border-blue-500/40 flex items-start gap-3">
