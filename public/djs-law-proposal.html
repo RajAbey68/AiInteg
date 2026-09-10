@@ -91,7 +91,7 @@
         <!-- Injected via JS -->
       </div>
       <div class="text-xs text-slate-400 whitespace-nowrap">
-        Slide <span id="currentSlideNum" class="text-yellow-400 font-bold">1</span> of <span id="totalSlidesNum">11</span>
+        Slide <span id="currentSlideNum" class="text-yellow-400 font-bold">1</span> of <span id="totalSlidesNum">12</span>
       </div>
       <div class="flex items-center space-x-1 bg-slate-800/80 p-1 rounded-lg border border-slate-700">
         <button id="prevBtn" onclick="changeSlide(-1)" class="px-3 py-1.5 text-xs font-semibold rounded bg-slate-700 hover:bg-slate-600 text-white disabled:opacity-30 disabled:cursor-not-allowed transition">
@@ -857,6 +857,314 @@
       </div>
     </div>
 
+    <!-- SLIDE 12: Dynamic Multi-Product Budget & Unit Forecaster -->
+    <div id="slide-12" class="slide-content">
+      <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+          <div>
+            <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Interactive Simulator</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mt-0.5">Dynamic Unit & Budget Modeler by Product</h2>
+          </div>
+          <span class="text-xs px-3 py-1 rounded bg-yellow-400/10 text-yellow-300 font-semibold border border-yellow-400/30 flex items-center gap-1.5 self-start md:self-auto">
+            <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
+            Deterministic Conversion Engine
+          </span>
+        </div>
+
+        <!-- Product Sub-Tabs -->
+        <div class="flex items-center gap-2 border-b border-slate-700/80 pb-3 mb-6 overflow-x-auto text-xs font-bold">
+          <button type="button" onclick="switchCalcTab('tab-merch')" id="btn-calc-merch" class="calc-tab-btn px-4 py-2 rounded-lg bg-yellow-400 text-slate-950 shadow transition">
+            👕 Astrology Apparel (Meta & Etsy)
+          </button>
+          <button type="button" onclick="switchCalcTab('tab-books')" id="btn-calc-books" class="calc-tab-btn px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+            📚 Legal Guides (Google Search)
+          </button>
+          <button type="button" onclick="switchCalcTab('tab-q4')" id="btn-calc-q4" class="calc-tab-btn px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+            🎄 Q4 Holiday / BFCM Blitz
+          </button>
+          <button type="button" onclick="switchCalcTab('tab-combined')" id="btn-calc-combined" class="calc-tab-btn px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+            📊 Dual-Engine Master P&L
+          </button>
+        </div>
+
+        <!-- ================= TAB 1: MERCH ================= -->
+        <div id="tab-merch" class="calc-tab-content block">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-6 space-y-4 bg-slate-900/80 p-5 rounded-xl border border-slate-800">
+              <div>
+                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1.5">
+                  <span>Daily Ad Spend (Meta & Etsy):</span>
+                  <span id="lblMerchDailySpend" class="text-yellow-400 font-bold font-mono">£5.00 / day ($6.50)</span>
+                </div>
+                <input type="range" id="sliderMerchDaily" min="3" max="40" step="1" value="5" oninput="calcMerch()" class="w-full accent-yellow-400 bg-slate-700 h-2 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <span>£3/day (Test)</span>
+                  <span>£10/day (Scale)</span>
+                  <span>£25/day (Blitz)</span>
+                  <span>£40/day</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1.5">
+                  <span>Product Mix (T-Shirt £29.99 vs Hoodie £44.99):</span>
+                  <span id="lblMerchAOV" class="text-yellow-400 font-bold font-mono">£36.00 AOV (Balanced)</span>
+                </div>
+                <input type="range" id="sliderMerchAOV" min="30" max="50" step="2" value="36" oninput="calcMerch()" class="w-full accent-yellow-400 bg-slate-700 h-2 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <span>£30 (Tees only)</span>
+                  <span>£36 (60% Tee / 40% Hoodie)</span>
+                  <span>£50 (Hoodies + Mugs)</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1.5">
+                  <span>Checkout Upsell / Bump Take Rate:</span>
+                  <span id="lblMerchUpsell" class="text-emerald-400 font-bold font-mono">18% Taking Zodiac Bump</span>
+                </div>
+                <input type="range" id="sliderMerchUpsell" min="5" max="35" step="1" value="18" oninput="calcMerch()" class="w-full accent-emerald-400 bg-slate-700 h-2 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <span>5% (Conservative)</span>
+                  <span>18% (Target)</span>
+                  <span>35% (Aggressive)</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-lg bg-yellow-950/30 border border-yellow-700/40 text-[11px] text-yellow-200/90 leading-relaxed">
+                💡 <strong>Micro-Budget Math:</strong> At £5/day (~£0.38 CPC on Meta/Instagram), your campaign delivers <strong>~390 high-intent clicks/month</strong> directly to the Hero shirt, allowing the algorithm to identify buyers without pixel starvation.
+              </div>
+            </div>
+
+            <div class="lg:col-span-6 grid grid-cols-2 gap-3.5">
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-blue-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Estimated Monthly Traffic</span>
+                <div class="my-2">
+                  <div id="outMerchClicks" class="text-2xl font-black text-blue-400 font-mono">395</div>
+                  <span class="text-[10px] text-slate-400">clicks @ ~£0.38 CPC</span>
+                </div>
+                <div class="text-[10px] text-blue-300">~92 clicks / week</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Apparel Units Sold</span>
+                <div class="my-2">
+                  <div id="outMerchUnits" class="text-2xl font-black text-emerald-400 font-mono">12 – 16</div>
+                  <span class="text-[10px] text-slate-400">orders / month (3.2% CVR)</span>
+                </div>
+                <div class="text-[10px] text-emerald-300">~3–4 orders / week</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-yellow-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Monthly Ad Budget</span>
+                <div class="my-2">
+                  <div id="outMerchSpend" class="text-2xl font-black text-yellow-400 font-mono">£150</div>
+                  <span class="text-[10px] text-slate-400">£5.00 / day average</span>
+                </div>
+                <div class="text-[10px] text-yellow-300">Risk-controlled pilot</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-purple-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Gross Merch Sales</span>
+                <div class="my-2">
+                  <div id="outMerchRevenue" class="text-2xl font-black text-purple-300 font-mono">£465 – £620</div>
+                  <span class="text-[10px] text-slate-400">including upsell bumps</span>
+                </div>
+                <div class="text-[10px] text-purple-300 font-semibold">ROAS: 3.1x – 4.1x</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 2: BOOKS ================= -->
+        <div id="tab-books" class="calc-tab-content hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-6 space-y-4 bg-slate-900/80 p-5 rounded-xl border border-slate-800">
+              <div>
+                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1.5">
+                  <span>Google Search Monthly Ad Spend:</span>
+                  <span id="lblBookSpend" class="text-yellow-400 font-bold font-mono">£350 / month (£11.60/day)</span>
+                </div>
+                <input type="range" id="sliderBookSpend" min="150" max="1000" step="25" value="350" oninput="calcBooks()" class="w-full accent-yellow-400 bg-slate-700 h-2 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <span>£150 (Lean)</span>
+                  <span>£350 (Recommended)</span>
+                  <span>£650</span>
+                  <span>£1,000 (Aggressive)</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1.5">
+                  <span>Settlement Consultation Attach Rate:</span>
+                  <span id="lblBookConsultRate" class="text-emerald-400 font-bold font-mono">18% Request Help</span>
+                </div>
+                <input type="range" id="sliderBookConsultRate" min="10" max="30" step="1" value="18" oninput="calcBooks()" class="w-full accent-emerald-400 bg-slate-700 h-2 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <span>10% (1 in 10)</span>
+                  <span>18% (1 in ~5.5)</span>
+                  <span>30% (High Urgency)</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-lg bg-blue-950/40 border border-blue-700/40 text-[11px] text-blue-200/90 leading-relaxed">
+                ⚖️ <strong>The Legal Multiplier:</strong> At ~£1.40 exact-match CPC, the book pays for the advertising costs while funneling employees facing redundancy into Darren's statutory £500+ consultation (paid by their employer).
+              </div>
+            </div>
+
+            <div class="lg:col-span-6 grid grid-cols-2 gap-3.5">
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-blue-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Google Search Clicks</span>
+                <div class="my-2">
+                  <div id="outBookClicks" class="text-2xl font-black text-blue-400 font-mono">250</div>
+                  <span class="text-[10px] text-slate-400">exact-match @ £1.40 CPC</span>
+                </div>
+                <div class="text-[10px] text-blue-300">High-intent legal search</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Direct Book Sales</span>
+                <div class="my-2">
+                  <div id="outBookSales" class="text-2xl font-black text-emerald-400 font-mono">15 – 20</div>
+                  <span class="text-[10px] text-slate-400">guides sold @ £19.99 avg</span>
+                </div>
+                <div id="outBookSalesRev" class="text-[10px] text-emerald-300 font-semibold">£300 – £400 (Recovers ad bill)</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-yellow-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Legal Cases Ingested</span>
+                <div class="my-2">
+                  <div id="outLegalCases" class="text-2xl font-black text-yellow-400 font-mono">3 – 4</div>
+                  <span class="text-[10px] text-slate-400">settlement instructions / mo</span>
+                </div>
+                <div class="text-[10px] text-yellow-300">Statutory fee paid by employer</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/40 flex flex-col justify-between bg-emerald-950/20">
+                <span class="text-[11px] font-bold text-emerald-400 uppercase">Formal Legal Value</span>
+                <div class="my-2">
+                  <div id="outLegalRevenue" class="text-2xl font-black text-emerald-300 font-mono">£1,500 – £2,000</div>
+                  <span class="text-[10px] text-slate-400">@ £500 statutory fee</span>
+                </div>
+                <div class="text-[10px] text-emerald-400 font-bold">5.7x Value Multiplier</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 3: Q4 BLITZ ================= -->
+        <div id="tab-q4" class="calc-tab-content hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-6 space-y-4 bg-slate-900/80 p-5 rounded-xl border border-slate-800">
+              <div>
+                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1.5">
+                  <span>Q4 Blitz Ad Budget (Nov 15 – Dec 18):</span>
+                  <span id="lblQ4Spend" class="text-yellow-400 font-bold font-mono">£750 Total (£22/day)</span>
+                </div>
+                <input type="range" id="sliderQ4Spend" min="300" max="2000" step="50" value="750" oninput="calcQ4()" class="w-full accent-yellow-400 bg-slate-700 h-2 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <span>£300 (Lean)</span>
+                  <span>£750 (Recommended)</span>
+                  <span>£1,250</span>
+                  <span>£2,000 (Full Scale)</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1.5">
+                  <span>Holiday Gifting Conversion Multiplier:</span>
+                  <span id="lblQ4Boost" class="text-emerald-400 font-bold font-mono">1.75x Baseline (High-Intent Gifting)</span>
+                </div>
+                <input type="range" id="sliderQ4Boost" min="1.2" max="2.5" step="0.05" value="1.75" oninput="calcQ4()" class="w-full accent-emerald-400 bg-slate-700 h-2 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <span>1.2x (Standard)</span>
+                  <span>1.75x (Black Friday Surge)</span>
+                  <span>2.5x (Peak Dec Gifting)</span>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-lg bg-emerald-950/30 border border-emerald-700/40 text-[11px] text-emerald-200/90 leading-relaxed">
+                🎄 <strong>The Christmas Delivery Window:</strong> By pivoting ads from 'self-purchase' to 'gifts for your favorite lawyer/student' before December 18, conversion rates double as relatives and partners rush to purchase.
+              </div>
+            </div>
+
+            <div class="lg:col-span-6 grid grid-cols-2 gap-3.5">
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-blue-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Holiday Gift Clicks</span>
+                <div class="my-2">
+                  <div id="outQ4Clicks" class="text-2xl font-black text-blue-400 font-mono">1,875</div>
+                  <span class="text-[10px] text-slate-400">across Meta & Etsy</span>
+                </div>
+                <div class="text-[10px] text-blue-300">High-intent gift traffic</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Holiday Orders Delivered</span>
+                <div class="my-2">
+                  <div id="outQ4Orders" class="text-2xl font-black text-emerald-400 font-mono">75 – 95</div>
+                  <span class="text-[10px] text-slate-400">hoodies & gift sets</span>
+                </div>
+                <div class="text-[10px] text-emerald-300">Before Dec 18 cutoff</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-yellow-500/40 flex flex-col justify-between">
+                <span class="text-[11px] font-bold text-slate-400 uppercase">Average Holiday AOV</span>
+                <div class="my-2">
+                  <div class="text-2xl font-black text-yellow-400 font-mono">£48.50</div>
+                  <span class="text-[10px] text-slate-400">hoodie + matching mug</span>
+                </div>
+                <div class="text-[10px] text-yellow-300">Higher bundle take-rate</div>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-900/90 border border-purple-500/40 flex flex-col justify-between bg-purple-950/20">
+                <span class="text-[11px] font-bold text-purple-300 uppercase">Q4 Gross Merch Revenue</span>
+                <div class="my-2">
+                  <div id="outQ4Revenue" class="text-2xl font-black text-purple-300 font-mono">£3,637 – £4,607</div>
+                  <span class="text-[10px] text-slate-400">in 33 days</span>
+                </div>
+                <div id="outQ4ROAS" class="text-[10px] text-purple-300 font-bold">ROAS: 4.8x – 6.1x</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 4: MASTER COMBINED ================= -->
+        <div id="tab-combined" class="calc-tab-content hidden">
+          <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+              <div class="p-3.5 rounded-lg bg-slate-800/80 border border-slate-700">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Total Monthly Ad Spend</span>
+                <div id="outCombSpend" class="text-xl font-bold text-yellow-400 font-mono mt-1">£500</div>
+                <span class="text-[10px] text-slate-500">£150 Merch + £350 Books</span>
+              </div>
+              <div class="p-3.5 rounded-lg bg-slate-800/80 border border-slate-700">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">E-Commerce Sales Rev</span>
+                <div id="outCombEcom" class="text-xl font-bold text-emerald-400 font-mono mt-1">£840 – £1,040</div>
+                <span class="text-[10px] text-slate-500">Books + Apparel</span>
+              </div>
+              <div class="p-3.5 rounded-lg bg-slate-800/80 border border-slate-700">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Formal Legal Value</span>
+                <div id="outCombLegal" class="text-xl font-bold text-blue-400 font-mono mt-1">£1,500 – £2,000</div>
+                <span class="text-[10px] text-slate-500">3–4 cases @ £500</span>
+              </div>
+              <div class="p-3.5 rounded-lg bg-emerald-950/40 border border-emerald-600/50">
+                <span class="text-[10px] font-bold text-emerald-300 uppercase">Total Economic Value</span>
+                <div id="outCombTotal" class="text-xl font-black text-emerald-300 font-mono mt-1">£2,340 – £3,040</div>
+                <span class="text-[10px] text-emerald-400 font-semibold">4.7x – 6.1x Return</span>
+              </div>
+            </div>
+
+            <div class="text-xs text-slate-300 bg-slate-950/60 p-4 rounded-lg border border-slate-800 flex items-center justify-between">
+              <div>
+                <strong class="text-white">Commercial Framework:</strong> 100% Barter Exchange for legal representation credits.
+              </div>
+              <span class="text-xs text-emerald-400 font-mono font-bold">Self-Funding Growth Model</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Executive Steering Bar (Requires Green Tick or Comment to advance) -->
     <div class="mt-6 bg-[#121B30]/95 backdrop-blur border border-slate-700/80 rounded-xl p-4 shadow-xl transition">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
@@ -927,7 +1235,7 @@
 
   <script>
     let currentSlide = 1;
-    const totalSlides = 11;
+    const totalSlides = 12;
 
     // Load saved feedback from localStorage
     let feedbackStorage = {};
@@ -954,7 +1262,50 @@
         dot.title = `Slide ${i}${isDone ? ' (Reviewed)' : ''}`;
         dot.onclick = () => {
           currentSlide = i;
-          updateSlide();
+      
+    // ----------------------------------------------------------------------
+    // PRODUCT SLIDERS & CALCULATOR ENGINE
+    // ----------------------------------------------------------------------
+    function switchCalcTab(tabId) {
+      document.querySelectorAll('.calc-tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.calc-tab-content').forEach(el => el.classList.remove('block'));
+      
+      const target = document.getElementById(tabId);
+      if (target) {
+        target.classList.remove('hidden');
+        target.classList.add('block');
+      }
+
+      document.querySelectorAll('.calc-tab-btn').forEach(btn => {
+        btn.className = 'calc-tab-btn px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition';
+      });
+
+      const activeBtn = document.getElementById('btn-calc-' + tabId.replace('tab-', ''));
+      if (activeBtn) {
+        activeBtn.className = 'calc-tab-btn px-4 py-2 rounded-lg bg-yellow-400 text-slate-950 shadow transition';
+      }
+    }
+
+    function calcMerch() {
+      const dailySpendEl = document.getElementById('sliderMerchDaily');
+      const aovEl = document.getElementById('sliderMerchAOV');
+      const upsellEl = document.getElementById('sliderMerchUpsell');
+      if (!dailySpendEl || !aovEl || !upsellEl) return;
+
+      const dailySpend = parseFloat(dailySpendEl.value);
+      const aov = parseFloat(aovEl.value);
+      const upsellRate = parseFloat(upsellEl.value) / 100;
+
+      const monthlySpend = Math.round(dailySpend * 30.4);
+      const clicks = Math.round(monthlySpend / 0.38);
+      const minOrders = Math.round(clicks * 0.028);
+      const maxOrders = Math.round(clicks * 0.042);
+
+      const effectiveAOV = aov + (upsellRate * 18);
+      const minRev = Math.round(minOrders * effectiveAOV);
+      const maxRev = Math.round(maxOrders * effectiveAOV);
+
+      document.getElementById('lblMerchDailySpend').innerText = '£' + dailySpend.toFixed(2) + ' / day (
         };
         container.appendChild(dot);
       }
@@ -1103,7 +1454,376 @@
         const item = feedbackStorage[i] || { stance: 'No verdict', comment: 'None' };
         summaryText += `Slide ${i}: [${(item.stance || 'No Stance').toUpperCase()}] ${item.comment || ''}\n`;
       }
-      alert("🎉 All 11 slides reviewed! Your feedback is logged:\n\n" + summaryText);
+      alert("🎉 All 12 slides reviewed! Your feedback is logged:\n\n" + summaryText);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft') {
+        changeSlide(-1);
+      }
+    });
+
+    updateSlide();
+
+    // ----------------------------------------------------------------------
+    // TELEMETRY & TRACKING (n8n Webhook)
+    // ----------------------------------------------------------------------
+    const WEBHOOK_URL = 'http://167.233.236.178:5678/webhook/kolake-marketing';
+    let sessionStartTime = Date.now();
+    let slideEntryTime = Date.now();
+
+    function sendTelemetry(eventCategory, eventData) {
+      // Don't block the UI - send asynchronously
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'djs-law-proposal',
+          viewer: email,
+          event: eventCategory,
+          timestamp: new Date().toISOString(),
+          data: eventData
+        }),
+        mode: 'no-cors' // Prevent CORS issues blocking the request in the browser
+      }).catch(err => console.error('Telemetry err:', err));
+    }
+
+    // 1. Log Initial Visit
+    window.addEventListener('DOMContentLoaded', () => {
+      sendTelemetry('proposal_opened', {
+        userAgent: navigator.userAgent
+      });
+    });
+
+    // 2. Wrap setStance and handleCommentInput to fire webhooks
+    const originalSetStance = setStance;
+    setStance = function(stance, defaultComment) {
+      originalSetStance(stance, defaultComment);
+      sendTelemetry('stance_recorded', {
+        slide: currentSlide,
+        stance: stance,
+        comment: document.getElementById('slideCommentInput').value
+      });
+    };
+
+    const originalHandleCommentInput = handleCommentInput;
+    let commentTypingTimeout;
+    handleCommentInput = function() {
+      originalHandleCommentInput();
+      clearTimeout(commentTypingTimeout);
+      commentTypingTimeout = setTimeout(() => {
+        sendTelemetry('comment_added', {
+          slide: currentSlide,
+          comment: document.getElementById('slideCommentInput').value
+        });
+      }, 2000); // Send 2 seconds after they stop typing
+    };
+
+    // 3. Wrap changeSlide to track Dwell Time
+    const originalChangeSlide = changeSlide;
+    changeSlide = function(direction) {
+      if (direction > 0 && !isCurrentSlideUnlocked()) {
+        originalChangeSlide(direction); // Let it trigger the shake animation
+        return;
+      }
+      
+      const timeSpentSecs = Math.round((Date.now() - slideEntryTime) / 1000);
+      
+      if (currentSlide === totalSlides && direction > 0) {
+        // Completion
+        sendTelemetry('proposal_completed', {
+          totalDurationSecs: Math.round((Date.now() - sessionStartTime) / 1000),
+          feedback: feedbackStorage
+        });
+        originalChangeSlide(direction); // Let it show the summary
+        return;
+      }
+
+      // Log dwell time before moving
+      sendTelemetry('slide_completed', {
+        slide: currentSlide,
+        timeSpentSeconds: timeSpentSecs,
+        direction: direction > 0 ? 'next' : 'prev'
+      });
+
+      slideEntryTime = Date.now(); // Reset timer for the new slide
+      originalChangeSlide(direction);
+    };
+    // ----------------------------------------------------------------------
+  </script>
+</body>
+</html>
+ + (dailySpend * 1.3).toFixed(2) + ')';
+      document.getElementById('lblMerchAOV').innerText = '£' + aov.toFixed(0) + ' AOV (' + (aov < 34 ? 'Tees' : aov > 42 ? 'Hoodies' : 'Balanced') + ')';
+      document.getElementById('lblMerchUpsell').innerText = (upsellRate * 100).toFixed(0) + '% Taking Zodiac Bump';
+
+      document.getElementById('outMerchClicks').innerText = clicks.toLocaleString();
+      document.getElementById('outMerchUnits').innerText = minOrders + ' – ' + maxOrders;
+      document.getElementById('outMerchSpend').innerText = '£' + monthlySpend.toLocaleString();
+      document.getElementById('outMerchRevenue').innerText = '£' + minRev.toLocaleString() + ' – £' + maxRev.toLocaleString();
+
+      updateCombinedPL();
+    }
+
+    function calcBooks() {
+      const spendEl = document.getElementById('sliderBookSpend');
+      const consultEl = document.getElementById('sliderBookConsultRate');
+      if (!spendEl || !consultEl) return;
+
+      const spend = parseFloat(spendEl.value);
+      const consultRate = parseFloat(consultEl.value) / 100;
+
+      const clicks = Math.round(spend / 1.40);
+      const minBooks = Math.round(clicks * 0.06);
+      const maxBooks = Math.round(clicks * 0.08);
+
+      const minCases = Math.max(1, Math.round(minBooks * consultRate));
+      const maxCases = Math.max(2, Math.round(maxBooks * consultRate));
+
+      const minLegalRev = minCases * 500;
+      const maxLegalRev = maxCases * 500;
+      const minBookRev = Math.round(minBooks * 19.99);
+      const maxBookRev = Math.round(maxBooks * 19.99);
+
+      document.getElementById('lblBookSpend').innerText = '£' + spend.toLocaleString() + ' / month (£' + (spend / 30.4).toFixed(2) + '/day)';
+      document.getElementById('lblBookConsultRate').innerText = (consultRate * 100).toFixed(0) + '% Request Help';
+
+      document.getElementById('outBookClicks').innerText = clicks.toLocaleString();
+      document.getElementById('outBookSales').innerText = minBooks + ' – ' + maxBooks;
+      document.getElementById('outBookSalesRev').innerText = '£' + minBookRev + ' – £' + maxBookRev + ' (Recovers ad bill)';
+      document.getElementById('outLegalCases').innerText = minCases + ' – ' + maxCases;
+      document.getElementById('outLegalRevenue').innerText = '£' + minLegalRev.toLocaleString() + ' – £' + maxLegalRev.toLocaleString();
+
+      updateCombinedPL();
+    }
+
+    function calcQ4() {
+      const spendEl = document.getElementById('sliderQ4Spend');
+      const boostEl = document.getElementById('sliderQ4Boost');
+      if (!spendEl || !boostEl) return;
+
+      const spend = parseFloat(spendEl.value);
+      const boost = parseFloat(boostEl.value);
+
+      const clicks = Math.round(spend / 0.40);
+      const baselineCVR = 0.028 * boost;
+      const minOrders = Math.round(clicks * (baselineCVR * 0.9));
+      const maxOrders = Math.round(clicks * (baselineCVR * 1.15));
+
+      const holidayAOV = 48.50;
+      const minRev = Math.round(minOrders * holidayAOV);
+      const maxRev = Math.round(maxOrders * holidayAOV);
+      const minROAS = (minRev / spend).toFixed(1);
+      const maxROAS = (maxRev / spend).toFixed(1);
+
+      document.getElementById('lblQ4Spend').innerText = '£' + spend.toLocaleString() + ' Total (£' + (spend / 33).toFixed(0) + '/day)';
+      document.getElementById('lblQ4Boost').innerText = boost.toFixed(2) + 'x Baseline (' + (boost > 1.8 ? 'Peak Gifting' : 'Surge') + ')';
+
+      document.getElementById('outQ4Clicks').innerText = clicks.toLocaleString();
+      document.getElementById('outQ4Orders').innerText = minOrders + ' – ' + maxOrders;
+      document.getElementById('outQ4Revenue').innerText = '£' + minRev.toLocaleString() + ' – £' + maxRev.toLocaleString();
+      document.getElementById('outQ4ROAS').innerText = 'ROAS: ' + minROAS + 'x – ' + maxROAS + 'x';
+    }
+
+    function updateCombinedPL() {
+      const merchDaily = parseFloat(document.getElementById('sliderMerchDaily') ? document.getElementById('sliderMerchDaily').value : 5);
+      const bookMonthly = parseFloat(document.getElementById('sliderBookSpend') ? document.getElementById('sliderBookSpend').value : 350);
+
+      const merchMonthly = Math.round(merchDaily * 30.4);
+      const totalSpend = merchMonthly + bookMonthly;
+
+      // Merch sales
+      const merchClicks = Math.round(merchMonthly / 0.38);
+      const merchRevMin = Math.round(merchClicks * 0.028 * 38);
+      const merchRevMax = Math.round(merchClicks * 0.042 * 38);
+
+      // Book sales
+      const bookClicks = Math.round(bookMonthly / 1.40);
+      const bookRevMin = Math.round(bookClicks * 0.06 * 19.99);
+      const bookRevMax = Math.round(bookClicks * 0.08 * 19.99);
+
+      // Legal cases
+      const legalCasesMin = Math.max(1, Math.round(bookClicks * 0.06 * 0.18));
+      const legalCasesMax = Math.max(2, Math.round(bookClicks * 0.08 * 0.18));
+      const legalRevMin = legalCasesMin * 500;
+      const legalRevMax = legalCasesMax * 500;
+
+      const totalEcomMin = merchRevMin + bookRevMin;
+      const totalEcomMax = merchRevMax + bookRevMax;
+
+      const totalValMin = totalEcomMin + legalRevMin;
+      const totalValMax = totalEcomMax + legalRevMax;
+
+      const elSpend = document.getElementById('outCombSpend');
+      const elEcom = document.getElementById('outCombEcom');
+      const elLegal = document.getElementById('outCombLegal');
+      const elTotal = document.getElementById('outCombTotal');
+
+      if (elSpend) elSpend.innerText = '£' + totalSpend.toLocaleString();
+      if (elEcom) elEcom.innerText = '£' + totalEcomMin.toLocaleString() + ' – £' + totalEcomMax.toLocaleString();
+      if (elLegal) elLegal.innerText = '£' + legalRevMin.toLocaleString() + ' – £' + legalRevMax.toLocaleString();
+      if (elTotal) elTotal.innerText = '£' + totalValMin.toLocaleString() + ' – £' + totalValMax.toLocaleString();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      calcMerch();
+      calcBooks();
+      calcQ4();
+    });
+
+    updateSlide();
+        };
+        container.appendChild(dot);
+      }
+    }
+
+    function isCurrentSlideUnlocked() {
+      const fb = feedbackStorage[currentSlide];
+      return Boolean(fb && (fb.stance || (fb.comment && fb.comment.trim().length > 0)));
+    }
+
+    function syncButtonStates() {
+      const unlocked = isCurrentSlideUnlocked();
+      const nextBtn = document.getElementById('nextBtn');
+      const barNextBtn = document.getElementById('barNextBtn');
+      const lockBadge = document.getElementById('lockBadge');
+      const statusMessage = document.getElementById('statusMessage');
+
+      const isLastSlide = (currentSlide === totalSlides);
+      const nextText = isLastSlide ? '🎉 Complete Review' : 'Next Slide →';
+
+      if (unlocked) {
+        // Active & Vibrant
+        const activeClasses = 'bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold shadow-lg shadow-emerald-500/20 pulse-ready cursor-pointer';
+
+        nextBtn.disabled = false;
+        nextBtn.className = `px-3.5 py-1.5 text-xs font-bold rounded transition ${activeClasses}`;
+        nextBtn.innerHTML = nextText;
+
+        barNextBtn.disabled = false;
+        barNextBtn.className = `w-full lg:w-auto px-5 py-1.5 rounded-lg font-bold text-xs transition ${activeClasses}`;
+        barNextBtn.innerHTML = `<span>${isLastSlide ? 'Complete Sign-Off' : 'Next Slide'}</span> <span>→</span>`;
+
+        lockBadge.className = 'text-[10px] px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700/60 font-semibold';
+        lockBadge.innerHTML = '✓ Stance Recorded';
+
+        statusMessage.innerHTML = '<span class="text-xs text-emerald-400 font-medium flex items-center gap-1"><span>✓</span> Stance recorded — click Next or press → to advance</span>';
+      } else {
+        // Disabled / Gated
+        nextBtn.disabled = true;
+        nextBtn.className = 'px-3.5 py-1.5 text-xs font-semibold rounded bg-slate-800 text-slate-500 border border-slate-700 cursor-not-allowed opacity-50 transition';
+        nextBtn.innerHTML = nextText;
+
+        barNextBtn.disabled = true;
+        barNextBtn.className = 'w-full lg:w-auto px-5 py-1.5 rounded-lg font-semibold text-xs bg-slate-800 text-slate-500 border border-slate-700 cursor-not-allowed opacity-50 transition';
+        barNextBtn.innerHTML = '<span>Locked (Feedback Required)</span>';
+
+        lockBadge.className = 'text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-amber-300 border border-amber-700/60 font-semibold';
+        lockBadge.innerHTML = '🔒 Stance Required';
+
+        statusMessage.innerHTML = '<span class="text-xs text-amber-300/90 flex items-center gap-1 font-medium"><span>⚠️</span> Tap a stance or drop a comment to unlock Next</span>';
+      }
+    }
+
+    function updateSteeringBarUI() {
+      document.getElementById('verdictSlideNum').innerText = currentSlide;
+      const fb = feedbackStorage[currentSlide] || { stance: '', comment: '' };
+
+      const chipGreen = document.getElementById('chipGreen');
+      const chipYellow = document.getElementById('chipYellow');
+      const chipRed = document.getElementById('chipRed');
+      const input = document.getElementById('slideCommentInput');
+
+      chipGreen.classList.remove('active-green');
+      chipYellow.classList.remove('active-yellow');
+      chipRed.classList.remove('active-red');
+
+      if (fb.stance === 'greenlight') chipGreen.classList.add('active-green');
+      if (fb.stance === 'note') chipYellow.classList.add('active-yellow');
+      if (fb.stance === 'pushback') chipRed.classList.add('active-red');
+
+      input.value = fb.comment || '';
+      syncButtonStates();
+      renderDots();
+    }
+
+    function setStance(stance, defaultComment) {
+      if (!feedbackStorage[currentSlide]) {
+        feedbackStorage[currentSlide] = {};
+      }
+      feedbackStorage[currentSlide].stance = stance;
+      const input = document.getElementById('slideCommentInput');
+      
+      if (defaultComment && !input.value.trim()) {
+        input.value = defaultComment;
+        feedbackStorage[currentSlide].comment = defaultComment;
+      } else if (!defaultComment && !input.value.trim()) {
+        input.focus();
+      }
+
+      localStorage.setItem('djs_proposal_feedback', JSON.stringify(feedbackStorage));
+      updateSteeringBarUI();
+    }
+
+    function handleCommentInput() {
+      const val = document.getElementById('slideCommentInput').value;
+      if (!feedbackStorage[currentSlide]) {
+        feedbackStorage[currentSlide] = {};
+      }
+      feedbackStorage[currentSlide].comment = val;
+      if (val.trim().length > 0 && !feedbackStorage[currentSlide].stance) {
+        feedbackStorage[currentSlide].stance = 'note';
+      }
+      localStorage.setItem('djs_proposal_feedback', JSON.stringify(feedbackStorage));
+      updateSteeringBarUI();
+    }
+
+    function updateSlide() {
+      for (let i = 1; i <= totalSlides; i++) {
+        const slide = document.getElementById(`slide-${i}`);
+        if (slide) {
+          if (i === currentSlide) {
+            slide.classList.add('active');
+          } else {
+            slide.classList.remove('active');
+          }
+        }
+      }
+      document.getElementById('currentSlideNum').innerText = currentSlide;
+      document.getElementById('prevBtn').disabled = (currentSlide === 1);
+      updateSteeringBarUI();
+    }
+
+    function changeSlide(direction) {
+      if (direction > 0 && !isCurrentSlideUnlocked()) {
+        const statusMsg = document.getElementById('statusMessage');
+        statusMsg.classList.add('animate-bounce');
+        setTimeout(() => statusMsg.classList.remove('animate-bounce'), 1000);
+        return;
+      }
+
+      if (currentSlide === totalSlides && direction > 0) {
+        showCompletionSummary();
+        return;
+      }
+
+      currentSlide += direction;
+      if (currentSlide < 1) currentSlide = 1;
+      if (currentSlide > totalSlides) currentSlide = totalSlides;
+      updateSlide();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showCompletionSummary() {
+      let summaryText = "DJS LAW PROPOSAL - DARREN'S STEERING LOG:\n\n";
+      for (let i = 1; i <= totalSlides; i++) {
+        const item = feedbackStorage[i] || { stance: 'No verdict', comment: 'None' };
+        summaryText += `Slide ${i}: [${(item.stance || 'No Stance').toUpperCase()}] ${item.comment || ''}\n`;
+      }
+      alert("🎉 All 12 slides reviewed! Your feedback is logged:\n\n" + summaryText);
     }
 
     document.addEventListener('keydown', (e) => {
