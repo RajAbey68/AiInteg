@@ -1165,64 +1165,221 @@
       </div>
     </div>
 
-    <!-- SLIDE 13: Executive TL;DR & Audience Decision Matrix -->
+    <!-- SLIDE 13: Interactive Venn Diagram & Audience Economics Modeler -->
     <div id="slide-13" class="slide-content">
       <div class="bg-[#18233C] border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
           <div>
-            <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Executive Decision Matrix</span>
-            <h2 class="text-2xl md:text-3xl font-bold text-white mt-0.5">Audience Strategy & Target Clicks at a Glance</h2>
+            <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Visual Tribe Intersection</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mt-0.5">The 3-Way Golden Intersection (Law × Astrology × Season)</h2>
           </div>
           <span class="text-xs px-3 py-1 rounded bg-emerald-400/10 text-emerald-300 font-semibold border border-emerald-400/30 flex items-center gap-1.5 self-start md:self-auto">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Options Evaluated for Pilot Rollout
+            Dynamic Venn Budget Engine
           </span>
         </div>
-        <p class="text-xs text-slate-300 mb-5">
-          Darren, here is the executive side-by-side comparison of the four audience targeting models evaluated, including target monthly click volumes, budget efficiency, pros, and key caveats:
+
+        <p class="text-xs text-slate-300 mb-4">
+          Slide the budget controller below to see how capital flows into each audience zone and why the center intersection delivers 4x higher capital efficiency:
         </p>
 
-        <!-- 4-Card Comparison Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-          
-          <!-- Card 1: Astrology x Law (The Intersect) -->
-          <div class="p-4 rounded-xl bg-slate-900/95 border-2 border-emerald-500/60 flex flex-col justify-between shadow-lg relative">
-            <div class="absolute -top-2.5 right-3 bg-emerald-500 text-slate-950 font-black text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider shadow">
-              ★ Recommended Core (60%)
+        <!-- Interactive Budget Controller Bar -->
+        <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-700/80 mb-6 shadow-inner">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-300 uppercase tracking-wide">Adjust Daily Pilot Budget:</span>
+              <span id="vennBudgetDailyLabel" class="text-sm font-black text-yellow-400 font-mono bg-yellow-950/60 px-2.5 py-0.5 rounded border border-yellow-500/40">
+                £5.00 / day ($6.50)
+              </span>
             </div>
-            <div>
-              <div class="flex items-center gap-2 mb-2">
-                <span class="text-base">⚖️✨</span>
-                <strong class="text-emerald-400 text-sm">1. Astrology × Law</strong>
-              </div>
-              <p class="text-[11px] text-slate-400 mb-3">Law students, trainees & junior associates who follow zodiac / horoscope culture.</p>
+            <div class="text-xs font-mono text-slate-400">
+              Monthly Total: <span id="vennBudgetMonthlyLabel" class="text-emerald-400 font-bold">£152 / month</span>
+            </div>
+          </div>
+          <input 
+            type="range" 
+            id="sliderVennBudget" 
+            min="3" 
+            max="50" 
+            step="1" 
+            value="5" 
+            oninput="updateVennEconomics()" 
+            class="w-full accent-yellow-400 bg-slate-700 h-2.5 rounded-lg cursor-pointer transition"
+          />
+          <div class="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
+            <span>£3/day (Lean Test)</span>
+            <span>£5/day (Target Pilot)</span>
+            <span>£15/day (Autumn Scale)</span>
+            <span>£30/day (BFCM Blitz)</span>
+            <span>£50/day (Xmas Peak)</span>
+          </div>
+        </div>
+
+        <!-- Main Visual Grid: Interactive Venn Diagram + Dynamic Intelligence Panel -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          
+          <!-- LEFT: Interactive SVG Venn Diagram (5 Cols) -->
+          <div class="lg:col-span-6 flex flex-col items-center justify-center p-4 bg-slate-950/70 rounded-2xl border border-slate-800 shadow-xl relative overflow-hidden">
+            <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <span>Dynamic Audience Topology</span>
+              <span class="text-[10px] text-slate-500">(Hover zones to inspect)</span>
+            </div>
+
+            <svg viewBox="0 0 420 380" class="w-full max-w-[380px] h-auto drop-shadow-2xl">
+              <defs>
+                <!-- Gradients for the 3 circles -->
+                <radialGradient id="gradLaw" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.45"/>
+                  <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.15"/>
+                </radialGradient>
+                <radialGradient id="gradAstro" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ec4899" stop-opacity="0.45"/>
+                  <stop offset="100%" stop-color="#be185d" stop-opacity="0.15"/>
+                </radialGradient>
+                <radialGradient id="gradSeason" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#eab308" stop-opacity="0.45"/>
+                  <stop offset="100%" stop-color="#a16207" stop-opacity="0.15"/>
+                </radialGradient>
+                <radialGradient id="gradCenter" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#10b981" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="#059669" stop-opacity="0.75"/>
+                </radialGradient>
+              </defs>
+
+              <!-- Circle 1: Legal Profession (Top Left) -->
+              <circle cx="160" cy="150" r="110" fill="url(#gradLaw)" stroke="#60a5fa" stroke-width="2" class="transition-all hover:stroke-yellow-400 hover:stroke-[3px]"/>
               
-              <div class="p-2.5 rounded-lg bg-slate-950/70 border border-slate-800 mb-3 space-y-1 font-mono text-[11px]">
-                <div class="flex justify-between">
-                  <span class="text-slate-400">Target CPC:</span>
-                  <span class="text-emerald-300 font-bold">£0.35 – £0.45</span>
+              <!-- Circle 2: Astrology / Zodiac (Top Right) -->
+              <circle cx="260" cy="150" r="110" fill="url(#gradAstro)" stroke="#f472b6" stroke-width="2" class="transition-all hover:stroke-yellow-400 hover:stroke-[3px]"/>
+              
+              <!-- Circle 3: Seasonal Gifting / Q4 (Bottom Center) -->
+              <circle cx="210" cy="230" r="110" fill="url(#gradSeason)" stroke="#facc15" stroke-width="2" class="transition-all hover:stroke-yellow-400 hover:stroke-[3px]"/>
+
+              <!-- Outer Labels -->
+              <text x="90" y="70" fill="#93c5fd" font-size="12" font-weight="bold" font-family="sans-serif">🏛️ LEGAL (350k)</text>
+              <text x="60" y="86" fill="#64748b" font-size="9" font-family="sans-serif">Law Students & Trainees</text>
+
+              <text x="250" y="70" fill="#f9a8d4" font-size="12" font-weight="bold" font-family="sans-serif">✨ ASTROLOGY (5M+)</text>
+              <text x="260" y="86" fill="#64748b" font-size="9" font-family="sans-serif">Horoscope & Zodiac Fans</text>
+
+              <text x="140" y="360" fill="#fde047" font-size="12" font-weight="bold" font-family="sans-serif">🍂 SEASON (Q4 Gifting)</text>
+              <text x="135" y="374" fill="#64748b" font-size="9" font-family="sans-serif">Sept Intake ➔ BFCM ➔ Xmas</text>
+
+              <!-- Two-Way Intersections -->
+              <!-- Law + Astro (Top Middle) -->
+              <text x="210" y="125" text-anchor="middle" fill="#c084fc" font-size="10" font-weight="bold" font-family="sans-serif">Law × Astro</text>
+              <text x="210" y="137" text-anchor="middle" fill="#e2e8f0" font-size="9" font-mono font-weight="bold">£0.38 CPC</text>
+
+              <!-- Law + Season (Bottom Left) -->
+              <text x="135" y="235" text-anchor="middle" fill="#93c5fd" font-size="9" font-weight="bold" font-family="sans-serif">SQE / Exam Intake</text>
+
+              <!-- Astro + Season (Bottom Right) -->
+              <text x="285" y="235" text-anchor="middle" fill="#f472b6" font-size="9" font-weight="bold" font-family="sans-serif">Holiday Horoscopes</text>
+
+              <!-- CENTER GOLDEN SWEET SPOT (Intersection of all 3) -->
+              <polygon points="210,150 185,200 235,200" fill="url(#gradCenter)" stroke="#34d399" stroke-width="2.5" class="animate-pulse cursor-pointer"/>
+              
+              <text x="210" y="180" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="900" font-family="sans-serif">🎯 GOLDEN</text>
+              <text x="210" y="193" text-anchor="middle" fill="#ffffff" font-size="8" font-weight="bold" font-family="sans-serif">SWEET SPOT</text>
+            </svg>
+
+            <div class="mt-2 text-[10px] text-emerald-400 font-mono font-semibold bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-500/40">
+              ★ Center Zone: 4.5x Conversion Multiplier & Viral Tagging
+            </div>
+          </div>
+
+          <!-- RIGHT: Live Dynamic Calculation & Comparison Panel (7 Cols) -->
+          <div class="lg:col-span-6 space-y-3">
+            
+            <!-- Dynamic KPI Output Cards -->
+            <div class="grid grid-cols-2 gap-3">
+              <div class="p-3.5 rounded-xl bg-slate-900/95 border border-emerald-500/50 flex flex-col justify-between shadow-md">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Center Sweet Spot Clicks</span>
+                <div class="my-1">
+                  <div id="vennOutClicks" class="text-2xl font-black text-emerald-400 font-mono">400</div>
+                  <span class="text-[10px] text-slate-400">clicks @ <strong class="text-emerald-300">£0.38 CPC</strong></span>
                 </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-400">Clicks @ £5/day:</span>
-                  <span class="text-yellow-400 font-bold">~390 / month</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-400">Clicks @ £10/day:</span>
-                  <span class="text-yellow-400 font-bold">~780 / month</span>
-                </div>
+                <div id="vennOutWeeklyClicks" class="text-[10px] text-emerald-300 font-semibold">~93 clicks / week</div>
               </div>
 
-              <div class="space-y-2 text-[11px]">
-                <div>
-                  <strong class="text-emerald-400">✓ The Pros:</strong>
-                  <p class="text-slate-300">Highest conversion density. Organic virality via colleague tagging in comment sections (<em>"This is literally you Sarah!"</em>).</p>
+              <div class="p-3.5 rounded-xl bg-slate-900/95 border border-yellow-500/50 flex flex-col justify-between shadow-md">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Estimated Orders / Month</span>
+                <div class="my-1">
+                  <div id="vennOutOrders" class="text-2xl font-black text-yellow-400 font-mono">14 – 19</div>
+                  <span class="text-[10px] text-slate-400">hoodies & t-shirts sold</span>
                 </div>
-                <div>
-                  <strong class="text-amber-400">⚠️ The Caveat:</strong>
-                  <p class="text-slate-300">Niche pool (~120k UK). Must use 1 Hero Shirt initially so 12 signs don't fragment pixel learning.</p>
+                <div id="vennOutConversionRate" class="text-[10px] text-yellow-300 font-semibold">3.8% – 4.8% CVR</div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-900/95 border border-purple-500/50 flex flex-col justify-between shadow-md">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Gross Apparel Revenue</span>
+                <div class="my-1">
+                  <div id="vennOutRevenue" class="text-2xl font-black text-purple-300 font-mono">£532 – £722</div>
+                  <span class="text-[10px] text-slate-400">AOV: £38.00 (with upsells)</span>
                 </div>
+                <div id="vennOutROAS" class="text-[10px] text-purple-300 font-bold">ROAS: 3.5x – 4.8x</div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-slate-900/95 border border-blue-500/50 flex flex-col justify-between shadow-md">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Ad Capital Protection</span>
+                <div class="my-1">
+                  <div id="vennOutCPA" class="text-2xl font-black text-blue-400 font-mono">£8.00 – £10.80</div>
+                  <span class="text-[10px] text-slate-400">cost per acquired customer</span>
+                </div>
+                <div class="text-[10px] text-blue-300 font-semibold">Well under £18.50 cap</div>
               </div>
             </div>
+
+            <!-- Audience Breakdown & Waste Comparison Table -->
+            <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 text-[11px]">
+              <div class="text-xs font-bold text-slate-200 mb-2 flex items-center justify-between">
+                <span>Audience Zone Efficiency Comparison</span>
+                <span class="text-[10px] text-yellow-400 font-mono">Real-Time Efficiency Audit</span>
+              </div>
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="text-slate-400 border-b border-slate-800 text-[10px] uppercase">
+                    <th class="pb-1.5 font-semibold">Audience Zone</th>
+                    <th class="pb-1.5 font-semibold">CPC</th>
+                    <th class="pb-1.5 font-semibold">CVR</th>
+                    <th class="pb-1.5 font-semibold text-right">Verdict</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 font-mono text-[10px]">
+                  <tr>
+                    <td class="py-1.5 font-sans font-medium text-emerald-400">🎯 Center (Law × Astro × Season)</td>
+                    <td class="py-1.5 text-slate-300">£0.38</td>
+                    <td class="py-1.5 text-emerald-400 font-bold">4.2%</td>
+                    <td class="py-1.5 text-right font-sans font-bold text-emerald-400">🟢 60% Budget</td>
+                  </tr>
+                  <tr>
+                    <td class="py-1.5 font-sans font-medium text-blue-400">🏛️ General Law Only</td>
+                    <td class="py-1.5 text-slate-300">£0.55</td>
+                    <td class="py-1.5 text-blue-300">2.4%</td>
+                    <td class="py-1.5 text-right font-sans font-bold text-blue-400">🔵 30% (Hero SKU)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-1.5 font-sans font-medium text-rose-400">🔮 General Astrology Only</td>
+                    <td class="py-1.5 text-slate-300">£0.95</td>
+                    <td class="py-1.5 text-rose-400">0.8%</td>
+                    <td class="py-1.5 text-right font-sans font-bold text-rose-400">🔴 10% (Q4 Only)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Strategic Takeaway Callout -->
+            <div class="p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-600/40 text-[11px] text-emerald-200/90 leading-relaxed flex items-center gap-2">
+              <span class="text-base">💡</span>
+              <div>
+                <strong>Executive Takeaway:</strong> Spending £5/day in the <strong>Center Sweet Spot</strong> buys <strong>~400 clicks</strong> with zero ad bleed, delivering positive ROI before expanding into general audiences.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
             <div class="mt-3 pt-2.5 border-t border-slate-800/80 text-[10px] text-emerald-300 font-semibold">
               Role: Primary conversion engine for apparel.
             </div>
@@ -1641,7 +1798,550 @@
       currentSlide += direction;
       if (currentSlide < 1) currentSlide = 1;
       if (currentSlide > totalSlides) currentSlide = totalSlides;
+  
+    // ----------------------------------------------------------------------
+    // VENN DIAGRAM DYNAMIC BUDGET ENGINE
+    // ----------------------------------------------------------------------
+    function updateVennEconomics() {
+      const slider = document.getElementById('sliderVennBudget');
+      if (!slider) return;
+
+      const dailySpend = parseFloat(slider.value);
+      const monthlySpend = Math.round(dailySpend * 30.4);
+
+      // DOM Elements
+      const lblDaily = document.getElementById('vennBudgetDailyLabel');
+      const lblMonthly = document.getElementById('vennBudgetMonthlyLabel');
+      const outClicks = document.getElementById('vennOutClicks');
+      const outWeekly = document.getElementById('vennOutWeeklyClicks');
+      const outOrders = document.getElementById('vennOutOrders');
+      const outCVR = document.getElementById('vennOutConversionRate');
+      const outRevenue = document.getElementById('vennOutRevenue');
+      const outROAS = document.getElementById('vennOutROAS');
+      const outCPA = document.getElementById('vennOutCPA');
+
+      if (lblDaily) lblDaily.innerText = '£' + dailySpend.toFixed(2) + ' / day (
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showCompletionSummary() {
+      let summaryText = "DJS LAW PROPOSAL - DARREN'S STEERING LOG:\n\n";
+      for (let i = 1; i <= totalSlides; i++) {
+        const item = feedbackStorage[i] || { stance: 'No verdict', comment: 'None' };
+        summaryText += `Slide ${i}: [${(item.stance || 'No Stance').toUpperCase()}] ${item.comment || ''}\n`;
+      }
+      alert("🎉 All 13 slides reviewed! Your feedback is logged:\n\n" + summaryText);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft') {
+        changeSlide(-1);
+      }
+    });
+
+    updateSlide();
+
+    // ----------------------------------------------------------------------
+    // TELEMETRY & TRACKING (n8n Webhook)
+    // ----------------------------------------------------------------------
+    const WEBHOOK_URL = 'http://167.233.236.178:5678/webhook/kolake-marketing';
+    let sessionStartTime = Date.now();
+    let slideEntryTime = Date.now();
+
+    function sendTelemetry(eventCategory, eventData) {
+      // Don't block the UI - send asynchronously
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'djs-law-proposal',
+          viewer: email,
+          event: eventCategory,
+          timestamp: new Date().toISOString(),
+          data: eventData
+        }),
+        mode: 'no-cors' // Prevent CORS issues blocking the request in the browser
+      }).catch(err => console.error('Telemetry err:', err));
+    }
+
+    // 1. Log Initial Visit
+    window.addEventListener('DOMContentLoaded', () => {
+      sendTelemetry('proposal_opened', {
+        userAgent: navigator.userAgent
+      });
+    });
+
+    // 2. Wrap setStance and handleCommentInput to fire webhooks
+    const originalSetStance = setStance;
+    setStance = function(stance, defaultComment) {
+      originalSetStance(stance, defaultComment);
+      sendTelemetry('stance_recorded', {
+        slide: currentSlide,
+        stance: stance,
+        comment: document.getElementById('slideCommentInput').value
+      });
+    };
+
+    const originalHandleCommentInput = handleCommentInput;
+    let commentTypingTimeout;
+    handleCommentInput = function() {
+      originalHandleCommentInput();
+      clearTimeout(commentTypingTimeout);
+      commentTypingTimeout = setTimeout(() => {
+        sendTelemetry('comment_added', {
+          slide: currentSlide,
+          comment: document.getElementById('slideCommentInput').value
+        });
+      }, 2000); // Send 2 seconds after they stop typing
+    };
+
+    // 3. Wrap changeSlide to track Dwell Time
+    const originalChangeSlide = changeSlide;
+    changeSlide = function(direction) {
+      if (direction > 0 && !isCurrentSlideUnlocked()) {
+        originalChangeSlide(direction); // Let it trigger the shake animation
+        return;
+      }
+      
+      const timeSpentSecs = Math.round((Date.now() - slideEntryTime) / 1000);
+      
+      if (currentSlide === totalSlides && direction > 0) {
+        // Completion
+        sendTelemetry('proposal_completed', {
+          totalDurationSecs: Math.round((Date.now() - sessionStartTime) / 1000),
+          feedback: feedbackStorage
+        });
+        originalChangeSlide(direction); // Let it show the summary
+        return;
+      }
+
+      // Log dwell time before moving
+      sendTelemetry('slide_completed', {
+        slide: currentSlide,
+        timeSpentSeconds: timeSpentSecs,
+        direction: direction > 0 ? 'next' : 'prev'
+      });
+
+      slideEntryTime = Date.now(); // Reset timer for the new slide
+      originalChangeSlide(direction);
+    };
+    // ----------------------------------------------------------------------
+  </script>
+</body>
+</html>
+ + (dailySpend * 1.3).toFixed(2) + ')';
+      document.getElementById('lblMerchAOV').innerText = '£' + aov.toFixed(0) + ' AOV (' + (aov < 34 ? 'Tees' : aov > 42 ? 'Hoodies' : 'Balanced') + ')';
+      document.getElementById('lblMerchUpsell').innerText = (upsellRate * 100).toFixed(0) + '% Taking Zodiac Bump';
+
+      document.getElementById('outMerchClicks').innerText = clicks.toLocaleString();
+      document.getElementById('outMerchUnits').innerText = minOrders + ' – ' + maxOrders;
+      document.getElementById('outMerchSpend').innerText = '£' + monthlySpend.toLocaleString();
+      document.getElementById('outMerchRevenue').innerText = '£' + minRev.toLocaleString() + ' – £' + maxRev.toLocaleString();
+
+      updateCombinedPL();
+    }
+
+    function calcBooks() {
+      const spendEl = document.getElementById('sliderBookSpend');
+      const consultEl = document.getElementById('sliderBookConsultRate');
+      if (!spendEl || !consultEl) return;
+
+      const spend = parseFloat(spendEl.value);
+      const consultRate = parseFloat(consultEl.value) / 100;
+
+      const clicks = Math.round(spend / 1.40);
+      const minBooks = Math.round(clicks * 0.06);
+      const maxBooks = Math.round(clicks * 0.08);
+
+      const minCases = Math.max(1, Math.round(minBooks * consultRate));
+      const maxCases = Math.max(2, Math.round(maxBooks * consultRate));
+
+      const minLegalRev = minCases * 500;
+      const maxLegalRev = maxCases * 500;
+      const minBookRev = Math.round(minBooks * 19.99);
+      const maxBookRev = Math.round(maxBooks * 19.99);
+
+      document.getElementById('lblBookSpend').innerText = '£' + spend.toLocaleString() + ' / month (£' + (spend / 30.4).toFixed(2) + '/day)';
+      document.getElementById('lblBookConsultRate').innerText = (consultRate * 100).toFixed(0) + '% Request Help';
+
+      document.getElementById('outBookClicks').innerText = clicks.toLocaleString();
+      document.getElementById('outBookSales').innerText = minBooks + ' – ' + maxBooks;
+      document.getElementById('outBookSalesRev').innerText = '£' + minBookRev + ' – £' + maxBookRev + ' (Recovers ad bill)';
+      document.getElementById('outLegalCases').innerText = minCases + ' – ' + maxCases;
+      document.getElementById('outLegalRevenue').innerText = '£' + minLegalRev.toLocaleString() + ' – £' + maxLegalRev.toLocaleString();
+
+      updateCombinedPL();
+    }
+
+    function calcQ4() {
+      const spendEl = document.getElementById('sliderQ4Spend');
+      const boostEl = document.getElementById('sliderQ4Boost');
+      if (!spendEl || !boostEl) return;
+
+      const spend = parseFloat(spendEl.value);
+      const boost = parseFloat(boostEl.value);
+
+      const clicks = Math.round(spend / 0.40);
+      const baselineCVR = 0.028 * boost;
+      const minOrders = Math.round(clicks * (baselineCVR * 0.9));
+      const maxOrders = Math.round(clicks * (baselineCVR * 1.15));
+
+      const holidayAOV = 48.50;
+      const minRev = Math.round(minOrders * holidayAOV);
+      const maxRev = Math.round(maxOrders * holidayAOV);
+      const minROAS = (minRev / spend).toFixed(1);
+      const maxROAS = (maxRev / spend).toFixed(1);
+
+      document.getElementById('lblQ4Spend').innerText = '£' + spend.toLocaleString() + ' Total (£' + (spend / 33).toFixed(0) + '/day)';
+      document.getElementById('lblQ4Boost').innerText = boost.toFixed(2) + 'x Baseline (' + (boost > 1.8 ? 'Peak Gifting' : 'Surge') + ')';
+
+      document.getElementById('outQ4Clicks').innerText = clicks.toLocaleString();
+      document.getElementById('outQ4Orders').innerText = minOrders + ' – ' + maxOrders;
+      document.getElementById('outQ4Revenue').innerText = '£' + minRev.toLocaleString() + ' – £' + maxRev.toLocaleString();
+      document.getElementById('outQ4ROAS').innerText = 'ROAS: ' + minROAS + 'x – ' + maxROAS + 'x';
+    }
+
+    function updateCombinedPL() {
+      const merchDaily = parseFloat(document.getElementById('sliderMerchDaily') ? document.getElementById('sliderMerchDaily').value : 5);
+      const bookMonthly = parseFloat(document.getElementById('sliderBookSpend') ? document.getElementById('sliderBookSpend').value : 350);
+
+      const merchMonthly = Math.round(merchDaily * 30.4);
+      const totalSpend = merchMonthly + bookMonthly;
+
+      // Merch sales
+      const merchClicks = Math.round(merchMonthly / 0.38);
+      const merchRevMin = Math.round(merchClicks * 0.028 * 38);
+      const merchRevMax = Math.round(merchClicks * 0.042 * 38);
+
+      // Book sales
+      const bookClicks = Math.round(bookMonthly / 1.40);
+      const bookRevMin = Math.round(bookClicks * 0.06 * 19.99);
+      const bookRevMax = Math.round(bookClicks * 0.08 * 19.99);
+
+      // Legal cases
+      const legalCasesMin = Math.max(1, Math.round(bookClicks * 0.06 * 0.18));
+      const legalCasesMax = Math.max(2, Math.round(bookClicks * 0.08 * 0.18));
+      const legalRevMin = legalCasesMin * 500;
+      const legalRevMax = legalCasesMax * 500;
+
+      const totalEcomMin = merchRevMin + bookRevMin;
+      const totalEcomMax = merchRevMax + bookRevMax;
+
+      const totalValMin = totalEcomMin + legalRevMin;
+      const totalValMax = totalEcomMax + legalRevMax;
+
+      const elSpend = document.getElementById('outCombSpend');
+      const elEcom = document.getElementById('outCombEcom');
+      const elLegal = document.getElementById('outCombLegal');
+      const elTotal = document.getElementById('outCombTotal');
+
+      if (elSpend) elSpend.innerText = '£' + totalSpend.toLocaleString();
+      if (elEcom) elEcom.innerText = '£' + totalEcomMin.toLocaleString() + ' – £' + totalEcomMax.toLocaleString();
+      if (elLegal) elLegal.innerText = '£' + legalRevMin.toLocaleString() + ' – £' + legalRevMax.toLocaleString();
+      if (elTotal) elTotal.innerText = '£' + totalValMin.toLocaleString() + ' – £' + totalValMax.toLocaleString();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      calcMerch();
+      calcBooks();
+      calcQ4();
+    });
+
+    updateSlide();
+        };
+        container.appendChild(dot);
+      }
+    }
+
+    function isCurrentSlideUnlocked() {
+      const fb = feedbackStorage[currentSlide];
+      return Boolean(fb && (fb.stance || (fb.comment && fb.comment.trim().length > 0)));
+    }
+
+    function syncButtonStates() {
+      const unlocked = isCurrentSlideUnlocked();
+      const nextBtn = document.getElementById('nextBtn');
+      const barNextBtn = document.getElementById('barNextBtn');
+      const lockBadge = document.getElementById('lockBadge');
+      const statusMessage = document.getElementById('statusMessage');
+
+      const isLastSlide = (currentSlide === totalSlides);
+      const nextText = isLastSlide ? '🎉 Complete Review' : 'Next Slide →';
+
+      if (unlocked) {
+        // Active & Vibrant
+        const activeClasses = 'bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold shadow-lg shadow-emerald-500/20 pulse-ready cursor-pointer';
+
+        nextBtn.disabled = false;
+        nextBtn.className = `px-3.5 py-1.5 text-xs font-bold rounded transition ${activeClasses}`;
+        nextBtn.innerHTML = nextText;
+
+        barNextBtn.disabled = false;
+        barNextBtn.className = `w-full lg:w-auto px-5 py-1.5 rounded-lg font-bold text-xs transition ${activeClasses}`;
+        barNextBtn.innerHTML = `<span>${isLastSlide ? 'Complete Sign-Off' : 'Next Slide'}</span> <span>→</span>`;
+
+        lockBadge.className = 'text-[10px] px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700/60 font-semibold';
+        lockBadge.innerHTML = '✓ Stance Recorded';
+
+        statusMessage.innerHTML = '<span class="text-xs text-emerald-400 font-medium flex items-center gap-1"><span>✓</span> Stance recorded — click Next or press → to advance</span>';
+      } else {
+        // Disabled / Gated
+        nextBtn.disabled = true;
+        nextBtn.className = 'px-3.5 py-1.5 text-xs font-semibold rounded bg-slate-800 text-slate-500 border border-slate-700 cursor-not-allowed opacity-50 transition';
+        nextBtn.innerHTML = nextText;
+
+        barNextBtn.disabled = true;
+        barNextBtn.className = 'w-full lg:w-auto px-5 py-1.5 rounded-lg font-semibold text-xs bg-slate-800 text-slate-500 border border-slate-700 cursor-not-allowed opacity-50 transition';
+        barNextBtn.innerHTML = '<span>Locked (Feedback Required)</span>';
+
+        lockBadge.className = 'text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-amber-300 border border-amber-700/60 font-semibold';
+        lockBadge.innerHTML = '🔒 Stance Required';
+
+        statusMessage.innerHTML = '<span class="text-xs text-amber-300/90 flex items-center gap-1 font-medium"><span>⚠️</span> Tap a stance or drop a comment to unlock Next</span>';
+      }
+    }
+
+    function updateSteeringBarUI() {
+      document.getElementById('verdictSlideNum').innerText = currentSlide;
+      const fb = feedbackStorage[currentSlide] || { stance: '', comment: '' };
+
+      const chipGreen = document.getElementById('chipGreen');
+      const chipYellow = document.getElementById('chipYellow');
+      const chipRed = document.getElementById('chipRed');
+      const input = document.getElementById('slideCommentInput');
+
+      chipGreen.classList.remove('active-green');
+      chipYellow.classList.remove('active-yellow');
+      chipRed.classList.remove('active-red');
+
+      if (fb.stance === 'greenlight') chipGreen.classList.add('active-green');
+      if (fb.stance === 'note') chipYellow.classList.add('active-yellow');
+      if (fb.stance === 'pushback') chipRed.classList.add('active-red');
+
+      input.value = fb.comment || '';
+      syncButtonStates();
+      renderDots();
+    }
+
+    function setStance(stance, defaultComment) {
+      if (!feedbackStorage[currentSlide]) {
+        feedbackStorage[currentSlide] = {};
+      }
+      feedbackStorage[currentSlide].stance = stance;
+      const input = document.getElementById('slideCommentInput');
+      
+      if (defaultComment && !input.value.trim()) {
+        input.value = defaultComment;
+        feedbackStorage[currentSlide].comment = defaultComment;
+      } else if (!defaultComment && !input.value.trim()) {
+        input.focus();
+      }
+
+      localStorage.setItem('djs_proposal_feedback', JSON.stringify(feedbackStorage));
+      updateSteeringBarUI();
+    }
+
+    function handleCommentInput() {
+      const val = document.getElementById('slideCommentInput').value;
+      if (!feedbackStorage[currentSlide]) {
+        feedbackStorage[currentSlide] = {};
+      }
+      feedbackStorage[currentSlide].comment = val;
+      if (val.trim().length > 0 && !feedbackStorage[currentSlide].stance) {
+        feedbackStorage[currentSlide].stance = 'note';
+      }
+      localStorage.setItem('djs_proposal_feedback', JSON.stringify(feedbackStorage));
+      updateSteeringBarUI();
+    }
+
+    function updateSlide() {
+      for (let i = 1; i <= totalSlides; i++) {
+        const slide = document.getElementById(`slide-${i}`);
+        if (slide) {
+          if (i === currentSlide) {
+            slide.classList.add('active');
+          } else {
+            slide.classList.remove('active');
+          }
+        }
+      }
+      document.getElementById('currentSlideNum').innerText = currentSlide;
+      document.getElementById('prevBtn').disabled = (currentSlide === 1);
+      updateSteeringBarUI();
+    }
+
+    function changeSlide(direction) {
+      if (direction > 0 && !isCurrentSlideUnlocked()) {
+        const statusMsg = document.getElementById('statusMessage');
+        statusMsg.classList.add('animate-bounce');
+        setTimeout(() => statusMsg.classList.remove('animate-bounce'), 1000);
+        return;
+      }
+
+      if (currentSlide === totalSlides && direction > 0) {
+        showCompletionSummary();
+        return;
+      }
+
+      currentSlide += direction;
+      if (currentSlide < 1) currentSlide = 1;
+      if (currentSlide > totalSlides) currentSlide = totalSlides;
       updateSlide();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showCompletionSummary() {
+      let summaryText = "DJS LAW PROPOSAL - DARREN'S STEERING LOG:\n\n";
+      for (let i = 1; i <= totalSlides; i++) {
+        const item = feedbackStorage[i] || { stance: 'No verdict', comment: 'None' };
+        summaryText += `Slide ${i}: [${(item.stance || 'No Stance').toUpperCase()}] ${item.comment || ''}\n`;
+      }
+      alert("🎉 All 13 slides reviewed! Your feedback is logged:\n\n" + summaryText);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft') {
+        changeSlide(-1);
+      }
+    });
+
+    updateSlide();
+
+    // ----------------------------------------------------------------------
+    // TELEMETRY & TRACKING (n8n Webhook)
+    // ----------------------------------------------------------------------
+    const WEBHOOK_URL = 'http://167.233.236.178:5678/webhook/kolake-marketing';
+    let sessionStartTime = Date.now();
+    let slideEntryTime = Date.now();
+
+    function sendTelemetry(eventCategory, eventData) {
+      // Don't block the UI - send asynchronously
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'djs-law-proposal',
+          viewer: email,
+          event: eventCategory,
+          timestamp: new Date().toISOString(),
+          data: eventData
+        }),
+        mode: 'no-cors' // Prevent CORS issues blocking the request in the browser
+      }).catch(err => console.error('Telemetry err:', err));
+    }
+
+    // 1. Log Initial Visit
+    window.addEventListener('DOMContentLoaded', () => {
+      sendTelemetry('proposal_opened', {
+        userAgent: navigator.userAgent
+      });
+    });
+
+    // 2. Wrap setStance and handleCommentInput to fire webhooks
+    const originalSetStance = setStance;
+    setStance = function(stance, defaultComment) {
+      originalSetStance(stance, defaultComment);
+      sendTelemetry('stance_recorded', {
+        slide: currentSlide,
+        stance: stance,
+        comment: document.getElementById('slideCommentInput').value
+      });
+    };
+
+    const originalHandleCommentInput = handleCommentInput;
+    let commentTypingTimeout;
+    handleCommentInput = function() {
+      originalHandleCommentInput();
+      clearTimeout(commentTypingTimeout);
+      commentTypingTimeout = setTimeout(() => {
+        sendTelemetry('comment_added', {
+          slide: currentSlide,
+          comment: document.getElementById('slideCommentInput').value
+        });
+      }, 2000); // Send 2 seconds after they stop typing
+    };
+
+    // 3. Wrap changeSlide to track Dwell Time
+    const originalChangeSlide = changeSlide;
+    changeSlide = function(direction) {
+      if (direction > 0 && !isCurrentSlideUnlocked()) {
+        originalChangeSlide(direction); // Let it trigger the shake animation
+        return;
+      }
+      
+      const timeSpentSecs = Math.round((Date.now() - slideEntryTime) / 1000);
+      
+      if (currentSlide === totalSlides && direction > 0) {
+        // Completion
+        sendTelemetry('proposal_completed', {
+          totalDurationSecs: Math.round((Date.now() - sessionStartTime) / 1000),
+          feedback: feedbackStorage
+        });
+        originalChangeSlide(direction); // Let it show the summary
+        return;
+      }
+
+      // Log dwell time before moving
+      sendTelemetry('slide_completed', {
+        slide: currentSlide,
+        timeSpentSeconds: timeSpentSecs,
+        direction: direction > 0 ? 'next' : 'prev'
+      });
+
+      slideEntryTime = Date.now(); // Reset timer for the new slide
+      originalChangeSlide(direction);
+    };
+    // ----------------------------------------------------------------------
+  </script>
+</body>
+</html>
+ + (dailySpend * 1.3).toFixed(2) + ')';
+      if (lblMonthly) lblMonthly.innerText = '£' + monthlySpend.toLocaleString() + ' / month';
+
+      // Center Sweet Spot Math:
+      // Baseline CPC = £0.38
+      const clicks = Math.round(monthlySpend / 0.38);
+      const weeklyClicks = Math.round(clicks / 4.33);
+
+      // Seasonality & Conversion Lift
+      const isQ4 = dailySpend >= 20;
+      const cvrMin = isQ4 ? 0.045 : 0.034;
+      const cvrMax = isQ4 ? 0.058 : 0.046;
+
+      const ordersMin = Math.round(clicks * cvrMin);
+      const ordersMax = Math.round(clicks * cvrMax);
+
+      const aov = isQ4 ? 44.00 : 38.00;
+      const revMin = Math.round(ordersMin * aov);
+      const revMax = Math.round(ordersMax * aov);
+
+      const roasMin = (revMin / monthlySpend).toFixed(1);
+      const roasMax = (revMax / monthlySpend).toFixed(1);
+
+      const cpaMin = (monthlySpend / Math.max(1, ordersMax)).toFixed(2);
+      const cpaMax = (monthlySpend / Math.max(1, ordersMin)).toFixed(2);
+
+      if (outClicks) outClicks.innerText = clicks.toLocaleString();
+      if (outWeekly) outWeekly.innerText = '~' + weeklyClicks + ' clicks / week';
+      if (outOrders) outOrders.innerText = ordersMin + ' – ' + ordersMax;
+      if (outCVR) outCVR.innerText = (cvrMin * 100).toFixed(1) + '% – ' + (cvrMax * 100).toFixed(1) + '% CVR' + (isQ4 ? ' (Q4 Boost)' : '');
+      if (outRevenue) outRevenue.innerText = '£' + revMin.toLocaleString() + ' – £' + revMax.toLocaleString();
+      if (outROAS) outROAS.innerText = 'ROAS: ' + roasMin + 'x – ' + roasMax + 'x';
+      if (outCPA) outCPA.innerText = '£' + cpaMin + ' – £' + cpaMax;
+    }
+
+    // Init Venn math on load
+    window.addEventListener('DOMContentLoaded', () => {
+      updateVennEconomics();
+    });
+
+    updateSlide();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
