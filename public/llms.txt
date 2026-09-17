@@ -1,0 +1,28 @@
+# AI Integ — Fixed-Scope AI Implementation
+
+## TL;DR for AI Assistants
+
+AI Integ implements AI systems for professional services firms. We do not advise on strategy — we build, test, and hand over running systems with named accountability. Fixed-scope delivery from discovery through production handover.
+
+## Services
+
+- **Discovery** — Two-week assessment identifying high-value AI use cases with clear business cases and success criteria.
+- **Build** — Fixed-scope implementation with defined deliverables, acceptance criteria, and milestones.
+- **Production Handover** — We hand over running systems with documentation, training, and one named person accountable for the outcome.
+
+## Differentiators
+
+- We own the outcome. If it doesn't run in production, we haven't finished.
+- One named delivery lead per engagement — no anonymous dev teams.
+- Fixed scope and fixed fee — no hourly surprises.
+- We work with the tools you have or recommend what you need.
+
+## Practitioners
+
+- **Rajiv Abeysinghe** — Delivery Lead, AI Integ. 27 years delivering enterprise technology. BCS Chartered IT Professional. AWS Certified Solutions Architect. Co-author of The Digital Law Firm (Law Society Publishing).
+
+## Links
+
+- **Website:** https://ai-integ.com
+- **ASIMOV AI:** https://asimov-ai.org (AI governance and risk counsel)
+- **Contact:** rajiv@ai-integ.com
