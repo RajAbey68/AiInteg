@@ -17,7 +17,7 @@ export const homepageCopy = {
     },
     {
       id: "workflow-reality",
-      headline: "Your team spends up to 20% of their billable week hunting for information.",
+      headline: "Your team spends hours every week hunting for information.",
       body: "Professional services firms are drowning in fragmented data silos, emails, and PDFs. We build the private, secure semantic search and document reasoning systems that return those hours to your bottom line safely, without exposing your data to public models.",
       subhook: "Private semantic search. Safe retrieval. Billable hours saved.",
     },
