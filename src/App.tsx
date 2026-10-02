@@ -299,8 +299,8 @@ export function App() {
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
                     Professional services need consistent, audit-ready data. Here is how we apply
-                    deterministic rules on top of probabilistic AI models to reduce
-                    hallucinations and PII leaks.
+                    deterministic rules on top of probabilistic AI models to reduce hallucinations
+                    and PII leaks.
                   </p>
                 </div>
 
@@ -1415,9 +1415,8 @@ export function App() {
                 </h3>
                 <p>
                   Business studies show that office staff spend an average of{" "}
-                  <strong>1.8 hours every day</strong> just
-                  searching for files, retrieving documents, and dealing with administrative
-                  clutter.
+                  <strong>1.8 hours every day</strong> just searching for files, retrieving
+                  documents, and dealing with administrative clutter.
                 </p>
               </div>
 
@@ -1427,8 +1426,8 @@ export function App() {
                 </h3>
                 <p>
                   When work is not tracked automatically, small tasks like phone calls, quick
-                  replies, and client updates get forgotten. Untracked minutes like these can add up to a{" "}
-                  <strong>meaningful share of billable capacity</strong>.
+                  replies, and client updates get forgotten. Untracked minutes like these can add up
+                  to a <strong>meaningful share of billable capacity</strong>.
                 </p>
               </div>
 
