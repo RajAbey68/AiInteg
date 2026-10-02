@@ -298,8 +298,8 @@ export function App() {
                     The Assurance Firewall
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
-                    Professional services require 100% predictable, audit-ready data. Here is how we
-                    enforce deterministic rules on top of probabilistic AI models to prevent
+                    Professional services need consistent, audit-ready data. Here is how we apply
+                    deterministic rules on top of probabilistic AI models to reduce
                     hallucinations and PII leaks.
                   </p>
                 </div>
@@ -1415,7 +1415,7 @@ export function App() {
                 </h3>
                 <p>
                   Business studies show that office staff spend an average of{" "}
-                  <strong>1.8 hours every day</strong> (nearly 20% of their working week) just
+                  <strong>1.8 hours every day</strong> just
                   searching for files, retrieving documents, and dealing with administrative
                   clutter.
                 </p>
@@ -1427,8 +1427,8 @@ export function App() {
                 </h3>
                 <p>
                   When work is not tracked automatically, small tasks like phone calls, quick
-                  replies, and client updates get forgotten. Research indicates companies lose over{" "}
-                  <strong>20% of their billable capacity</strong> to these untracked minutes.
+                  replies, and client updates get forgotten. Untracked minutes like these can add up to a{" "}
+                  <strong>meaningful share of billable capacity</strong>.
                 </p>
               </div>
 
@@ -1479,4 +1479,4 @@ export function App() {
       )}
     </div>
   );
-}
+      }
