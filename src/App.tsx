@@ -1479,4 +1479,4 @@ export function App() {
       )}
     </div>
   );
-      }
+}
