@@ -1414,10 +1414,20 @@ export function App() {
                   1. Time Lost on Admin Work
                 </h3>
                 <p>
-                  Business studies show that office staff spend an average of{" "}
-                  <strong>1.8 hours every day</strong> (nearly 20% of their working week) just
-                  searching for files, retrieving documents, and dealing with administrative
-                  clutter.
+                  McKinsey Global Institute research found the average interaction worker spends{" "}
+                  <strong>nearly 20% of the workweek</strong> looking for internal information and
+                  tracking down colleagues.
+                </p>
+                <p className="mt-2 text-xs text-zinc-500">
+                  Source: McKinsey Global Institute, <em>The Social Economy</em> (2012) —{" "}
+                  <a
+                    href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-zinc-300"
+                  >
+                    mckinsey.com
+                  </a>
                 </p>
               </div>
 
@@ -1426,9 +1436,22 @@ export function App() {
                   2. Forgotten Work Hours
                 </h3>
                 <p>
-                  When work is not tracked automatically, small tasks like phone calls, quick
-                  replies, and client updates get forgotten. Research indicates companies lose over{" "}
-                  <strong>20% of their billable capacity</strong> to these untracked minutes.
+                  When fee-earner time is not tracked, small tasks — quick replies, client updates,
+                  administrative follow-up — go unrecorded. The SPI Research 2025 Professional
+                  Services Maturity Benchmark reports employee{" "}
+                  <strong>billable utilization at a historic low of 66.4%</strong>, well below the
+                  75% optimal threshold, with administrative load consuming the remainder.
+                </p>
+                <p className="mt-2 text-xs text-zinc-500">
+                  Source: SPI Research, <em>2025 Professional Services Maturity Benchmark</em> —{" "}
+                  <a
+                    href="https://spiresearch.com/reports/2025-ps-maturity-benchmark/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-zinc-300"
+                  >
+                    spiresearch.com
+                  </a>
                 </p>
               </div>
 
