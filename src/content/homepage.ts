@@ -127,4 +127,3 @@ export const homepageCopy = {
   pricingCommitment:
     "Discovery is a fixed fee, agreed before we start. The build is priced per sprint. You see the number before any code is written.",
 } as const;
-
