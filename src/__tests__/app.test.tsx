@@ -83,14 +83,33 @@ describe("App", () => {
     expect(cta).toHaveAttribute("href", "#process");
   });
 
-  it("renders the hook problem statement with the filing-system analogy", () => {
+  it("renders the vendor-gap hook with the filing-system analogy", () => {
     render(<App />);
     expect(
-      screen.getByText(/Harvey\. Copilot\. Clio\. Great tools\. Zero implementation support\./)
+      screen.getByText(/Your firm already owns the tools\. We make them run\./)
     ).toBeInTheDocument();
     expect(
       screen.getByText(/buying a filing system and leaving it in the boxes/i)
     ).toBeInTheDocument();
+  });
+
+  it("contains no negative comments about other organisations or methods", () => {
+    render(<App />);
+    for (const gone of [
+      /Harvey\. Copilot\. Clio/i,
+      /Zero implementation support/i,
+      /powerpoints/i,
+      /speculative pilots/i,
+      /A consultancy hands you a plan/i,
+      /slide decks and policy guidelines/i,
+      /150-Page Policy Binders/i,
+      /Static & Ignored/i,
+      /rotating (team|cast) of associates/i,
+      /Maze to Machine/i,
+      /nobody installs properly/i,
+    ]) {
+      expect(screen.queryByText(gone)).not.toBeInTheDocument();
+    }
   });
 
   it("renders the proof section 'Who answers for the work' with credentials and closing line", () => {
@@ -101,7 +120,7 @@ describe("App", () => {
     expect(screen.getByText(/The Digital Law Firm/)).toBeInTheDocument();
     expect(
       screen.getByText(
-        /One person answers for the whole build\. Not a rotating cast of associates\./
+        /One person answers for the whole build\./
       )
     ).toBeInTheDocument();
   });
@@ -523,3 +542,4 @@ describe("App", () => {
     ).not.toBeInTheDocument();
   });
 });
+
