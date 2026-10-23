@@ -2,17 +2,17 @@ export const homepageCopy = {
   hero: {
     h1: "We build the AI system. We own what ships.",
     subhead:
-      "Firms like yours are buying AI tools nobody installs properly. We do the build. We test it against criteria you set. We hand it over running — with one named person accountable for the lot.",
+      "Firms like yours have the AI tools. The challenge is getting them running in production. We do the build. We test it against criteria you set. We hand it over running — with one named person accountable for the lot.",
     primaryCta: { label: "Scope your project", href: "/scope" },
     secondaryCta: { label: "See how the programme works", href: "/programme" },
   },
   differentiator:
-    "A consultancy hands you a plan and invoices you for the thinking. We hand you a system and invoice you for the delivery. If it does not run in production, we have not finished. Every engagement ends with something your team can operate, extend, and own — not a recommendation that sits in a folder.",
+    "We hand you a system and invoice you for the delivery. If it does not run in production, we have not finished. Every engagement ends with something your team can operate, extend, and own.",
   hooks: [
     {
       id: "outcome-contrast",
-      headline: "We don't sell powerpoints. We don't deliver speculative pilots.",
-      body: "A consultancy hands you a plan and invoices you for the thinking. We hand you a system and invoice you for the delivery. We engineer resilient, production-ready AI pipelines that own business outcomes. If it does not run in production, we have not finished.",
+      headline: "Delivery runs as a challenge and problem resolution process (SIP).",
+      body: "The challenge is getting AI software running in production. Our resolution is delivery. We hand you a system and invoice you for the delivery. We engineer resilient, production-ready AI pipelines that own business outcomes. If it does not run in production, we have not finished.",
       subhook: "Resilient, production-ready AI. We own what ships.",
     },
     {
@@ -29,10 +29,10 @@ export const homepageCopy = {
     },
   ],
 
-  // Vendor-gap hook — approved P0 copy.
-  vendorGapHook: "Harvey. Copilot. Clio. Great tools. Zero implementation support.",
+  // Vendor-gap hook.
+  vendorGapHook: "Your firm already owns the tools. We make them run.",
 
-  // Analogy line appended to the rendered hook — approved P0 copy.
+  // Analogy line appended to the rendered hook.
   hookAnalogy:
     "Buying AI software without implementation is buying a filing system and leaving it in the boxes. The invoice arrives either way.",
 
@@ -100,8 +100,8 @@ export const homepageCopy = {
       "Co-author, The Digital Law Firm (Law Society Publishing, Q4 2026)",
     ],
     accountabilityStatement:
-      "One named delivery lead. Accountable for every sprint, every gate, and the final handover. Not a rotating team of associates.",
-    closingLine: "One person answers for the whole build. Not a rotating cast of associates.",
+      "One named delivery lead. Accountable for every sprint, every gate, and the final handover.",
+    closingLine: "One person answers for the whole build.",
   },
   skool: {
     headline: "Post-delivery: the AI Integrity community",
@@ -127,3 +127,4 @@ export const homepageCopy = {
   pricingCommitment:
     "Discovery is a fixed fee, agreed before we start. The build is priced per sprint. You see the number before any code is written.",
 } as const;
+
