@@ -118,11 +118,7 @@ describe("App", () => {
     expect(screen.getByText(/Rajiv Abeysinghe/)).toBeInTheDocument();
     expect(screen.getByText(/27 years delivering enterprise technology/)).toBeInTheDocument();
     expect(screen.getByText(/The Digital Law Firm/)).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        /One person answers for the whole build\./
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText(/One person answers for the whole build\./)).toBeInTheDocument();
   });
 
   it("renders the pricing commitment line in the bottom CTA", () => {
@@ -542,4 +538,3 @@ describe("App", () => {
     ).not.toBeInTheDocument();
   });
 });
-
