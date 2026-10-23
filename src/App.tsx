@@ -516,12 +516,11 @@ export function App() {
                     id="governance-heading"
                     className="text-xl md:text-2xl font-bold mb-4 tracking-tight"
                   >
-                    Governance: Maze to Machine
+                    Governance: Document to Machine
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
-                    Compliance is not a document to be filed. It is software that operates. We
-                    convert traditional regulatory compliance guidelines into machine-enforced
-                    validators.
+                    Compliance works best as software that operates. We convert regulatory
+                    compliance guidelines into machine-enforced validators.
                   </p>
                 </div>
 
@@ -531,20 +530,19 @@ export function App() {
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                          Traditional Compliance (The Maze)
+                          The Challenge
                         </span>
                         <span className="text-[10px] bg-red-950/30 text-red-400 px-2 py-0.5 rounded border border-red-500/20">
-                          Static & Ignored
+                          Manual, after the fact
                         </span>
                       </div>
                       <h3 className="text-lg font-bold text-zinc-200 mb-3">
-                        150-Page Policy Binders
+                        Policies That Live in Documents
                       </h3>
                       <p className="text-base text-zinc-400 leading-relaxed font-light mb-6">
-                        Risk advisors hand you slide decks and policy guidelines. They outline what
-                        you *should* check (PII protection, conflict rules, license constraints).
-                        But developers rarely read them, and human compliance teams audit files
-                        weeks *after* the errors have occurred.
+                        Compliance policies define what to check. PII protection, conflict rules,
+                        license constraints. The challenge is execution. A document cannot run a
+                        check, and manual reviews happen after errors occur.
                       </p>
                     </div>
                     <div className="border-t border-white/5 pt-4 text-xs font-mono text-zinc-500 space-y-1 text-left">
@@ -1480,3 +1478,4 @@ export function App() {
     </div>
   );
 }
+
