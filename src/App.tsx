@@ -1,5 +1,6 @@
 import { AlertTriangle, Bot, Briefcase, Calendar, CheckCircle, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { ToolsRadar } from "./components/ToolsRadar";
 import { homepageCopy } from "./content/homepage";
 
 const ASIMOV_AI_URL = "https://asimov-ai.org";
@@ -54,7 +55,8 @@ export function App() {
   const [citationsOpen, setCitationsOpen] = useState(false);
 
   // Navigation state
-  const [view, setView] = useState<"home" | "framework">("home");
+  const [view, setView] = useState<"home" | "framework" | "forward" | "tools">("home");
+  const [openGate, setOpenGate] = useState<number | null>(null);
 
   // Firewall interactive state
   const [firewallActiveInput, setFirewallActiveInput] = useState<"email" | "ocr" | "hal">("email");
@@ -194,10 +196,24 @@ export function App() {
           </a>
           <button
             type="button"
+            onClick={() => setView("forward")}
+            className={`transition-colors bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold ${view === "forward" ? "text-teal-400" : "text-zinc-300 hover:text-white"}`}
+          >
+            AI Integ Forward
+          </button>
+          <button
+            type="button"
             onClick={() => setView("framework")}
             className={`transition-colors bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold ${view === "framework" ? "text-teal-400" : "text-zinc-300 hover:text-white"}`}
           >
             Our Framework (CAP)
+          </button>
+          <button
+            type="button"
+            onClick={() => setView("tools")}
+            className={`transition-colors bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold ${view === "tools" ? "text-teal-400" : "text-zinc-300 hover:text-white"}`}
+          >
+            Tool Radar
           </button>
         </nav>
         <button
@@ -229,9 +245,29 @@ export function App() {
                 >
                   {homepageCopy.hero.h1}
                 </h1>
-                <p className="text-lg text-zinc-400 leading-relaxed mb-10 font-light">
+                <p className="text-lg text-zinc-400 leading-relaxed mb-6 font-light">
                   {homepageCopy.hero.subhead}
                 </p>
+                {/* biome-ignore lint/a11y/useValidAnchor: Intercept click to switch view state while satisfying test link role */}
+                <a
+                  href="#about"
+                  onClick={(e) => handleNavClick("about", e)}
+                  className="flex items-center gap-3 mb-10 no-underline group w-fit"
+                >
+                  <span
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-none"
+                    style={{ backgroundColor: "var(--color-teal)", color: "var(--color-black)" }}
+                  >
+                    RA
+                  </span>
+                  <span className="text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors">
+                    Led personally by{" "}
+                    <span className="font-semibold" style={{ color: "var(--color-teal)" }}>
+                      {homepageCopy.proof.name}
+                    </span>{" "}
+                    — one named delivery lead, not a rotating team.
+                  </span>
+                </a>
                 <div className="flex flex-wrap gap-4">
                   <button
                     type="button"
@@ -249,6 +285,33 @@ export function App() {
                   >
                     See how the programme works
                   </a>
+                </div>
+              </section>
+
+              {/* Tool Radar prominence banner */}
+              <section className="px-6 md:px-12 py-10 border-t border-white/5 bg-zinc-900/20">
+                <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-teal-400 mb-2">
+                      Updated weekly
+                    </p>
+                    <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-2">
+                      Can you benefit from these tools? Talk to us.
+                    </h2>
+                    <p className="text-base text-zinc-400 leading-relaxed max-w-xl">
+                      We track the AI tools actually worth a solo operator's or a firm's time —
+                      evidence-checked weekly, open-source alternatives included. The tool is the
+                      easy part. Wiring it into your systems is what we deliver.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setView("tools")}
+                    className="font-semibold text-sm px-5 py-3 rounded hover:opacity-90 active:scale-95 transition-all whitespace-nowrap"
+                    style={{ backgroundColor: "var(--color-teal)", color: "var(--color-black)" }}
+                  >
+                    See the tool radar
+                  </button>
                 </div>
               </section>
 
@@ -927,7 +990,12 @@ export function App() {
                 </p>
               </section>
             </>
-          ) : (
+          ) : view === "tools" ? (
+            <ToolsRadar
+              onOpenModal={() => setModalOpen(true)}
+              onBackToHome={() => setView("home")}
+            />
+          ) : view === "framework" ? (
             <div className="px-6 md:px-12 py-16 max-w-5xl mx-auto space-y-24 text-left">
               {/* Framework Hero */}
               <section className="text-center max-w-3xl mx-auto space-y-6">
@@ -1111,6 +1179,159 @@ export function App() {
                 </div>
               </section>
             </div>
+          ) : (
+            <div className="px-6 md:px-12 py-16 max-w-5xl mx-auto space-y-16 text-left">
+              {/* Forward Hero */}
+              <section className="text-center max-w-3xl mx-auto space-y-6">
+                <span className="text-sm font-semibold uppercase tracking-wider text-teal-400">
+                  Prototyping &amp; MVP Delivery
+                </span>
+                <h1 className="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight">
+                  {homepageCopy.forward.headline}
+                </h1>
+                <p className="text-lg text-zinc-400 leading-relaxed font-light">
+                  {homepageCopy.forward.subhead}
+                </p>
+                <div className="flex justify-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setModalOpen(true)}
+                    className="font-semibold text-sm px-5 py-3 rounded hover:opacity-90 active:scale-95 transition-all"
+                    style={{ backgroundColor: "var(--color-teal)", color: "var(--color-black)" }}
+                  >
+                    Apply for a Forward slot
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setView("home")}
+                    className="text-sm border border-white/10 hover:border-white/30 text-zinc-300 px-5 py-3 rounded transition-all"
+                  >
+                    Back to homepage
+                  </button>
+                </div>
+              </section>
+
+              {/* Entry filter */}
+              <section className="border border-white/5 rounded-lg bg-zinc-900/10 p-6 md:p-8 max-w-4xl mx-auto">
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-5">
+                  {homepageCopy.forward.entryFilter.headline}
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-5">
+                  {homepageCopy.forward.entryFilter.questions.map((q) => (
+                    <div key={q.label}>
+                      <p className="text-sm font-bold text-zinc-100 mb-1">{q.label}</p>
+                      <p className="text-sm text-zinc-400 leading-relaxed">{q.detail}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-zinc-500 font-mono border-t border-white/5 pt-4">
+                  {homepageCopy.forward.entryFilter.outcome}
+                </p>
+              </section>
+
+              {/* Six gates */}
+              <section aria-labelledby="forward-gates-heading" className="max-w-5xl mx-auto">
+                <h2 id="forward-gates-heading" className="sr-only">
+                  The six gates
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {homepageCopy.forward.gates.map((gate) => {
+                    const isOpen = openGate === gate.n;
+                    return (
+                      <div key={gate.n} className="rounded border border-white/5 bg-zinc-950">
+                        <button
+                          type="button"
+                          onClick={() => setOpenGate(isOpen ? null : gate.n)}
+                          aria-expanded={isOpen}
+                          className="w-full text-left p-5 hover:border-teal-500/30 transition-all"
+                        >
+                          <p className="text-xs font-semibold font-mono text-teal-400 mb-2">
+                            GATE {gate.n}
+                          </p>
+                          <h3 className="text-base font-bold text-zinc-100 mb-1">{gate.name}</h3>
+                          <p className="text-sm text-zinc-400 leading-relaxed mb-3">{gate.desc}</p>
+                          <p className="text-[11px] text-zinc-500 font-mono border-t border-white/5 pt-2">
+                            {isOpen ? "▲ " : "▼ "}Move on once: {gate.exit}
+                          </p>
+                        </button>
+                        {isOpen ? (
+                          <div className="px-5 pb-5 space-y-4 border-t border-white/5 pt-4">
+                            <div>
+                              <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold mb-1">
+                                Purpose
+                              </p>
+                              <p className="text-sm text-zinc-400 leading-relaxed">
+                                {gate.purpose}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold mb-1">
+                                Typical questions to ask
+                              </p>
+                              <ul className="list-disc pl-4 space-y-1">
+                                {gate.questions.map((q) => (
+                                  <li key={q} className="text-sm text-zinc-400 leading-relaxed">
+                                    {q}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div>
+                              <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold mb-1">
+                                Definition of Done
+                              </p>
+                              <p className="text-sm text-zinc-200 font-medium leading-relaxed">
+                                {gate.dod}
+                              </p>
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </div>
+                <p className="text-xs text-zinc-500 font-mono text-center mt-6">
+                  Full ASIMOV audit and full CAP hardening apply only from Gate 6 onward — only for
+                  what's promoted.
+                </p>
+              </section>
+
+              {/* Contrast & Flexibility */}
+              <section className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+                <div className="rounded border border-white/5 bg-zinc-900/10 p-6">
+                  <h3 className="text-sm font-bold text-zinc-100 mb-2">Contrast</h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed">
+                    {homepageCopy.forward.contrast}
+                  </p>
+                </div>
+                <div className="rounded border border-white/5 bg-zinc-900/10 p-6">
+                  <h3 className="text-sm font-bold text-zinc-100 mb-2">Flexibility</h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed">
+                    {homepageCopy.forward.flexibility}
+                  </p>
+                </div>
+              </section>
+
+              {/* Attribution */}
+              <section className="max-w-4xl mx-auto border-t border-white/5 pt-10">
+                <h3 className="text-sm font-bold text-zinc-100 mb-1">What this is built on</h3>
+                <p className="text-xs text-zinc-500 mb-6">
+                  AI Integ Forward doesn't claim to be new from nothing. Credited here, not absorbed
+                  quietly.
+                </p>
+                <dl className="space-y-4">
+                  {homepageCopy.forward.attribution.map((item) => (
+                    <div
+                      key={item.who}
+                      className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-2 border-t border-white/5 pt-4"
+                    >
+                      <dt className="text-sm font-bold text-zinc-200">{item.who}</dt>
+                      <dd className="text-sm text-zinc-400 leading-relaxed m-0">{item.what}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            </div>
           )}
         </div>
 
@@ -1177,6 +1398,14 @@ export function App() {
           <Sparkles className="h-4 w-4 mb-1" />
           <span>Who we help</span>
         </a>
+        <button
+          type="button"
+          onClick={() => setView("tools")}
+          className={`flex flex-col items-center justify-center text-xs no-underline bg-transparent border-0 cursor-pointer p-0 ${view === "tools" ? "text-teal-400" : "text-zinc-400 hover:text-white"}`}
+        >
+          <Sparkles className="h-4 w-4 mb-1" />
+          <span>Tool Radar</span>
+        </button>
         <button
           type="button"
           onClick={() => setModalOpen(true)}
