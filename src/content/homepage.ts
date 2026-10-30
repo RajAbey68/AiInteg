@@ -29,8 +29,8 @@ export const homepageCopy = {
     },
   ],
 
-  // Vendor-gap hook — approved P0 copy.
-  vendorGapHook: "Harvey. Copilot. Clio. Great tools. Zero implementation support.",
+  // Vendor-gap hook - proposed: named competitors removed per 27 Oct review.
+  vendorGapHook: "Plenty of great AI tools. Almost no implementation support.",
 
   // Analogy line appended to the rendered hook — approved P0 copy.
   hookAnalogy:
