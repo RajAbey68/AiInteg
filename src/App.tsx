@@ -547,8 +547,8 @@ export function App() {
                     </div>
                     <div className="border-t border-white/5 pt-4 text-xs font-mono text-zinc-400 space-y-1 text-left">
                       <div>· Periodic manual sampling audits</div>
-                      <div>· Prevention through policy, not tooling</div>
-                      <div>· Separate from live code repositories</div>
+                      <div>· Guidance reviewed at audit time</div>
+                      <div>· Records kept in documents and files</div>
                     </div>
                   </div>
 
@@ -676,7 +676,7 @@ export function App() {
                         </p>
                         <div className="border-t border-white/5 pt-2 mt-auto">
                           <span className="text-[10px] text-zinc-400 font-mono block uppercase">
-                            Assurance Guarantee
+                            Assurance
                           </span>
                           <span className="text-[11px] text-zinc-400 font-light leading-relaxed block mt-0.5">
                             {item.assurance}
@@ -954,21 +954,19 @@ export function App() {
               <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-white/5 pt-16">
                 <div className="lg:col-span-6 space-y-6">
                   <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                    The Problem
+                    Our Approach
                   </span>
                   <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-                    The Costly SaaS Trap & Data Leakage
+                    The Private Cloud Alternative
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
-                    Renting general-purpose AI platforms from external SaaS vendors comes with
-                    hidden liabilities. Your staff uploads confidential client files (like tax
-                    records or corporate contracts) into third-party portals, risking massive
-                    regulatory breaches. At the same time, seat-licensing fees scale exponentially
-                    as your organization grows.
+                    We build AI systems that run inside your own cloud workspace. Confidential
+                    client files stay in your environment, the code and data belong to you, and
+                    costs track usage rather than headcount.
                   </p>
                   <div className="border-l-2 border-red-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
-                    ✗ Multi-tenant database sharing <br />✗ Leakage of intellectual assets to public
-                    training sets <br />✗ Compounding per-user pricing locks
+                    ✓ Single-tenant deployment in your cloud workspace <br />✓ Your files and data
+                    stay under your control <br />✓ Usage-based costs, not per-seat licences
                   </div>
                 </div>
                 <div className="lg:col-span-6 border border-white/5 rounded-lg overflow-hidden bg-zinc-950 p-2">
@@ -1060,13 +1058,13 @@ export function App() {
                     <h3 className="text-lg font-bold text-zinc-200">The Private Cloud Advantage</h3>
                     <p className="text-sm text-zinc-400 leading-relaxed font-light">
                       For a B2B professional services client, we deployed **LeadSynch**, an
-                      automated lead discovery and qualification system. Instead of paying a
-                      software vendor £300/seat every single month, the client **owns the code and
-                      database entirely**. It runs securely inside their private cloud workspace.
+                      automated lead discovery and qualification system. The client replaced a
+                      £300/seat monthly subscription and now **owns the code and database
+                      entirely**. It runs securely inside their private cloud workspace.
                     </p>
                     <div className="bg-zinc-950 border border-white/5 p-4 rounded text-xs space-y-2">
                       <div className="flex justify-between">
-                        <span className="text-zinc-400">Traditional SaaS Cost:</span>
+                        <span className="text-zinc-400">Previous subscription cost:</span>
                         <span className="text-red-400 font-semibold">£3,600 / year (per seat)</span>
                       </div>
                       <div className="flex justify-between border-t border-white/5 pt-2">
@@ -1080,13 +1078,13 @@ export function App() {
 
                   <div className="space-y-6 flex flex-col justify-between">
                     <div>
-                      <h3 className="text-lg font-bold text-zinc-200">Zero Technical Debt</h3>
+                      <h3 className="text-lg font-bold text-zinc-200">No Software to Manage</h3>
                       <p className="text-sm text-zinc-400 leading-relaxed font-light mt-3">
                         Professional services firms bill by the hour and do not want to manage
                         software or write code. We deliver LeadSynch as a **Managed Pipeline
                         Service**. Our continuous verification checks run daily, and we handle all
-                        backend model maintenance, meaning the client gets SaaS-grade performance
-                        with zero overhead.
+                        backend model maintenance, so the client gets SaaS-grade performance while
+                        we handle the operations.
                       </p>
                     </div>
                     <button
@@ -1403,8 +1401,8 @@ export function App() {
                 </h3>
                 <p>
                   When work is not tracked automatically, small tasks like phone calls, quick
-                  replies, and client updates get forgotten. Research indicates companies lose over{" "}
-                  <strong>20% of their billable capacity</strong> to these untracked minutes.
+                  replies, and client updates get forgotten. Those untracked minutes quietly become
+                  lost <strong>billable capacity</strong>.
                 </p>
               </div>
 
