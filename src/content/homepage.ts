@@ -103,22 +103,11 @@ export const homepageCopy = {
       "One named delivery lead. Accountable for every sprint, every gate, and the final handover. Not a rotating team of associates.",
     closingLine: "One person answers for the whole build. Not a rotating cast of associates.",
   },
-  skool: {
-    headline: "Post-delivery: the AI Integrity community",
-    description:
-      "After handover, clients join the AI Integrity community: peer exchange, implementation case studies, and ongoing support as your system evolves.",
-    cta: { label: "Join the community", href: "https://ai-integrity.com" },
-  },
   crossLinks: [
     {
       label: "Need a governance audit first?",
       destination: "ASIMOV AI",
       href: "https://asimov-ai.org",
-    },
-    {
-      label: "Not ready to commission?",
-      destination: "Start in the AI Integrity community",
-      href: "https://ai-integrity.com",
     },
   ],
   pricingSignal:
