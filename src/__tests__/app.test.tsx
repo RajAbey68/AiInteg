@@ -1,6 +1,6 @@
 import { App } from "@/App";
 import { cn } from "@/lib/utils";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 /**
@@ -374,6 +374,27 @@ describe("App", () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: "Book a call" }));
     expect(screen.getByRole("heading", { name: "Book a scope call" })).toBeInTheDocument();
+  });
+
+  it("mobile bottom nav includes a Framework entry that opens the CAP view", () => {
+    render(<App />);
+    const mobileNav = screen.getByLabelText("Mobile navigation");
+    const frameworkButton = within(mobileNav).getByRole("button", { name: /Framework/i });
+    fireEvent.click(frameworkButton);
+    expect(
+      screen.getByRole("heading", { name: /The Continuous Assurance Protocol/i })
+    ).toBeInTheDocument();
+    // Hazard imagery and unsourced LeadSynch figures must stay out of the framework view
+    expect(screen.queryByAltText(/SaaS Vulnerability/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/3,600/)).not.toBeInTheDocument();
+  });
+
+  it("framework view avoids unsourced LeadSynch price and client-control claims", () => {
+    render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: /Our Framework \(CAP\)/i }));
+    expect(screen.queryByText(/£300\/seat/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/per seat/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/owns the code and database/i)).not.toBeInTheDocument();
   });
 
   it("disclaimer has role='note' and contains 'fixed-scope software delivery'", () => {
