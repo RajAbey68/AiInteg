@@ -96,7 +96,7 @@ export function GulfPage({ onScopeCall }: { onScopeCall: () => void }) {
             </article>
           ))}
         </div>
-        <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl">{gulfCopy.data.caveat}</p>
+        <p className="text-sm text-zinc-400 leading-relaxed max-w-3xl">{gulfCopy.data.caveat}</p>
         <details className="border border-white/10 rounded p-6 max-w-3xl">
           <summary className="cursor-pointer text-sm font-semibold text-zinc-200">
             {gulfCopy.data.detailsSummary}
@@ -110,7 +110,7 @@ export function GulfPage({ onScopeCall }: { onScopeCall: () => void }) {
                 {paragraph}
               </p>
             ))}
-            <p className="text-sm text-zinc-500 leading-relaxed">
+            <p className="text-sm text-zinc-400 leading-relaxed">
               {gulfCopy.data.sourcesLabel}{" "}
               {gulfCopy.data.sources.map((source, index) => (
                 <span key={source.href}>
@@ -157,7 +157,7 @@ export function GulfPage({ onScopeCall }: { onScopeCall: () => void }) {
             </li>
           ))}
         </ul>
-        <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl">{gulfCopy.handover.note}</p>
+        <p className="text-sm text-zinc-400 leading-relaxed max-w-3xl">{gulfCopy.handover.note}</p>
       </section>
 
       {/* 30/60/90 reviews */}
@@ -180,7 +180,7 @@ export function GulfPage({ onScopeCall }: { onScopeCall: () => void }) {
             </article>
           ))}
         </div>
-        <p className="text-sm text-zinc-500 leading-relaxed max-w-3xl">{gulfCopy.reviews.note}</p>
+        <p className="text-sm text-zinc-400 leading-relaxed max-w-3xl">{gulfCopy.reviews.note}</p>
       </section>
 
       {/* Gulf business development */}
@@ -195,7 +195,7 @@ export function GulfPage({ onScopeCall }: { onScopeCall: () => void }) {
           <h3 className="text-lg font-bold text-zinc-200">{gulfCopy.team.name}</h3>
           <p className="text-sm text-zinc-400 leading-relaxed font-light">{gulfCopy.team.bio}</p>
         </article>
-        <p className="text-sm text-zinc-500 leading-relaxed">{gulfCopy.team.note}</p>
+        <p className="text-sm text-zinc-400 leading-relaxed">{gulfCopy.team.note}</p>
       </section>
 
       {/* Contact */}
@@ -222,7 +222,7 @@ export function GulfPage({ onScopeCall }: { onScopeCall: () => void }) {
             {gulfCopy.contact.primaryCta}
           </button>
         </div>
-        <p className="text-sm text-zinc-500 leading-relaxed">
+        <p className="text-sm text-zinc-400 leading-relaxed">
           Delivery through AI Integ. Separate governance and assurance advice can be scoped through{" "}
           <a
             href={ASIMOV_AI_URL}
