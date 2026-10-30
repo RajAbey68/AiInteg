@@ -136,7 +136,7 @@ describe("App", () => {
     expect(
       screen.getByRole("heading", { name: "The Continuous Assurance Protocol" })
     ).toBeInTheDocument();
-    expect(screen.getByText(/The Costly SaaS Trap/i)).toBeInTheDocument();
+    expect(screen.getByText(/The Private Cloud Alternative/i)).toBeInTheDocument();
 
     // Toggle back to homepage using the button
     fireEvent.click(screen.getByRole("button", { name: /Back to homepage/i }));
