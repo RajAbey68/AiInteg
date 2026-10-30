@@ -960,13 +960,13 @@ export function App() {
                     The Private Cloud Alternative
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
-                    We build AI systems that run inside your own cloud workspace. Confidential
-                    client files stay in your environment, the code and data belong to you, and
-                    costs track usage rather than headcount.
+                    When a firm's data cannot leave its own environment, we deploy AI systems inside
+                    your own cloud workspace. Confidential client files stay under your control, and
+                    you own the code and data we build for you.
                   </p>
                   <div className="border-l-2 border-red-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
                     ✓ Single-tenant deployment in your cloud workspace <br />✓ Your files and data
-                    stay under your control <br />✓ Usage-based costs, not per-seat licences
+                    stay under your control <br />✓ Fixed-fee discovery, sprint-based build
                   </div>
                 </div>
                 <div className="lg:col-span-6 border border-white/5 rounded-lg overflow-hidden bg-zinc-950 p-2">
