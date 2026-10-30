@@ -86,7 +86,9 @@ describe("App", () => {
   it("renders the hook problem statement with the filing-system analogy", () => {
     render(<App />);
     expect(
-      screen.getByText(/Harvey\. Copilot\. Clio\. Great tools\. Zero implementation support\./)
+      screen.getByText(
+        /AI tools only pay back when they are implemented well\. Implementation is what we do\./
+      )
     ).toBeInTheDocument();
     expect(
       screen.getByText(/buying a filing system and leaving it in the boxes/i)
@@ -98,7 +100,6 @@ describe("App", () => {
     expect(screen.getByRole("heading", { name: /Who answers for the work/i })).toBeInTheDocument();
     expect(screen.getByText(/Rajiv Abeysinghe/)).toBeInTheDocument();
     expect(screen.getByText(/27 years delivering enterprise technology/)).toBeInTheDocument();
-    expect(screen.getByText(/The Digital Law Firm/)).toBeInTheDocument();
     expect(
       screen.getByText(
         /One person answers for the whole build\. Not a rotating cast of associates\./
