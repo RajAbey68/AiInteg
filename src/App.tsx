@@ -1059,10 +1059,10 @@ export function App() {
                   <div className="space-y-6">
                     <h3 className="text-lg font-bold text-zinc-200">The Private Cloud Advantage</h3>
                     <p className="text-sm text-zinc-400 leading-relaxed font-light">
-                      For a B2B professional services client, we deployed **LeadSynch**, an automated
-                      lead discovery and qualification system. Instead of paying a software vendor
-                      £300/seat every single month, the client **owns the code and database
-                      entirely**. It runs securely inside their private cloud workspace.
+                      For a B2B professional services client, we deployed **LeadSynch**, an
+                      automated lead discovery and qualification system. Instead of paying a
+                      software vendor £300/seat every single month, the client **owns the code and
+                      database entirely**. It runs securely inside their private cloud workspace.
                     </p>
                     <div className="bg-zinc-950 border border-white/5 p-4 rounded text-xs space-y-2">
                       <div className="flex justify-between">
@@ -1392,8 +1392,8 @@ export function App() {
                   1. Time Lost on Admin Work
                 </h3>
                 <p>
-                  Office staff lose hours every week searching for files,
-                  retrieving documents, and dealing with administrative clutter.
+                  Office staff lose hours every week searching for files, retrieving documents, and
+                  dealing with administrative clutter.
                 </p>
               </div>
 
@@ -1413,9 +1413,9 @@ export function App() {
                   3. Realization Rate (What is actually billed)
                 </h3>
                 <p>
-                  Not every hour saved becomes a paid hour. We apply a
-                  conservative <strong>75% realization rate</strong> in our default calculation to
-                  keep your projections realistic.
+                  Not every hour saved becomes a paid hour. We apply a conservative{" "}
+                  <strong>75% realization rate</strong> in our default calculation to keep your
+                  projections realistic.
                 </p>
               </div>
 
