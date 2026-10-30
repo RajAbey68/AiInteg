@@ -306,7 +306,7 @@ describe("App", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(/Request timed out — email us instead and we'll pick it up\./)
+        screen.getByText(/Request timed out; email us instead and we'll pick it up\./)
       ).toBeInTheDocument();
     });
 
