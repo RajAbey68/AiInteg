@@ -125,7 +125,7 @@ export function App() {
       setSuccess(true);
     } catch (err: unknown) {
       if (err instanceof DOMException && err.name === "AbortError") {
-        setError("Request timed out — email us instead and we'll pick it up.");
+        setError("Request timed out; email us instead and we'll pick it up.");
       } else {
         const message = err instanceof Error ? err.message : "An unexpected error occurred.";
         setError(message);
@@ -485,7 +485,7 @@ export function App() {
                     {
                       title: "AI Governance Referral",
                       description:
-                        "Implementation and governance are distinct disciplines. When boards need standing AI risk counsel, we refer to ASIMOV AI — our sister advisory practice. The conflict wall applies both ways: separate engagement teams, no shared client files, and an ASIMOV audit verdict is never contingent on AI Integ winning the build.",
+                        "Implementation and governance are distinct disciplines. When boards need standing AI risk counsel, we refer to ASIMOV AI, our sister advisory practice. The conflict wall applies both ways: separate engagement teams, no shared client files, and an ASIMOV audit verdict is never contingent on AI Integ winning the build.",
                     },
                   ].map((service) => (
                     <article
@@ -993,7 +993,7 @@ export function App() {
                     Before we write a single line of software code, we define the exact rules and
                     boundaries of your system. We establish rigid data schemas and verify compliance
                     rules. This ensures that the probabilistic nature of AI engines is strictly
-                    controlled by deterministic guardrails, forcing outputs to always conform to
+                    controlled by deterministic guardrails, forcing outputs to conform to
                     audit-ready standards.
                   </p>
                   <div className="border-l-2 border-teal-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
@@ -1059,7 +1059,7 @@ export function App() {
                   <div className="space-y-6">
                     <h3 className="text-lg font-bold text-zinc-200">The Private Cloud Advantage</h3>
                     <p className="text-sm text-zinc-400 leading-relaxed font-light">
-                      For a B2B professional services client, we deployed **LeadSynch**—an automated
+                      For a B2B professional services client, we deployed **LeadSynch**, an automated
                       lead discovery and qualification system. Instead of paying a software vendor
                       £300/seat every single month, the client **owns the code and database
                       entirely**. It runs securely inside their private cloud workspace.
@@ -1392,10 +1392,8 @@ export function App() {
                   1. Time Lost on Admin Work
                 </h3>
                 <p>
-                  Business studies show that office staff spend an average of{" "}
-                  <strong>1.8 hours every day</strong> (nearly 20% of their working week) just
-                  searching for files, retrieving documents, and dealing with administrative
-                  clutter.
+                  Office staff lose hours every week searching for files,
+                  retrieving documents, and dealing with administrative clutter.
                 </p>
               </div>
 
@@ -1415,8 +1413,7 @@ export function App() {
                   3. Realization Rate (What is actually billed)
                 </h3>
                 <p>
-                  Not every hour saved becomes a paid hour. Industry benchmarks show that businesses
-                  collect around <strong>85%</strong> of their recorded work. We apply a
+                  Not every hour saved becomes a paid hour. We apply a
                   conservative <strong>75% realization rate</strong> in our default calculation to
                   keep your projections realistic.
                 </p>
