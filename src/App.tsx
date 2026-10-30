@@ -1,6 +1,15 @@
 import { AlertTriangle, Bot, Briefcase, Calendar, CheckCircle, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { GulfPage } from "./GulfPage";
+import { gulfCopy } from "./content/gulf";
 import { homepageCopy } from "./content/homepage";
+
+type SiteView = "home" | "framework" | "gulf";
+
+const viewFromPath = (): SiteView =>
+  typeof window !== "undefined" && window.location.pathname.replace(/\/+$/, "") === "/gulf"
+    ? "gulf"
+    : "home";
 
 const ASIMOV_AI_URL = "https://asimov-ai.org";
 const SKOOL_URL = "https://www.skool.com/ghostwriter-tandem-6940";
@@ -54,7 +63,41 @@ export function App() {
   const [citationsOpen, setCitationsOpen] = useState(false);
 
   // Navigation state
-  const [view, setView] = useState<"home" | "framework">("home");
+  const [view, setView] = useState<SiteView>(viewFromPath);
+
+  useEffect(() => {
+    const onPopState = () => setView(viewFromPath());
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  const viewPath = (target: SiteView) => (target === "gulf" ? "/gulf" : "/");
+  const navigateTo = (target: SiteView) => {
+    setView(target);
+    if (typeof window !== "undefined" && window.location.pathname !== viewPath(target)) {
+      window.history.pushState({}, "", viewPath(target));
+    }
+  };
+
+  // Per-view document title and meta description
+  useEffect(() => {
+    const titles: Record<SiteView, string> = {
+      home: "AI Integ — We implement AI. We own the outcome.",
+      framework: "AI Integ — The Continuous Assurance Protocol",
+      gulf: gulfCopy.seo.title,
+    };
+    const descriptions: Record<SiteView, string> = {
+      home: "AI Integ — We implement AI. We own the outcome. Fixed-scope software delivery from discovery through production handover.",
+      framework:
+        "How AI Integ builds compliant, high-velocity automation for professional services: the Continuous Assurance Protocol.",
+      gulf: gulfCopy.seo.description,
+    };
+    document.title = titles[view];
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", descriptions[view]);
+    }
+  }, [view]);
 
   // Firewall interactive state
   const [firewallActiveInput, setFirewallActiveInput] = useState<"email" | "ocr" | "hal">("email");
@@ -67,7 +110,7 @@ export function App() {
 
   const handleNavClick = (targetId: string, e: React.MouseEvent) => {
     e.preventDefault();
-    setView("home");
+    navigateTo("home");
     setTimeout(() => {
       const el = document.getElementById(targetId);
       if (el && typeof el.scrollIntoView === "function") {
@@ -194,10 +237,17 @@ export function App() {
           </a>
           <button
             type="button"
-            onClick={() => setView("framework")}
+            onClick={() => navigateTo("framework")}
             className={`transition-colors bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold ${view === "framework" ? "text-teal-400" : "text-zinc-300 hover:text-white"}`}
           >
             Our Framework (CAP)
+          </button>
+          <button
+            type="button"
+            onClick={() => navigateTo("gulf")}
+            className={`transition-colors bg-transparent border-0 cursor-pointer p-0 text-sm font-semibold ${view === "gulf" ? "text-teal-400" : "text-zinc-300 hover:text-white"}`}
+          >
+            Gulf
           </button>
         </nav>
         <button
@@ -213,7 +263,9 @@ export function App() {
       {/* Main Content Canvas */}
       <main className="flex-1 pb-24 lg:pb-0 flex flex-col justify-between">
         <div className="flex-1">
-          {view === "home" ? (
+          {view === "gulf" ? (
+            <GulfPage onScopeCall={() => setModalOpen(true)} />
+          ) : view === "home" ? (
             <>
               {/* Hero */}
               <section
@@ -1141,6 +1193,13 @@ export function App() {
               </a>
               .
             </p>
+            <button
+              type="button"
+              onClick={() => navigateTo("gulf")}
+              className="bg-transparent border-0 cursor-pointer p-0 text-sm text-zinc-500 underline hover:text-white transition-colors"
+            >
+              Gulf delivery
+            </button>
           </div>
         </footer>
       </main>

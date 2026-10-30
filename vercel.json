@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/gulf", "destination": "/index.html" },
+    { "source": "/gulf/", "destination": "/index.html" }
+  ]
+}
