@@ -539,10 +539,10 @@ export function App() {
                         150-Page Policy Binders
                       </h3>
                       <p className="text-base text-zinc-400 leading-relaxed font-light mb-6">
-                        Risk advisors hand you slide decks and policy guidelines. They outline what
-                        you *should* check (PII protection, conflict rules, license constraints).
-                        But developers rarely read them, and human compliance teams audit files
-                        weeks *after* the errors have occurred.
+                        Compliance guidance usually lives in slide decks and policy documents. It
+                        explains what you *should* check (PII protection, conflict rules, license
+                        constraints), but it sits outside the tools where code is written, so
+                        problems surface weeks *after* they occur.
                       </p>
                     </div>
                     <div className="border-t border-white/5 pt-4 text-xs font-mono text-zinc-400 space-y-1 text-left">
