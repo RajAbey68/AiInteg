@@ -1,10 +1,16 @@
-import { AlertTriangle, Bot, Briefcase, Calendar, CheckCircle, Sparkles } from "lucide-react";
+import {
+  AlertTriangle,
+  Bot,
+  Briefcase,
+  Calendar,
+  CheckCircle,
+  Network,
+  Sparkles,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { homepageCopy } from "./content/homepage";
 
 const ASIMOV_AI_URL = "https://asimov-ai.org";
-const SKOOL_URL = "https://www.skool.com/ghostwriter-tandem-6940";
-const SKOOL_LABEL = "Not ready to commission? Join the AI Integrity community — free.";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SUBMIT_TIMEOUT_MS = 15000;
 
@@ -127,7 +133,7 @@ export function App() {
       setSuccess(true);
     } catch (err: unknown) {
       if (err instanceof DOMException && err.name === "AbortError") {
-        setError("Request timed out — email us instead and we'll pick it up.");
+        setError("Request timed out; email us instead and we'll pick it up.");
       } else {
         const message = err instanceof Error ? err.message : "An unexpected error occurred.";
         setError(message);
@@ -298,9 +304,9 @@ export function App() {
                     The Assurance Firewall
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
-                    Professional services require 100% predictable, audit-ready data. Here is how we
-                    enforce deterministic rules on top of probabilistic AI models to prevent
-                    hallucinations and PII leaks.
+                    Professional services need predictable, audit-ready data. Here is how we apply
+                    deterministic rules on top of probabilistic AI models to reduce hallucinations
+                    and PII leaks.
                   </p>
                 </div>
 
@@ -308,7 +314,7 @@ export function App() {
                   {/* Left Panel: Inputs (4 cols) */}
                   <div className="lg:col-span-4 flex flex-col justify-between space-y-4">
                     <div className="text-left space-y-3">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                         Step 1: Raw Unstructured Input
                       </span>
                       <p className="text-xs text-zinc-400 font-light">
@@ -395,7 +401,7 @@ export function App() {
                   {/* Right Panel: Deterministic JSON Outputs (5 cols) */}
                   <div className="lg:col-span-5 flex flex-col justify-between space-y-4 text-left">
                     <div>
-                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                         Step 3: Secure Audit-Ready Output
                       </span>
                       <p className="text-xs text-zinc-400 font-light mt-1">
@@ -487,7 +493,7 @@ export function App() {
                     {
                       title: "AI Governance Referral",
                       description:
-                        "Implementation and governance are distinct disciplines. When boards need standing AI risk counsel, we refer to ASIMOV AI — our sister advisory practice. The conflict wall applies both ways: separate engagement teams, no shared client files, and an ASIMOV audit verdict is never contingent on AI Integ winning the build.",
+                        "Implementation and governance are distinct disciplines. When boards need standing AI risk counsel, we refer to ASIMOV AI, our sister advisory practice. The conflict wall applies both ways: separate engagement teams, no shared client files, and an ASIMOV audit verdict is never contingent on AI Integ winning the build.",
                     },
                   ].map((service) => (
                     <article
@@ -531,26 +537,26 @@ export function App() {
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                          Traditional Compliance (The Maze)
+                          The Compliance Baseline
                         </span>
                         <span className="text-[10px] bg-red-950/30 text-red-400 px-2 py-0.5 rounded border border-red-500/20">
-                          Static & Ignored
+                          Document-based
                         </span>
                       </div>
                       <h3 className="text-lg font-bold text-zinc-200 mb-3">
-                        150-Page Policy Binders
+                        Policy Binders and Slide Decks
                       </h3>
                       <p className="text-base text-zinc-400 leading-relaxed font-light mb-6">
-                        Risk advisors hand you slide decks and policy guidelines. They outline what
-                        you *should* check (PII protection, conflict rules, license constraints).
-                        But developers rarely read them, and human compliance teams audit files
-                        weeks *after* the errors have occurred.
+                        Compliance guidance usually lives in slide decks and policy documents. It
+                        explains what you *should* check (PII protection, conflict rules, license
+                        constraints), but it sits outside the tools where code is written, so
+                        problems surface weeks *after* they occur.
                       </p>
                     </div>
-                    <div className="border-t border-white/5 pt-4 text-xs font-mono text-zinc-500 space-y-1 text-left">
-                      <div>✗ Manual quarterly sampling audits</div>
-                      <div>✗ No technical prevention mechanisms</div>
-                      <div>✗ Disconnected from live code repositories</div>
+                    <div className="border-t border-white/5 pt-4 text-xs font-mono text-zinc-400 space-y-1 text-left">
+                      <div>· Periodic manual sampling audits</div>
+                      <div>· Guidance reviewed at audit time</div>
+                      <div>· Records kept in documents and files</div>
                     </div>
                   </div>
 
@@ -615,7 +621,7 @@ export function App() {
                         0{idx + 1}
                       </p>
                       <h3 className="text-base font-bold mb-1">{phase.name}</h3>
-                      <p className="text-sm text-zinc-500 block mb-3">{phase.duration}</p>
+                      <p className="text-sm text-zinc-400 block mb-3">{phase.duration}</p>
                       <p className="text-base text-zinc-400 leading-relaxed">{phase.deliverable}</p>
                     </li>
                   ))}
@@ -667,7 +673,7 @@ export function App() {
                         key={item.step}
                         className="border border-white/5 bg-zinc-950 p-5 rounded hover:border-teal-500/30 transition-all duration-200 group relative"
                       >
-                        <span className="text-xs font-semibold font-mono text-zinc-500 block mb-2">
+                        <span className="text-xs font-semibold font-mono text-zinc-400 block mb-2">
                           STEP {item.step}
                         </span>
                         <h4 className="text-sm font-bold text-zinc-200 mb-1 group-hover:text-teal-300 transition-colors">
@@ -677,8 +683,8 @@ export function App() {
                           {item.desc}
                         </p>
                         <div className="border-t border-white/5 pt-2 mt-auto">
-                          <span className="text-[10px] text-zinc-500 font-mono block uppercase">
-                            Assurance Guarantee
+                          <span className="text-[10px] text-zinc-400 font-mono block uppercase">
+                            Assurance
                           </span>
                           <span className="text-[11px] text-zinc-400 font-light leading-relaxed block mt-0.5">
                             {item.assurance}
@@ -806,7 +812,7 @@ export function App() {
                         onChange={(e) => setCalcRealization(Number(e.target.value))}
                         className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-teal-400"
                       />
-                      <p className="text-[11px] text-zinc-500 mt-1 font-light">
+                      <p className="text-[11px] text-zinc-400 mt-1 font-light">
                         How much of the reclaimed hours actually convert to billable work.
                       </p>
                     </div>
@@ -816,12 +822,12 @@ export function App() {
                   <div className="bg-zinc-950 border border-white/5 p-6 rounded flex flex-col justify-between text-left">
                     <div className="space-y-4">
                       <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                           Total Wasted Capacity
                         </span>
                         <h3 className="text-3xl font-extrabold text-zinc-200 mt-1">
                           £{calcTotalLeakage.toLocaleString()}
-                          <span className="text-xs font-normal text-zinc-500 block">
+                          <span className="text-xs font-normal text-zinc-400 block">
                             per year across the firm
                           </span>
                         </h3>
@@ -836,7 +842,7 @@ export function App() {
                           style={{ color: "var(--color-teal)" }}
                         >
                           £{calcRecoverable.toLocaleString()}
-                          <span className="text-xs font-normal text-zinc-500 block">
+                          <span className="text-xs font-normal text-zinc-400 block">
                             added annual billable margin
                           </span>
                         </h3>
@@ -858,7 +864,7 @@ export function App() {
                       <button
                         type="button"
                         onClick={() => setCitationsOpen(true)}
-                        className="w-full text-center text-xs text-zinc-500 hover:text-zinc-300 transition-colors mt-3 bg-transparent border-0 cursor-pointer block mx-auto"
+                        className="w-full text-center text-xs text-zinc-400 hover:text-zinc-300 transition-colors mt-3 bg-transparent border-0 cursor-pointer block mx-auto"
                       >
                         View calculation basis & citations
                       </button>
@@ -888,14 +894,6 @@ export function App() {
                     >
                       Book a scope call
                     </button>
-                    <a
-                      href={SKOOL_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded border border-white/10 hover:border-white/30 px-6 py-3 text-base transition-colors text-white"
-                    >
-                      {SKOOL_LABEL}
-                    </a>
                   </div>
                 </div>
               </section>
@@ -939,7 +937,8 @@ export function App() {
                 </h1>
                 <p className="text-lg text-zinc-400 leading-relaxed font-light">
                   How we build compliant, high-velocity automation for professional services. We
-                  don't deliver black boxes; we deliver transparent systems that you own entirely.
+                  don't deliver black boxes; we deliver transparent systems and hand them over
+                  running.
                 </p>
                 <div className="flex justify-center gap-4">
                   <button
@@ -962,31 +961,22 @@ export function App() {
 
               {/* Story Section 1: The SaaS Vulnerability */}
               <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-white/5 pt-16">
-                <div className="lg:col-span-6 space-y-6">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                    The Problem
+                <div className="lg:col-span-12 max-w-3xl space-y-6">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-teal-400">
+                    Our Approach
                   </span>
                   <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-                    The Costly SaaS Trap & Data Leakage
+                    The Private Cloud Alternative
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
-                    Renting general-purpose AI platforms from external SaaS vendors comes with
-                    hidden liabilities. Your staff uploads confidential client files (like tax
-                    records or corporate contracts) into third-party portals, risking massive
-                    regulatory breaches. At the same time, seat-licensing fees scale exponentially
-                    as your organization grows.
+                    When a firm's data cannot leave its own environment, we deploy AI systems inside
+                    your own cloud workspace. Confidential client files stay under your control, and
+                    handover of the code and data we build is agreed as part of your scope.
                   </p>
-                  <div className="border-l-2 border-red-500/20 pl-4 py-1 text-sm text-zinc-500 font-mono">
-                    ✗ Multi-tenant database sharing <br />✗ Leakage of intellectual assets to public
-                    training sets <br />✗ Compounding per-user pricing locks
+                  <div className="border-l-2 border-red-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
+                    ✓ Single-tenant deployment in your cloud workspace <br />✓ Your files and data
+                    stay under your control <br />✓ Fixed-fee discovery, sprint-based build
                   </div>
-                </div>
-                <div className="lg:col-span-6 border border-white/5 rounded-lg overflow-hidden bg-zinc-950 p-2">
-                  <img
-                    src="/images/saas_vulnerability.png"
-                    alt="SaaS Vulnerability and Data Leakage diagram showing broken security nodes"
-                    className="w-full h-auto rounded opacity-90 hover:opacity-100 transition-opacity duration-300"
-                  />
                 </div>
               </section>
 
@@ -1003,10 +993,10 @@ export function App() {
                     Before we write a single line of software code, we define the exact rules and
                     boundaries of your system. We establish rigid data schemas and verify compliance
                     rules. This ensures that the probabilistic nature of AI engines is strictly
-                    controlled by deterministic guardrails, forcing outputs to always conform to
+                    controlled by deterministic guardrails, forcing outputs to conform to
                     audit-ready standards.
                   </p>
-                  <div className="border-l-2 border-teal-500/20 pl-4 py-1 text-sm text-zinc-500 font-mono">
+                  <div className="border-l-2 border-teal-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
                     ✓ Rigid data contracts locked at build-start <br />✓ Safety gates preventing PII
                     and hallucinated responses <br />✓ Complete transparency in decision logic
                   </div>
@@ -1033,10 +1023,10 @@ export function App() {
                     Our proprietary methodology locks your software in a continuous audit cycle. We
                     move from Inbound Request through the Assurance Gate, run the Automated
                     Workflow, update your Secure Systems of Record, and verify it all with a Daily
-                    Verification Audit. This loop eliminates the need for manual sampling checks and
-                    guarantees that updates never break your active compliance standards.
+                    Verification Audit. This loop reduces the need for manual sampling checks and is
+                    designed to catch updates that would break your active compliance standards.
                   </p>
-                  <div className="border-l-2 border-teal-500/20 pl-4 py-1 text-sm text-zinc-500 font-mono">
+                  <div className="border-l-2 border-teal-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
                     ✓ End-to-end auditability on every transaction <br />✓ Automated regression
                     testing against model drift <br />✓ Structured verification reports sent daily
                   </div>
@@ -1057,7 +1047,7 @@ export function App() {
                     Methodology in Action
                   </span>
                   <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-                    LeadSynch: Reclaiming Margin without SaaS Overhead
+                    LeadSynch: Reclaiming Margin with a Private Pipeline
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
                     Here is a real-world case study of how we build a secure, private pipeline using
@@ -1069,34 +1059,20 @@ export function App() {
                   <div className="space-y-6">
                     <h3 className="text-lg font-bold text-zinc-200">The Private Cloud Advantage</h3>
                     <p className="text-sm text-zinc-400 leading-relaxed font-light">
-                      For a B2B professional services client, we deployed **LeadSynch**—an automated
-                      lead discovery and qualification system. Instead of paying a software vendor
-                      £300/seat every single month, the client **owns the code and database
-                      entirely**. It runs securely inside their private cloud workspace.
+                      LeadSynch is our own automated lead discovery and qualification pipeline. It
+                      runs inside a private cloud workspace that we control, and we apply the same
+                      deployment pattern when we build for your firm.
                     </p>
-                    <div className="bg-zinc-950 border border-white/5 p-4 rounded text-xs space-y-2">
-                      <div className="flex justify-between">
-                        <span className="text-zinc-500">Traditional SaaS Cost:</span>
-                        <span className="text-red-400 font-semibold">£3,600 / year (per seat)</span>
-                      </div>
-                      <div className="flex justify-between border-t border-white/5 pt-2">
-                        <span className="text-zinc-500">LeadSynch Utility Cost:</span>
-                        <span className="text-teal-400 font-semibold">
-                          ~£4 / month (API consumption)
-                        </span>
-                      </div>
-                    </div>
                   </div>
 
                   <div className="space-y-6 flex flex-col justify-between">
                     <div>
-                      <h3 className="text-lg font-bold text-zinc-200">Zero Technical Debt</h3>
+                      <h3 className="text-lg font-bold text-zinc-200">No Software to Manage</h3>
                       <p className="text-sm text-zinc-400 leading-relaxed font-light mt-3">
                         Professional services firms bill by the hour and do not want to manage
-                        software or write code. We deliver LeadSynch as a **Managed Pipeline
-                        Service**. Our continuous verification checks run daily, and we handle all
-                        backend model maintenance, meaning the client gets SaaS-grade performance
-                        with zero overhead.
+                        software or write code. We deliver LeadSynch as a managed pipeline service.
+                        Our continuous verification checks run daily, and we handle all backend
+                        model maintenance and operations.
                       </p>
                     </div>
                     <button
@@ -1116,12 +1092,12 @@ export function App() {
 
         {/* Footer */}
         <footer className="border-t border-white/5 py-10 bg-zinc-950 px-6 md:px-12 w-full">
-          <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-zinc-500">
+          <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-zinc-400">
             <span>&copy; {new Date().getFullYear()} AI Integ. All rights reserved.</span>
             <p
               id="service-disclaimer"
               role="note"
-              className="text-sm text-zinc-500 max-w-2xl leading-relaxed text-center md:text-left"
+              className="text-sm text-zinc-400 max-w-2xl leading-relaxed text-center md:text-left"
             >
               AI Integ provides fixed-scope software delivery services. We are not an advisory or
               consulting firm. For AI governance, regulatory compliance, and board-level AI risk
@@ -1179,6 +1155,19 @@ export function App() {
         </a>
         <button
           type="button"
+          onClick={() => {
+            setView("framework");
+            if (typeof window.scrollTo === "function") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className={`flex flex-col items-center justify-center text-xs bg-transparent border-0 cursor-pointer p-0 ${view === "framework" ? "text-teal-400" : "text-zinc-400 hover:text-white"}`}
+        >
+          <Network className="h-4 w-4 mb-1" />
+          <span>Framework</span>
+        </button>
+        <button
+          type="button"
           onClick={() => setModalOpen(true)}
           className="flex flex-col items-center justify-center text-xs font-semibold bg-transparent border-0 cursor-pointer p-0"
           style={{ color: "var(--color-teal)" }}
@@ -1196,7 +1185,7 @@ export function App() {
               type="button"
               onClick={() => setModalOpen(false)}
               aria-label="close"
-              className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
+              className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors"
             >
               <span aria-hidden="true" className="text-lg">
                 ✕
@@ -1373,18 +1362,6 @@ export function App() {
                   Thank you. One named person accountable (Rajiv Abeysinghe) will review your query
                   and reply within one working day.
                 </p>
-                <div className="pt-4 border-t border-white/5">
-                  <p className="text-xs text-zinc-500 mb-2">Want support while you wait?</p>
-                  <a
-                    href={SKOOL_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block text-sm font-semibold border border-white/10 hover:border-white/20 hover:bg-zinc-950 px-4 py-2.5 rounded transition-all"
-                    style={{ color: "var(--color-teal)" }}
-                  >
-                    Join the AI Integrity community on Skool — free
-                  </a>
-                </div>
               </div>
             )}
           </div>
@@ -1399,7 +1376,7 @@ export function App() {
               type="button"
               onClick={() => setCitationsOpen(false)}
               aria-label="close"
-              className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
+              className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors"
             >
               <span aria-hidden="true" className="text-lg">
                 ✕
@@ -1414,10 +1391,8 @@ export function App() {
                   1. Time Lost on Admin Work
                 </h3>
                 <p>
-                  Business studies show that office staff spend an average of{" "}
-                  <strong>1.8 hours every day</strong> (nearly 20% of their working week) just
-                  searching for files, retrieving documents, and dealing with administrative
-                  clutter.
+                  Office staff lose hours every week searching for files, retrieving documents, and
+                  dealing with administrative clutter.
                 </p>
               </div>
 
@@ -1427,8 +1402,8 @@ export function App() {
                 </h3>
                 <p>
                   When work is not tracked automatically, small tasks like phone calls, quick
-                  replies, and client updates get forgotten. Research indicates companies lose over{" "}
-                  <strong>20% of their billable capacity</strong> to these untracked minutes.
+                  replies, and client updates get forgotten. Those untracked minutes quietly become
+                  lost <strong>billable capacity</strong>.
                 </p>
               </div>
 
@@ -1437,10 +1412,9 @@ export function App() {
                   3. Realization Rate (What is actually billed)
                 </h3>
                 <p>
-                  Not every hour saved becomes a paid hour. Industry benchmarks show that businesses
-                  collect around <strong>85%</strong> of their recorded work. We apply a
-                  conservative <strong>75% realization rate</strong> in our default calculation to
-                  keep your projections realistic.
+                  Not every hour saved becomes a paid hour. We apply a conservative{" "}
+                  <strong>75% realization rate</strong> in our default calculation to keep your
+                  projections realistic.
                 </p>
               </div>
 
