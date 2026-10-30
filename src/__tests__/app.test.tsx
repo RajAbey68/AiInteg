@@ -86,7 +86,7 @@ describe("App", () => {
   it("renders the hook problem statement with the filing-system analogy", () => {
     render(<App />);
     expect(
-      screen.getByText(/Harvey\. Copilot\. Clio\. Great tools\. Zero implementation support\./)
+      screen.getByText(/Plenty of great AI tools\. Almost no implementation support\./)
     ).toBeInTheDocument();
     expect(
       screen.getByText(/buying a filing system and leaving it in the boxes/i)
