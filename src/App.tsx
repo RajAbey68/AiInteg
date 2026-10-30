@@ -529,14 +529,14 @@ export function App() {
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                          Traditional Compliance (The Maze)
+                          The Compliance Baseline
                         </span>
                         <span className="text-[10px] bg-red-950/30 text-red-400 px-2 py-0.5 rounded border border-red-500/20">
-                          Static & Ignored
+                          Document-based
                         </span>
                       </div>
                       <h3 className="text-lg font-bold text-zinc-200 mb-3">
-                        150-Page Policy Binders
+                        Policy Binders and Slide Decks
                       </h3>
                       <p className="text-base text-zinc-400 leading-relaxed font-light mb-6">
                         Compliance guidance usually lives in slide decks and policy documents. It
@@ -546,9 +546,9 @@ export function App() {
                       </p>
                     </div>
                     <div className="border-t border-white/5 pt-4 text-xs font-mono text-zinc-400 space-y-1 text-left">
-                      <div>✗ Manual quarterly sampling audits</div>
-                      <div>✗ No technical prevention mechanisms</div>
-                      <div>✗ Disconnected from live code repositories</div>
+                      <div>· Periodic manual sampling audits</div>
+                      <div>· Prevention through policy, not tooling</div>
+                      <div>· Separate from live code repositories</div>
                     </div>
                   </div>
 
