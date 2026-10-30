@@ -1,4 +1,12 @@
-import { AlertTriangle, Bot, Briefcase, Calendar, CheckCircle, Sparkles } from "lucide-react";
+import {
+  AlertTriangle,
+  Bot,
+  Briefcase,
+  Calendar,
+  CheckCircle,
+  Network,
+  Sparkles,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { homepageCopy } from "./content/homepage";
 
@@ -929,7 +937,8 @@ export function App() {
                 </h1>
                 <p className="text-lg text-zinc-400 leading-relaxed font-light">
                   How we build compliant, high-velocity automation for professional services. We
-                  don't deliver black boxes; we deliver transparent systems that you own entirely.
+                  don't deliver black boxes; we deliver transparent systems and hand them over
+                  running.
                 </p>
                 <div className="flex justify-center gap-4">
                   <button
@@ -952,8 +961,8 @@ export function App() {
 
               {/* Story Section 1: The SaaS Vulnerability */}
               <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-white/5 pt-16">
-                <div className="lg:col-span-6 space-y-6">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
+                <div className="lg:col-span-12 max-w-3xl space-y-6">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-teal-400">
                     Our Approach
                   </span>
                   <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
@@ -962,19 +971,12 @@ export function App() {
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
                     When a firm's data cannot leave its own environment, we deploy AI systems inside
                     your own cloud workspace. Confidential client files stay under your control, and
-                    you own the code and data we build for you.
+                    handover of the code and data we build is agreed as part of your scope.
                   </p>
                   <div className="border-l-2 border-red-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
                     ✓ Single-tenant deployment in your cloud workspace <br />✓ Your files and data
                     stay under your control <br />✓ Fixed-fee discovery, sprint-based build
                   </div>
-                </div>
-                <div className="lg:col-span-6 border border-white/5 rounded-lg overflow-hidden bg-zinc-950 p-2">
-                  <img
-                    src="/images/saas_vulnerability.png"
-                    alt="SaaS Vulnerability and Data Leakage diagram showing broken security nodes"
-                    className="w-full h-auto rounded opacity-90 hover:opacity-100 transition-opacity duration-300"
-                  />
                 </div>
               </section>
 
@@ -1057,23 +1059,10 @@ export function App() {
                   <div className="space-y-6">
                     <h3 className="text-lg font-bold text-zinc-200">The Private Cloud Advantage</h3>
                     <p className="text-sm text-zinc-400 leading-relaxed font-light">
-                      For a B2B professional services client, we deployed **LeadSynch**, an
-                      automated lead discovery and qualification system. The client replaced a
-                      £300/seat monthly subscription and now **owns the code and database
-                      entirely**. It runs securely inside their private cloud workspace.
+                      LeadSynch is our own automated lead discovery and qualification pipeline. It
+                      runs inside a private cloud workspace that we control, and we apply the same
+                      deployment pattern when we build for your firm.
                     </p>
-                    <div className="bg-zinc-950 border border-white/5 p-4 rounded text-xs space-y-2">
-                      <div className="flex justify-between">
-                        <span className="text-zinc-400">Previous subscription cost:</span>
-                        <span className="text-red-400 font-semibold">£3,600 / year (per seat)</span>
-                      </div>
-                      <div className="flex justify-between border-t border-white/5 pt-2">
-                        <span className="text-zinc-400">LeadSynch Utility Cost:</span>
-                        <span className="text-teal-400 font-semibold">
-                          ~£4 / month (API consumption)
-                        </span>
-                      </div>
-                    </div>
                   </div>
 
                   <div className="space-y-6 flex flex-col justify-between">
@@ -1081,10 +1070,9 @@ export function App() {
                       <h3 className="text-lg font-bold text-zinc-200">No Software to Manage</h3>
                       <p className="text-sm text-zinc-400 leading-relaxed font-light mt-3">
                         Professional services firms bill by the hour and do not want to manage
-                        software or write code. We deliver LeadSynch as a **Managed Pipeline
-                        Service**. Our continuous verification checks run daily, and we handle all
-                        backend model maintenance, so the client gets SaaS-grade performance while
-                        we handle the operations.
+                        software or write code. We deliver LeadSynch as a managed pipeline service.
+                        Our continuous verification checks run daily, and we handle all backend
+                        model maintenance and operations.
                       </p>
                     </div>
                     <button
@@ -1165,6 +1153,19 @@ export function App() {
           <Sparkles className="h-4 w-4 mb-1" />
           <span>Who we help</span>
         </a>
+        <button
+          type="button"
+          onClick={() => {
+            setView("framework");
+            if (typeof window.scrollTo === "function") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className={`flex flex-col items-center justify-center text-xs bg-transparent border-0 cursor-pointer p-0 ${view === "framework" ? "text-teal-400" : "text-zinc-400 hover:text-white"}`}
+        >
+          <Network className="h-4 w-4 mb-1" />
+          <span>Framework</span>
+        </button>
         <button
           type="button"
           onClick={() => setModalOpen(true)}
