@@ -298,9 +298,9 @@ export function App() {
                     The Assurance Firewall
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
-                    Professional services require 100% predictable, audit-ready data. Here is how we
-                    enforce deterministic rules on top of probabilistic AI models to prevent
-                    hallucinations and PII leaks.
+                    Professional services need predictable, audit-ready data. Here is how we apply
+                    deterministic rules on top of probabilistic AI models to reduce hallucinations
+                    and PII leaks.
                   </p>
                 </div>
 
@@ -308,7 +308,7 @@ export function App() {
                   {/* Left Panel: Inputs (4 cols) */}
                   <div className="lg:col-span-4 flex flex-col justify-between space-y-4">
                     <div className="text-left space-y-3">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                         Step 1: Raw Unstructured Input
                       </span>
                       <p className="text-xs text-zinc-400 font-light">
@@ -395,7 +395,7 @@ export function App() {
                   {/* Right Panel: Deterministic JSON Outputs (5 cols) */}
                   <div className="lg:col-span-5 flex flex-col justify-between space-y-4 text-left">
                     <div>
-                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                         Step 3: Secure Audit-Ready Output
                       </span>
                       <p className="text-xs text-zinc-400 font-light mt-1">
@@ -547,7 +547,7 @@ export function App() {
                         weeks *after* the errors have occurred.
                       </p>
                     </div>
-                    <div className="border-t border-white/5 pt-4 text-xs font-mono text-zinc-500 space-y-1 text-left">
+                    <div className="border-t border-white/5 pt-4 text-xs font-mono text-zinc-400 space-y-1 text-left">
                       <div>✗ Manual quarterly sampling audits</div>
                       <div>✗ No technical prevention mechanisms</div>
                       <div>✗ Disconnected from live code repositories</div>
@@ -615,7 +615,7 @@ export function App() {
                         0{idx + 1}
                       </p>
                       <h3 className="text-base font-bold mb-1">{phase.name}</h3>
-                      <p className="text-sm text-zinc-500 block mb-3">{phase.duration}</p>
+                      <p className="text-sm text-zinc-400 block mb-3">{phase.duration}</p>
                       <p className="text-base text-zinc-400 leading-relaxed">{phase.deliverable}</p>
                     </li>
                   ))}
@@ -667,7 +667,7 @@ export function App() {
                         key={item.step}
                         className="border border-white/5 bg-zinc-950 p-5 rounded hover:border-teal-500/30 transition-all duration-200 group relative"
                       >
-                        <span className="text-xs font-semibold font-mono text-zinc-500 block mb-2">
+                        <span className="text-xs font-semibold font-mono text-zinc-400 block mb-2">
                           STEP {item.step}
                         </span>
                         <h4 className="text-sm font-bold text-zinc-200 mb-1 group-hover:text-teal-300 transition-colors">
@@ -677,7 +677,7 @@ export function App() {
                           {item.desc}
                         </p>
                         <div className="border-t border-white/5 pt-2 mt-auto">
-                          <span className="text-[10px] text-zinc-500 font-mono block uppercase">
+                          <span className="text-[10px] text-zinc-400 font-mono block uppercase">
                             Assurance Guarantee
                           </span>
                           <span className="text-[11px] text-zinc-400 font-light leading-relaxed block mt-0.5">
@@ -806,7 +806,7 @@ export function App() {
                         onChange={(e) => setCalcRealization(Number(e.target.value))}
                         className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-teal-400"
                       />
-                      <p className="text-[11px] text-zinc-500 mt-1 font-light">
+                      <p className="text-[11px] text-zinc-400 mt-1 font-light">
                         How much of the reclaimed hours actually convert to billable work.
                       </p>
                     </div>
@@ -816,12 +816,12 @@ export function App() {
                   <div className="bg-zinc-950 border border-white/5 p-6 rounded flex flex-col justify-between text-left">
                     <div className="space-y-4">
                       <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
                           Total Wasted Capacity
                         </span>
                         <h3 className="text-3xl font-extrabold text-zinc-200 mt-1">
                           £{calcTotalLeakage.toLocaleString()}
-                          <span className="text-xs font-normal text-zinc-500 block">
+                          <span className="text-xs font-normal text-zinc-400 block">
                             per year across the firm
                           </span>
                         </h3>
@@ -836,7 +836,7 @@ export function App() {
                           style={{ color: "var(--color-teal)" }}
                         >
                           £{calcRecoverable.toLocaleString()}
-                          <span className="text-xs font-normal text-zinc-500 block">
+                          <span className="text-xs font-normal text-zinc-400 block">
                             added annual billable margin
                           </span>
                         </h3>
@@ -858,7 +858,7 @@ export function App() {
                       <button
                         type="button"
                         onClick={() => setCitationsOpen(true)}
-                        className="w-full text-center text-xs text-zinc-500 hover:text-zinc-300 transition-colors mt-3 bg-transparent border-0 cursor-pointer block mx-auto"
+                        className="w-full text-center text-xs text-zinc-400 hover:text-zinc-300 transition-colors mt-3 bg-transparent border-0 cursor-pointer block mx-auto"
                       >
                         View calculation basis & citations
                       </button>
@@ -976,7 +976,7 @@ export function App() {
                     regulatory breaches. At the same time, seat-licensing fees scale exponentially
                     as your organization grows.
                   </p>
-                  <div className="border-l-2 border-red-500/20 pl-4 py-1 text-sm text-zinc-500 font-mono">
+                  <div className="border-l-2 border-red-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
                     ✗ Multi-tenant database sharing <br />✗ Leakage of intellectual assets to public
                     training sets <br />✗ Compounding per-user pricing locks
                   </div>
@@ -1006,7 +1006,7 @@ export function App() {
                     controlled by deterministic guardrails, forcing outputs to always conform to
                     audit-ready standards.
                   </p>
-                  <div className="border-l-2 border-teal-500/20 pl-4 py-1 text-sm text-zinc-500 font-mono">
+                  <div className="border-l-2 border-teal-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
                     ✓ Rigid data contracts locked at build-start <br />✓ Safety gates preventing PII
                     and hallucinated responses <br />✓ Complete transparency in decision logic
                   </div>
@@ -1033,10 +1033,10 @@ export function App() {
                     Our proprietary methodology locks your software in a continuous audit cycle. We
                     move from Inbound Request through the Assurance Gate, run the Automated
                     Workflow, update your Secure Systems of Record, and verify it all with a Daily
-                    Verification Audit. This loop eliminates the need for manual sampling checks and
-                    guarantees that updates never break your active compliance standards.
+                    Verification Audit. This loop reduces the need for manual sampling checks and is
+                    designed to catch updates that would break your active compliance standards.
                   </p>
-                  <div className="border-l-2 border-teal-500/20 pl-4 py-1 text-sm text-zinc-500 font-mono">
+                  <div className="border-l-2 border-teal-500/20 pl-4 py-1 text-sm text-zinc-400 font-mono">
                     ✓ End-to-end auditability on every transaction <br />✓ Automated regression
                     testing against model drift <br />✓ Structured verification reports sent daily
                   </div>
@@ -1076,11 +1076,11 @@ export function App() {
                     </p>
                     <div className="bg-zinc-950 border border-white/5 p-4 rounded text-xs space-y-2">
                       <div className="flex justify-between">
-                        <span className="text-zinc-500">Traditional SaaS Cost:</span>
+                        <span className="text-zinc-400">Traditional SaaS Cost:</span>
                         <span className="text-red-400 font-semibold">£3,600 / year (per seat)</span>
                       </div>
                       <div className="flex justify-between border-t border-white/5 pt-2">
-                        <span className="text-zinc-500">LeadSynch Utility Cost:</span>
+                        <span className="text-zinc-400">LeadSynch Utility Cost:</span>
                         <span className="text-teal-400 font-semibold">
                           ~£4 / month (API consumption)
                         </span>
@@ -1116,12 +1116,12 @@ export function App() {
 
         {/* Footer */}
         <footer className="border-t border-white/5 py-10 bg-zinc-950 px-6 md:px-12 w-full">
-          <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-zinc-500">
+          <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-zinc-400">
             <span>&copy; {new Date().getFullYear()} AI Integ. All rights reserved.</span>
             <p
               id="service-disclaimer"
               role="note"
-              className="text-sm text-zinc-500 max-w-2xl leading-relaxed text-center md:text-left"
+              className="text-sm text-zinc-400 max-w-2xl leading-relaxed text-center md:text-left"
             >
               AI Integ provides fixed-scope software delivery services. We are not an advisory or
               consulting firm. For AI governance, regulatory compliance, and board-level AI risk
@@ -1196,7 +1196,7 @@ export function App() {
               type="button"
               onClick={() => setModalOpen(false)}
               aria-label="close"
-              className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
+              className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors"
             >
               <span aria-hidden="true" className="text-lg">
                 ✕
@@ -1374,7 +1374,7 @@ export function App() {
                   and reply within one working day.
                 </p>
                 <div className="pt-4 border-t border-white/5">
-                  <p className="text-xs text-zinc-500 mb-2">Want support while you wait?</p>
+                  <p className="text-xs text-zinc-400 mb-2">Want support while you wait?</p>
                   <a
                     href={SKOOL_URL}
                     target="_blank"
@@ -1399,7 +1399,7 @@ export function App() {
               type="button"
               onClick={() => setCitationsOpen(false)}
               aria-label="close"
-              className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
+              className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors"
             >
               <span aria-hidden="true" className="text-lg">
                 ✕
@@ -1479,4 +1479,4 @@ export function App() {
       )}
     </div>
   );
-}
+                    }
