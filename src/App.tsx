@@ -1047,7 +1047,7 @@ export function App() {
                     Methodology in Action
                   </span>
                   <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-                    LeadSynch: Reclaiming Margin without SaaS Overhead
+                    LeadSynch: Reclaiming Margin with a Private Pipeline
                   </h2>
                   <p className="text-base text-zinc-400 leading-relaxed font-light">
                     Here is a real-world case study of how we build a secure, private pipeline using
